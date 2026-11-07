@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observer | Manage Users</title>
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    :root {
+        --bg: #050a12;
+        --bg2: #08111d;
+        --panel: rgba(10, 20, 33, 0.82);
+        --panel-strong: rgba(12, 24, 40, 0.96);
+        --border: rgba(89, 179, 255, 0.14);
+        --border-hover: rgba(89, 196, 255, 0.32);
+        --text: #edf7ff;
+        --muted: #8fa7bc;
+        --muted2: #667d91;
+        --blue: #168cff;
+        --cyan: #26d9ff;
+        --green: #21d393;
+        --red: #ff5368;
+        --orange: #ffae42;
+        --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    html {
+        min-height: 100%;
+        background: var(--bg);
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 28px;
+        color: var(--text);
+        font-family:
+            Inter,
+            "Segoe UI",
+            Arial,
+            sans-serif;
+        background:
+            radial-gradient(circle at 10% 0%, rgba(24, 140, 255, 0.13), transparent 30%),
+            radial-gradient(circle at 90% 10%, rgba(38, 217, 255, 0.09), transparent 28%),
+            radial-gradient(circle at 50% 100%, rgba(25, 90, 180, 0.08), transparent 34%),
+            linear-gradient(145deg, #03070d 0%, #07101b 48%, #050b14 100%);
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.22;
+        background-image:
+            linear-gradient(rgba(90, 180, 255, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(90, 180, 255, 0.035) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, black, transparent 90%);
+        z-index: 0;
+    }
+
+    body::after {
+        content: "";
+        position: fixed;
+        width: 520px;
+        height: 520px;
+        right: -220px;
+        top: 160px;
+        border-radius: 50%;
+        background: rgba(0, 170, 255, 0.055);
+        filter: blur(100px);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    button,
+    input,
+    select {
+        font: inherit;
+    }
+
+    button {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 10px 15px;
+        color: white;
+        background:
+            linear-gradient(135deg, rgba(24, 140, 255, 0.96), rgba(24, 108, 210, 0.96));
+        box-shadow:
+            0 8px 22px rgba(0, 110, 255, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 700;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+    button:hover {
+        transform: translateY(-1px);
+        border-color: rgba(83, 190, 255, 0.4);
+        box-shadow:
+            0 12px 28px rgba(0, 110, 255, 0.22),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    .back-btn {
+        background: rgba(255, 255, 255, 0.055);
+        border-color: rgba(255, 255, 255, 0.11);
+        color: #d6e6f2;
+        box-shadow: none;
+    }
+
+    .back-btn:hover {
+        background: rgba(255, 255, 255, 0.09);
+    }
+
+    .danger-btn {
+        background:
+            linear-gradient(135deg, rgba(255, 73, 98, 0.95), rgba(190, 35, 58, 0.95));
+        box-shadow: 0 8px 22px rgba(255, 50, 80, 0.13);
+    }
+
+    .success-btn {
+        background:
+            linear-gradient(135deg, rgba(24, 204, 140, 0.96), rgba(15, 150, 103, 0.96));
+        box-shadow: 0 8px 22px rgba(20, 210, 140, 0.13);
+    }
+
+    a {
+        color: var(--cyan);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .header {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 auto 22px;
+        max-width: 1500px;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(13, 28, 46, 0.92),
+                rgba(7, 15, 26, 0.88)
+            );
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: var(--shadow);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-right: auto;
+    }
+
+    .brand img {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        object-fit: cover;
+        border: 1px solid rgba(96, 205, 255, 0.35);
+        box-shadow:
+            0 0 0 4px rgba(24, 140, 255, 0.055),
+            0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .brand-text .eyebrow {
+        color: var(--cyan);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 750;
+        letter-spacing: -0.02em;
+        color: #f2f9ff;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .panel {
+        position: relative;
+        z-index: 1;
+        max-width: 1500px;
+        margin: 0 auto 20px;
+        padding: 22px;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        background:
+            linear-gradient(
+                145deg,
+                rgba(12, 25, 42, 0.9),
+                rgba(7, 15, 26, 0.84)
+            );
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .panel::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 1px;
+        background:
+            linear-gradient(
+                90deg,
+                transparent,
+                rgba(38, 217, 255, 0.3),
+                transparent
+            );
+        opacity: 0.8;
+    }
+
+    .panel h2 {
+        position: relative;
+        margin: 0 0 18px;
+        color: #f2f8fd;
+        font-size: 16px;
+        font-weight: 750;
+        letter-spacing: -0.01em;
+    }
+
+    .panel h2::after {
+        content: "";
+        display: block;
+        width: 34px;
+        height: 2px;
+        margin-top: 8px;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--cyan), var(--blue));
+        box-shadow: 0 0 12px rgba(38, 217, 255, 0.35);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-bottom: 12px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 7px;
+        color: #a8bfd0;
+        font-size: 11px;
+        font-weight: 650;
+        letter-spacing: 0.01em;
+    }
+
+    input,
+    select {
+        width: 100%;
+        min-height: 42px;
+        padding: 10px 12px;
+        border: 1px solid rgba(114, 157, 190, 0.17);
+        border-radius: 10px;
+        outline: none;
+        color: #eef8ff;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.055),
+                rgba(255, 255, 255, 0.025)
+            );
+        box-shadow:
+            inset 0 1px 2px rgba(0, 0, 0, 0.22),
+            0 1px 0 rgba(255, 255, 255, 0.025);
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+    }
+
+    input::placeholder {
+        color: #5f7487;
+    }
+
+    input:focus,
+    select:focus {
+        border-color: rgba(38, 217, 255, 0.55);
+        background:
+            linear-gradient(
+                135deg,
+                rgba(22, 140, 255, 0.08),
+                rgba(255, 255, 255, 0.035)
+            );
+        box-shadow:
+            0 0 0 3px rgba(38, 217, 255, 0.07),
+            0 0 22px rgba(0, 140, 255, 0.08);
+    }
+
+    select option {
+        color: #eaf5ff;
+        background: #0b1725;
+    }
+
+    .hint {
+        margin-top: 6px;
+        color: var(--muted2);
+        font-size: 10px;
+        line-height: 1.55;
+    }
+
+    .perm-section {
+        margin-top: 18px;
+    }
+
+    .perm-title {
+        margin-bottom: 9px;
+    }
+
+    .perm-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 8px 10px;
+        padding: 13px;
+        border: 1px solid rgba(87, 157, 205, 0.13);
+        border-radius: 13px;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.035),
+                rgba(255, 255, 255, 0.015)
+            );
+    }
+
+    .perm-grid label {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-height: 35px;
+        margin: 0;
+        padding: 8px 9px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: #c5d7e4;
+        font-size: 11px;
+        cursor: pointer;
+        transition:
+            background 0.18s ease,
+            border-color 0.18s ease,
+            color 0.18s ease;
+    }
+
+    .perm-grid label:hover {
+        color: #eefaff;
+        background: rgba(38, 217, 255, 0.045);
+        border-color: rgba(38, 217, 255, 0.11);
+    }
+
+    .perm-grid input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        min-height: 16px;
+        padding: 0;
+        margin: 0;
+        border-radius: 5px;
+        border: 1px solid rgba(128, 168, 198, 0.35);
+        background: rgba(255, 255, 255, 0.035);
+        cursor: pointer;
+        position: relative;
+        flex: 0 0 auto;
+    }
+
+    .perm-grid input[type="checkbox"]:checked {
+        border-color: rgba(38, 217, 255, 0.7);
+        background:
+            linear-gradient(135deg, var(--cyan), var(--blue));
+        box-shadow: 0 0 12px rgba(38, 217, 255, 0.2);
+    }
+
+    .perm-grid input[type="checkbox"]:checked::after {
+        content: "✓";
+        position: absolute;
+        left: 3px;
+        top: -1px;
+        color: #03101a;
+        font-size: 12px;
+        font-weight: 900;
+    }
+
+    .create-user-btn {
+        margin-top: 16px;
+        padding: 11px 19px;
+    }
+
+    .msg {
+        display: none;
+        margin-bottom: 14px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border: 1px solid transparent;
+    }
+
+    .msg.success {
+        display: block;
+        color: #b8ffe4;
+        background: rgba(33, 211, 147, 0.08);
+        border-color: rgba(33, 211, 147, 0.2);
+    }
+
+    .msg.error {
+        display: block;
+        color: #ffd1d7;
+        background: rgba(255, 83, 104, 0.08);
+        border-color: rgba(255, 83, 104, 0.22);
+    }
+
+    #units-ref-panel {
+        animation: panelIn 0.25s ease;
+    }
+
+    #units-ref-list {
+        min-height: 28px;
+        padding: 10px;
+        border: 1px solid rgba(87, 157, 205, 0.1);
+        border-radius: 11px;
+        background: rgba(0, 0, 0, 0.12);
+    }
+
+    #units-ref-list span {
+        color: #ccefff !important;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(24, 140, 255, 0.13),
+                rgba(38, 217, 255, 0.07)
+            ) !important;
+        border: 1px solid rgba(38, 217, 255, 0.12);
+        border-radius: 7px !important;
+        padding: 5px 9px !important;
+    }
+
+    .table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid rgba(87, 157, 205, 0.12);
+        border-radius: 13px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        min-width: 1250px;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    th,
+    td {
+        padding: 13px 11px;
+        text-align: left;
+        vertical-align: top;
+        border-bottom: 1px solid rgba(105, 148, 180, 0.09);
+        color: #bcd0de;
+        font-size: 11px;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        color: #9fb9cc;
+        background:
+            linear-gradient(
+                180deg,
+                rgba(18, 38, 61, 0.98),
+                rgba(10, 24, 40, 0.98)
+            );
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tbody tr {
+        transition:
+            background 0.18s ease,
+            box-shadow 0.18s ease;
+    }
+
+    tbody tr:hover {
+        background: rgba(38, 217, 255, 0.025);
+    }
+
+    td b {
+        color: #eff9ff;
+        font-weight: 750;
+    }
+
+    td i {
+        color: #6e8497;
+    }
+
+    .role-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 9px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 1px solid transparent;
+    }
+
+    .role-admin {
+        color: #ffdca7;
+        background: rgba(255, 174, 66, 0.1);
+        border-color: rgba(255, 174, 66, 0.2);
+    }
+
+    .role-customer {
+        color: #9ddfff;
+        background: rgba(38, 174, 255, 0.09);
+        border-color: rgba(38, 174, 255, 0.19);
+    }
+
+    .email-cell {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 245px;
+    }
+
+    .email-cell input {
+        width: 160px;
+        min-width: 160px;
+        min-height: 35px;
+        padding: 7px 9px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
+
+    .email-cell button {
+        padding: 7px 9px;
+        min-height: 35px;
+        border-radius: 8px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    td .perm-grid {
+        min-width: 200px;
+        grid-template-columns: 1fr !important;
+        padding: 7px !important;
+        gap: 3px;
+    }
+
+    td .perm-grid label {
+        min-height: 27px;
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+
+    td .perm-grid input[type="checkbox"] {
+        width: 13px;
+        height: 13px;
+        min-height: 13px;
+        border-radius: 4px;
+    }
+
+    td .perm-grid input[type="checkbox"]:checked::after {
+        left: 2px;
+        top: -2px;
+        font-size: 10px;
+    }
+
+    td > button {
+        margin-top: 7px;
+        padding: 7px 10px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
+
+    .row-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 110px;
+    }
+
+    .row-actions button {
+        width: 100%;
+        padding: 8px 9px;
+        border-radius: 8px;
+        font-size: 10px;
+    }
+
+    #list-msg {
+        position: relative;
+    }
+
+    .section-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: -8px;
+        margin-bottom: 14px;
+    }
+
+    .section-meta span {
+        color: #60788b;
+        font-size: 10px;
+    }
+
+    @keyframes panelIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 900px) {
+        body {
+            padding: 16px;
+        }
+
+        .header {
+            flex-wrap: wrap;
+        }
+
+        .brand {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 5px;
+        }
+
+        .header-actions {
+            width: 100%;
+        }
+
+        .header-actions button {
+            flex: 1;
+        }
+
+        .panel {
+            padding: 17px;
+            border-radius: 15px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        body {
+            padding: 10px;
+        }
+
+        .header {
+            padding: 13px;
+            border-radius: 14px;
+        }
+
+        .brand img {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 17px;
+        }
+
+        .header-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .panel {
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .perm-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+
+
+<div class="header">
+    <div class="brand">
+        <img src="/assets/logo-icon.jpg" alt="Observer">
+
+        <div class="brand-text">
+            <div class="eyebrow">OBSERVER ADMIN</div>
+            <h1>Manage Users &amp; Reports</h1>
+        </div>
+    </div>
+
+    <div class="header-actions">
+        <button
+            class="back-btn"
+            onclick="window.location.href='/index.html'">
+            ← Dashboard
+        </button>
+
+        <button
+            onclick="window.location.href='/sms.html'">
+            SMS
+        </button>
+    </div>
+</div>
+
+<div class="panel">
+    <h2>Create New User</h2>
+
+    <div id="create-msg" class="msg"></div>
+
+    <form id="create-form">
+
+        <div class="form-grid">
+
+            <div>
+                <label>Username</label>
+                <input type="text" id="f-username" required>
+
+                <div
+                    class="hint"
+                    id="f-username-hint"
+                    style="display:none;">
+                    Must match this customer's exact Wialon username
+                </div>
+            </div>
+
+            <div id="f-password-wrap">
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="f-password"
+                    required>
+            </div>
+
+            <div>
+                <label>Display Name</label>
+                <input
+                    type="text"
+                    id="f-displayname"
+                    placeholder="e.g. Delta Logistics">
+            </div>
+
+            <div>
+                <label>Role</label>
+                <select id="f-role">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Login Method</label>
+
+                <select id="f-authmode">
+                    <option value="local">
+                        Local (username/password stored here)
+                    </option>
+
+                    <option value="wialon">
+                        Same as Wialon (no password stored here)
+                    </option>
+                </select>
+
+                <div class="hint">
+                    "Same as Wialon" — the customer clicks
+                    "Login with Wialon" on the login page and enters
+                    their password on Wialon's own site (never here),
+                    then Observer automatically shows exactly the units
+                    that Wialon login can see. No password is stored for
+                    this user.
+                </div>
+            </div>
+
+            <div>
+                <label>
+                    Wialon Account(s)
+                    <span style="color:#6f8598;">
+                        (optional fallback)
+                    </span>
+                </label>
+
+                <input
+                    type="text"
+                    id="f-wialonaccounts"
+                    placeholder="Main Account, Branch 2">
+
+                <div class="hint">
+                    Only useful if customers have different accountGroup values
+                </div>
+            </div>
+
+            <div id="f-assignedunits-wrap">
+                <label>
+                    Assigned Units
+                    <span style="color:#ff6678;">
+                        (recommended)
+                    </span>
+                </label>
+
+                <input
+                    type="text"
+                    id="f-assignedunits"
+                    placeholder="CR14, EX-033, GR03">
+
+                <div class="hint">
+                    Exact unit names, comma-separated.
+                    <a href="#" onclick="showAllUnits(event)">
+                        Show all available unit names
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <label>Report Email</label>
+
+                <input
+                    type="email"
+                    id="f-reportemail"
+                    placeholder="client@example.com">
+            </div>
+
+        </div>
+
+        <div class="perm-section">
+            <label class="perm-title">
+                Screen Permissions
+                <span style="color:#6f8598;">
+                    (what this user can access — ignored for Admin,
+                    who always sees everything)
+                </span>
+            </label>
+
+            <div
+                id="f-permissions"
+                class="perm-grid">
+            </div>
+        </div>
+
+        <button
+            type="submit"
+            class="success-btn create-user-btn">
+            Create User
+        </button>
+
+    </form>
+</div>
+
+<div
+    class="panel"
+    id="units-ref-panel"
+    style="display:none;">
+
+    <h2>Available Units</h2>
+
+    <div
+        class="hint"
+        style="margin-bottom:8px;">
+        Copy exact names from here into the "Assigned Units" field above.
+    </div>
+
+    <div
+        id="units-ref-list"
+        style="font-size:13px; line-height:1.8;">
+        Loading...
+    </div>
+
+</div>
+
+<div class="panel">
+
+    <h2>Existing Users</h2>
+
+    <div class="section-meta">
+        <span>
+            Manage assigned units, report email, permissions and user access.
+        </span>
+    </div>
+
+    <div id="list-msg" class="msg"></div>
+
+    <div class="table-wrap">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Display Name</th>
+                    <th>Role</th>
+                    <th>Assigned Units</th>
+                    <th>Report Email</th>
+                    <th>Permissions</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="users-tbody">
+                <tr>
+                    <td colspan="7" style="text-align:center;">
+                        Loading...
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<script>
+
+    // Keep in sync with User.PERMISSION_SCREENS on the server.
+    const PERMISSION_SCREENS = [
+        { key: 'dashboard',  label: 'Dashboard (Summary)' },
+        { key: 'units',      label: 'Units Table' },
+        { key: 'sms',        label: 'SMS Send + Contacts' },
+        { key: 'whatsapp',   label: 'WhatsApp Send' },
+        { key: 'reports',    label: 'Observer Reports' },
+        { key: 'quota',      label: 'Quota Tab' },
+        { key: 'status',     label: 'Remaining Messages Tab' },
+        { key: 'wialonReports', label: 'Wialon Reports (Trips/Tracks/Fuel...)' },
+        { key: 'maintenance', label: 'Maintenance Requests' },
+        { key: 'installations', label: 'Installation Reports (New Installs)' },
+        { key: 'maintenanceReports', label: 'Maintenance Reports (Device Swap)' },
+        { key: 'adminUsers', label: 'Manage Users (Admin)' }
+    ];
+
+    const DEFAULT_PERMISSIONS = {
+        dashboard: true,
+        units: true,
+        sms: false,
+        whatsapp: false,
+        reports: false,
+        quota: false,
+        status: false,
+        wialonReports: false,
+        maintenance: false,
+        installations: false,
+        maintenanceReports: false,
+        adminUsers: false
+    };
+
+    function renderPermCheckboxes(idPrefix, permissions) {
+        const perms = permissions || DEFAULT_PERMISSIONS;
+
+        return PERMISSION_SCREENS.map(s => `
+            <label>
+                <input
+                    type="checkbox"
+                    id="${idPrefix}-${s.key}"
+                    ${perms[s.key] ? 'checked' : ''}>
+                ${s.label}
+            </label>
+        `).join('');
+    }
+
+    function readPermCheckboxes(idPrefix) {
+        const result = {};
+
+        PERMISSION_SCREENS.forEach(s => {
+            const el =
+                document.getElementById(`${idPrefix}-${s.key}`);
+
+            result[s.key] = !!(el && el.checked);
+        });
+
+        return result;
+    }
+
+    function escapeHTML(value) {
+        if (value === null || value === undefined) return '';
+
+        return String(value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    async function checkAdmin() {
+        const res = await fetch('/api/me');
+
+        if (!res.ok) {
+            window.location.href = '/login.html';
+            return false;
+        }
+
+        const data = await res.json();
+
+        if (data.user.role !== 'admin') {
+            alert('Admin access required');
+            window.location.href = '/index.html';
+            return false;
+        }
+
+        return true;
+    }
+
+    // =========================
+    // SHOW ALL AVAILABLE UNITS
+    // =========================
+
+    async function showAllUnits(e) {
+        e.preventDefault();
+
+        const panel =
+            document.getElementById('units-ref-panel');
+
+        const list =
+            document.getElementById('units-ref-list');
+
+        panel.style.display = 'block';
+        list.innerText = 'Loading from Wialon...';
+
+        try {
+            const res = await fetch('/api/dashboard');
+            const data = await res.json();
+
+            if (!data.success && data.error)
+                throw new Error(data.error);
+
+            if (!data.units || data.units.length === 0) {
+                list.innerText = 'No units found.';
+                return;
+            }
+
+            list.innerHTML = data.units
+                .map(u =>
+                    `<span style="display:inline-block;background:#f0f4f8;padding:3px 8px;border-radius:4px;margin:2px;">${escapeHTML(u.name)}</span>`
+                )
+                .join(' ');
+
+        } catch (error) {
+            list.innerText =
+                'Error loading units: ' + error.message;
+        }
+    }
+
+    // =========================
+    // CREATE USER
+    // =========================
+
+    function onAuthModeChange() {
+        const isWialon =
+            document.getElementById('f-authmode').value === 'wialon';
+
+        const passwordInput =
+            document.getElementById('f-password');
+
+        document.getElementById('f-password-wrap')
+            .style.display = isWialon ? 'none' : '';
+
+        passwordInput.required = !isWialon;
+
+        if (isWialon)
+            passwordInput.value = '';
+
+        document.getElementById('f-username-hint')
+            .style.display = isWialon ? '' : 'none';
+
+        document.getElementById('f-assignedunits-wrap')
+            .style.opacity = isWialon ? '0.5' : '1';
+    }
+
+    document
+        .getElementById('f-authmode')
+        .addEventListener('change', onAuthModeChange);
+
+    onAuthModeChange();
+
+    document
+        .getElementById('create-form')
+        .addEventListener('submit', async (e) => {
+
+            e.preventDefault();
+
+            const msgBox =
+                document.getElementById('create-msg');
+
+            msgBox.className = 'msg';
+            msgBox.style.display = 'none';
+
+            const payload = {
+                username:
+                    document.getElementById('f-username').value.trim(),
+
+                password:
+                    document.getElementById('f-password').value,
+
+                displayName:
+                    document.getElementById('f-displayname').value.trim(),
+
+                role:
+                    document.getElementById('f-role').value,
+
+                authMode:
+                    document.getElementById('f-authmode').value,
+
+                wialonAccounts:
+                    document.getElementById('f-wialonaccounts').value,
+
+                assignedUnitNames:
+                    document.getElementById('f-assignedunits').value,
+
+                reportEmail:
+                    document.getElementById('f-reportemail').value.trim(),
+
+                permissions:
+                    readPermCheckboxes('f-perm')
+            };
+
+            try {
+
+                const res =
+                    await fetch('/api/admin/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                const data = await res.json();
+
+                if (!data.success)
+                    throw new Error(data.error);
+
+                msgBox.className = 'msg success';
+
+                msgBox.innerText =
+                    `User "${data.user.username}" created successfully.`;
+
+                msgBox.style.display = 'block';
+
+                document
+                    .getElementById('create-form')
+                    .reset();
+
+                onAuthModeChange();
+
+                document
+                    .getElementById('f-permissions')
+                    .innerHTML =
+                    renderPermCheckboxes(
+                        'f-perm',
+                        DEFAULT_PERMISSIONS
+                    );
+
+                loadUsers();
+
+            } catch (error) {
+
+                msgBox.className = 'msg error';
+
+                msgBox.innerText =
+                    error.message;
+
+                msgBox.style.display = 'block';
+            }
+        });
+
+    // =========================
+    // LOAD USERS
+    // =========================
+
+    async function loadUsers() {
+
+        const tbody =
+            document.getElementById('users-tbody');
+
+        try {
+
+            const res =
+                await fetch('/api/admin/users');
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            if (data.users.length === 0) {
+
+                tbody.innerHTML =
+                    '<tr><td colspan="7" style="text-align:center;">No users yet</td></tr>';
+
+                return;
+            }
+
+            tbody.innerHTML = '';
+
+            data.users.forEach(u => {
+
+                tbody.innerHTML += `
+                    <tr>
+
+                        <td>
+                            <b>${escapeHTML(u.username)}</b>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(u.displayName)}
+                        </td>
+
+                        <td>
+                            <span class="role-badge role-${u.role}">
+                                ${u.role}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${
+                                u.role === 'admin'
+                                    ? '<i>all units</i>'
+                                    : `
+                                <div class="email-cell">
+
+                                    <input
+                                        type="text"
+                                        id="units-${u._id}"
+                                        value="${escapeHTML((u.assignedUnitNames || []).join(', '))}"
+                                        placeholder="CR14, EX-033">
+
+                                    <button
+                                        onclick="saveUnits('${u._id}')">
+                                        Save
+                                    </button>
+
+                                </div>
+
+                                <div
+                                    class="email-cell"
+                                    style="margin-top:6px;">
+
+                                    <input
+                                        type="text"
+                                        id="wtoken-${u._id}"
+                                        placeholder="Customer's own Wialon API token">
+
+                                    <button
+                                        onclick="importWialonUnits('${u._id}')">
+                                        Import units
+                                    </button>
+
+                                </div>
+                            `
+                            }
+                        </td>
+
+                        <td>
+
+                            <div class="email-cell">
+
+                                <input
+                                    type="email"
+                                    id="email-${u._id}"
+                                    value="${escapeHTML(u.reportEmail || '')}"
+                                    placeholder="client@example.com">
+
+                                <button
+                                    onclick="saveEmail('${u._id}')">
+                                    Save
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            ${
+                                u.role === 'admin'
+                                    ? '<i>always full access</i>'
+                                    : `
+                                <div
+                                    class="perm-grid"
+                                    style="grid-template-columns: 1fr; padding:6px 8px;">
+
+                                    ${renderPermCheckboxes(
+                                        'perm-' + u._id,
+                                        u.permissions
+                                    )}
+
+                                </div>
+
+                                <button
+                                    onclick="savePermissions('${u._id}')"
+                                    style="margin-top:6px;">
+                                    Save Permissions
+                                </button>
+                            `
+                            }
+
+                        </td>
+
+                        <td>
+
+                            <div class="row-actions">
+
+                                <button
+                                    class="success-btn"
+                                    onclick="sendReport('${u._id}')">
+                                    Send Report
+                                </button>
+
+                                <button
+                                    class="danger-btn"
+                                    onclick="deleteUser(
+                                        '${u._id}',
+                                        '${escapeHTML(u.username)}'
+                                    )">
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                `;
+            });
+
+        } catch (error) {
+
+            tbody.innerHTML =
+                `<tr>
+                    <td
+                        colspan="7"
+                        style="text-align:center;color:#ff6b7d;">
+                        ${escapeHTML(error.message)}
+                    </td>
+                </tr>`;
+        }
+    }
+
+    // =========================
+    // IMPORT UNITS FROM CUSTOMER'S OWN WIALON TOKEN
+    // =========================
+
+    async function importWialonUnits(userId) {
+
+        const tokenInput =
+            document.getElementById(`wtoken-${userId}`);
+
+        const listMsg =
+            document.getElementById('list-msg');
+
+        const token =
+            tokenInput.value.trim();
+
+        if (!token) {
+            alert(
+                'Paste the customer\'s Wialon API token first.'
+            );
+            return;
+        }
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/admin/users/${userId}/import-wialon-units`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            wialonToken: token
+                        })
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            listMsg.className =
+                'msg success';
+
+            listMsg.innerText =
+                `Imported ${data.importedUnits.length} unit(s) from Wialon.`;
+
+            listMsg.style.display =
+                'block';
+
+            setTimeout(() => {
+                listMsg.style.display = 'none';
+            }, 3000);
+
+            loadUsers();
+
+        } catch (error) {
+
+            listMsg.className =
+                'msg error';
+
+            listMsg.innerText =
+                error.message;
+
+            listMsg.style.display =
+                'block';
+        }
+    }
+
+    // =========================
+    // SAVE ASSIGNED UNITS
+    // =========================
+
+    async function saveUnits(userId) {
+
+        const input =
+            document.getElementById(`units-${userId}`);
+
+        const listMsg =
+            document.getElementById('list-msg');
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/admin/users/${userId}`,
+                    {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            assignedUnitNames:
+                                input.value.trim()
+                        })
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            listMsg.className =
+                'msg success';
+
+            listMsg.innerText =
+                'Assigned units saved.';
+
+            listMsg.style.display =
+                'block';
+
+            setTimeout(() => {
+                listMsg.style.display = 'none';
+            }, 2500);
+
+        } catch (error) {
+
+            listMsg.className =
+                'msg error';
+
+            listMsg.innerText =
+                error.message;
+
+            listMsg.style.display =
+                'block';
+        }
+    }
+
+    // =========================
+    // SAVE EMAIL
+    // =========================
+
+    async function saveEmail(userId) {
+
+        const input =
+            document.getElementById(`email-${userId}`);
+
+        const listMsg =
+            document.getElementById('list-msg');
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/admin/users/${userId}`,
+                    {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            reportEmail:
+                                input.value.trim()
+                        })
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            listMsg.className =
+                'msg success';
+
+            listMsg.innerText =
+                'Email saved.';
+
+            listMsg.style.display =
+                'block';
+
+            setTimeout(() => {
+                listMsg.style.display = 'none';
+            }, 2500);
+
+        } catch (error) {
+
+            listMsg.className =
+                'msg error';
+
+            listMsg.innerText =
+                error.message;
+
+            listMsg.style.display =
+                'block';
+        }
+    }
+
+    // =========================
+    // SAVE PER-SCREEN PERMISSIONS
+    // =========================
+
+    async function savePermissions(userId) {
+
+        const listMsg =
+            document.getElementById('list-msg');
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/admin/users/${userId}`,
+                    {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            permissions:
+                                readPermCheckboxes(
+                                    'perm-' + userId
+                                )
+                        })
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            listMsg.className =
+                'msg success';
+
+            listMsg.innerText =
+                'Permissions saved. The user needs to log out and back in for it to take effect (permissions are cached in their session at login).';
+
+            listMsg.style.display =
+                'block';
+
+            setTimeout(() => {
+                listMsg.style.display = 'none';
+            }, 5000);
+
+        } catch (error) {
+
+            listMsg.className =
+                'msg error';
+
+            listMsg.innerText =
+                error.message;
+
+            listMsg.style.display =
+                'block';
+        }
+    }
+
+    // =========================
+    // SEND REPORT NOW
+    // =========================
+
+    async function sendReport(userId) {
+
+        const listMsg =
+            document.getElementById('list-msg');
+
+        listMsg.className = 'msg';
+        listMsg.style.display = 'none';
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/reports/send-email/${userId}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            filter: 'all'
+                        })
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            listMsg.className =
+                'msg success';
+
+            listMsg.innerText =
+                `Report sent to ${data.sentTo}`;
+
+            listMsg.style.display =
+                'block';
+
+        } catch (error) {
+
+            listMsg.className =
+                'msg error';
+
+            listMsg.innerText =
+                error.message;
+
+            listMsg.style.display =
+                'block';
+        }
+    }
+
+    // =========================
+    // DELETE USER
+    // =========================
+
+    async function deleteUser(userId, username) {
+
+        if (
+            !confirm(
+                `Delete user "${username}"? This cannot be undone.`
+            )
+        ) return;
+
+        try {
+
+            const res =
+                await fetch(
+                    `/api/admin/users/${userId}`,
+                    {
+                        method: 'DELETE'
+                    }
+                );
+
+            const data =
+                await res.json();
+
+            if (!data.success)
+                throw new Error(data.error);
+
+            loadUsers();
+
+        } catch (error) {
+
+            alert(error.message);
+        }
+    }
+
+    // =========================
+    // INIT
+    // =========================
+
+    (async function init() {
+
+        document
+            .getElementById('f-permissions')
+            .innerHTML =
+            renderPermCheckboxes(
+                'f-perm',
+                DEFAULT_PERMISSIONS
+            );
+
+        const ok =
+            await checkAdmin();
+
+        if (ok)
+            loadUsers();
+
+    })();
+
+</script>
+
+
+</body>
+</html>

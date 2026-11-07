@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Requests</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .back-btn {
+            background: white;
+            color: #111827;
+            border: 0;
+            padding: 9px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .top h2 {
+            margin: 0;
+        }
+
+        .new-btn {
+            background: #2563eb;
+            color: white;
+            border: 0;
+            padding: 12px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .new-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .filters {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        select,
+        input,
+        textarea {
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+        }
+
+        .requests {
+            display: grid;
+            gap: 15px;
+        }
+
+        .request {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.06);
+            cursor: pointer;
+        }
+
+        .request:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+        }
+
+        .request-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .request-number {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .vehicles {
+            color: #4b5563;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        .meta {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+
+        .pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .received {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .in_progress {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .waiting_customer {
+            background: #fce7f3;
+            color: #9d174d;
+        }
+
+        .resolved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .closed {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .low {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .critical {
+            background: #7f1d1d;
+            color: white;
+        }
+
+        .empty {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 10px;
+            color: #6b7280;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.55);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 30px 15px;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 750px;
+            margin: auto;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close {
+            border: 0;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input[type="text"] {
+            width: 100%;
+        }
+
+        .vehicle-list {
+            display: grid;
+            gap: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            border: 1px solid #e5e7eb;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .vehicle-item {
+            padding: 9px;
+            border: 1px solid #e5e7eb;
+            border-radius: 7px;
+        }
+
+        .vehicle-item label {
+            margin: 0;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            border: 0;
+            border-radius: 7px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #d97706;
+            color: white;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+
+        .details-box {
+            background: #f9fafb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .message {
+            border-left: 3px solid #2563eb;
+            padding: 10px 12px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .message strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .history-item {
+            padding: 9px 0;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 13px;
+        }
+
+        .history-item:last-child {
+            border-bottom: 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🔧 Maintenance Requests</h1>
+
+    <button
+        class="back-btn"
+        onclick="location.href='/index.html'">
+        ← Dashboard
+    </button>
+</header>
+
+<div class="container">
+
+    <div class="top">
+        <h2>Maintenance Requests</h2>
+
+        <button
+            class="new-btn"
+            onclick="openCreateModal()">
+            + New Maintenance Request
+        </button>
+    </div>
+
+    <div id="errorBox"></div>
+
+    <div class="filters">
+
+        <select
+            id="statusFilter"
+            onchange="loadRequests()">
+
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="received">Received</option>
+            <option value="in_progress">In Progress</option>
+            <option value="waiting_customer">Waiting Customer</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+
+        </select>
+
+        <select
+            id="priorityFilter"
+            onchange="loadRequests()">
+
+            <option value="">All Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="critical">Critical</option>
+
+        </select>
+
+    </div>
+
+    <div id="requests" class="requests">
+
+        <div class="loading">
+            Loading...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CREATE MODAL -->
+
+<div id="createModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+                New Maintenance Request
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeCreateModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="createForm">
+
+            <div class="form-group">
+
+                <label>
+                    Vehicles
+                </label>
+
+                <div
+                    id="vehicleList"
+                    class="vehicle-list">
+
+                    Loading vehicles...
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Problem Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    maxlength="200"
+                    required
+                    placeholder="Example: Engine problem">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                    maxlength="5000"
+                    required
+                    placeholder="Describe the problem...">
+                </textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Priority
+                </label>
+
+                <select id="priority">
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option
+                        value="medium"
+                        selected>
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                    <option value="critical">
+                        Critical
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    type="submit"
+                    id="createSubmitBtn"
+                    class="btn btn-primary">
+
+                    Create Request
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeCreateModal()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- DETAILS MODAL -->
+
+<div id="detailsModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="detailsTitle">
+                Request
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeDetailsModal()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="detailsContent">
+            Loading...
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let currentUser = null;
+let currentRequest = null;
+
+
+/* =========================
+   API HELPER
+========================= */
+
+async function api(url, options = {}) {
+
+    const response = await fetch(url, {
+
+        credentials: 'same-origin',
+
+        ...options,
+
+        headers: {
+
+            'Content-Type': 'application/json',
+
+            ...(options.headers || {})
+
+        }
+
+    });
+
+
+    const data =
+        await response
+            .json()
+            .catch(() => ({}));
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.error ||
+            'Request failed'
+        );
+
+    }
+
+
+    return data;
+}
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHtml(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return '';
+    }
+
+
+    return String(value)
+
+        .replace(/&/g, '&amp;')
+
+        .replace(/</g, '&lt;')
+
+        .replace(/>/g, '&gt;')
+
+        .replace(/"/g, '&quot;')
+
+        .replace(/'/g, '&#039;');
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(date) {
+
+    if (!date) {
+        return '-';
+    }
+
+
+    return new Date(date)
+        .toLocaleString();
+
+}
+
+
+/* =========================
+   STATUS TEXT
+========================= */
+
+function statusText(status) {
+
+    const map = {
+
+        pending: 'Pending',
+
+        received: 'Received',
+
+        in_progress: 'In Progress',
+
+        waiting_customer:
+            'Waiting Customer',
+
+        resolved: 'Resolved',
+
+        closed: 'Closed'
+
+    };
+
+
+    return map[status] || status;
+
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+function showError(message) {
+
+    document.getElementById(
+        'errorBox'
+    ).innerHTML = `
+
+        <div class="error">
+
+            ${escapeHtml(message)}
+
+        </div>
+
+    `;
+
+}
+
+
+function clearError() {
+
+    document.getElementById(
+        'errorBox'
+    ).innerHTML = '';
+
+}
+
+
+/* =========================
+   AUTH
+   IMPORTANT:
+   PROJECT USES /api/me
+========================= */
+
+async function checkAuth() {
+
+    try {
+
+        const response =
+            await fetch('/api/me', {
+
+                credentials:
+                    'same-origin'
+
+            });
+
+
+        if (!response.ok) {
+
+            console.error(
+                'Authentication failed:',
+                response.status
+            );
+
+            location.href =
+                '/login.html';
+
+            return false;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        currentUser =
+            data.user || data;
+
+
+        console.log(
+            'Logged in user:',
+            currentUser
+        );
+
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            'Auth error:',
+            error
+        );
+
+
+        location.href =
+            '/login.html';
+
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================
+   LOAD REQUESTS
+========================= */
+
+async function loadRequests() {
+
+    clearError();
+
+
+    const container =
+        document.getElementById(
+            'requests'
+        );
+
+
+    container.innerHTML = `
+
+        <div class="loading">
+            Loading requests...
+        </div>
+
+    `;
+
+
+    try {
+
+        const status =
+            document.getElementById(
+                'statusFilter'
+            ).value;
+
+
+        const priority =
+            document.getElementById(
+                'priorityFilter'
+            ).value;
+
+
+        const params =
+            new URLSearchParams();
+
+
+        if (status) {
+            params.set(
+                'status',
+                status
+            );
+        }
+
+
+        if (priority) {
+            params.set(
+                'priority',
+                priority
+            );
+        }
+
+
+        const url =
+            '/api/maintenance/' +
+            (
+                params.toString()
+                    ? '?' +
+                      params.toString()
+                    : ''
+            );
+
+
+        const data =
+            await api(url);
+
+
+        const requests =
+            data.requests ||
+            data.data ||
+            [];
+
+
+        if (!requests.length) {
+
+            container.innerHTML = `
+
+                <div class="empty">
+
+                    No maintenance
+                    requests found.
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            requests
+                .map(renderRequest)
+                .join('');
+
+
+    } catch (error) {
+
+        console.error(
+            'Load requests error:',
+            error
+        );
+
+
+        showError(
+            error.message
+        );
+
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                Unable to load
+                maintenance requests.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER REQUEST
+========================= */
+
+function renderRequest(request) {
+
+    const vehicles =
+        (request.vehicles || [])
+
+            .map(
+                v =>
+                    escapeHtml(
+                        v.unitName
+                    )
+            )
+
+            .join(', ');
+
+
+    return `
+
+        <div
+            class="request"
+            onclick="openDetails('${request._id}')">
+
+
+            <div class="request-header">
+
+                <div>
+
+                    <div class="request-number">
+
+                        ${escapeHtml(
+                            request.requestNumber
+                        )}
+
+                    </div>
+
+
+                    <div class="title">
+
+                        ${escapeHtml(
+                            request.title
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <span
+                        class="badge ${escapeHtml(
+                            request.status
+                        )}">
+
+                        ${escapeHtml(
+                            statusText(
+                                request.status
+                            )
+                        )}
+
+                    </span>
+
+
+                    <span
+                        class="badge ${escapeHtml(
+                            request.priority
+                        )}">
+
+                        ${escapeHtml(
+                            String(
+                                request.priority
+                            ).toUpperCase()
+                        )}
+
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="vehicles">
+
+                🚗 ${vehicles || 'No vehicle'}
+
+            </div>
+
+
+            <div class="meta">
+
+                Created:
+                ${escapeHtml(
+                    formatDate(
+                        request.createdAt
+                    )
+                )}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   LOAD VEHICLES
+========================= */
+
+async function loadVehicles() {
+
+    const container =
+        document.getElementById(
+            'vehicleList'
+        );
+
+
+    container.innerHTML =
+        'Loading vehicles...';
+
+
+    try {
+
+        const data =
+            await api(
+                '/api/maintenance/vehicles'
+            );
+
+
+        const vehicles =
+            data.vehicles ||
+            data.units ||
+            [];
+
+
+        if (!vehicles.length) {
+
+            container.innerHTML =
+                'No vehicles available.';
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+            vehicles
+
+                .map(
+                    vehicle => `
+
+                        <div
+                            class="vehicle-item">
+
+                            <label>
+
+                                <input
+                                    type="checkbox"
+                                    value="${escapeHtml(
+                                        vehicle.id
+                                    )}"
+                                    class="vehicle-checkbox">
+
+                                🚗
+                                ${escapeHtml(
+                                    vehicle.name
+                                )}
+
+                            </label>
+
+                        </div>
+
+                    `
+                )
+
+                .join('');
+
+
+    } catch (error) {
+
+        console.error(
+            'Load vehicles error:',
+            error
+        );
+
+
+        container.innerHTML = `
+
+            <span
+                style="color:#b91c1c">
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </span>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   CREATE MODAL
+========================= */
+
+function openCreateModal() {
+
+    document.getElementById(
+        'createModal'
+    ).style.display = 'block';
+
+
+    // Always start the modal with a fresh, enabled submit button —
+    // covers both a brand-new open and reopening after a previous
+    // successful submit (whose button stays disabled otherwise).
+    const submitBtn =
+        document.getElementById('createSubmitBtn');
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Create Request';
+
+
+    loadVehicles();
+
+}
+
+
+function closeCreateModal() {
+
+    document.getElementById(
+        'createModal'
+    ).style.display = 'none';
+
+
+    document.getElementById(
+        'createForm'
+    ).reset();
+
+}
+
+
+/* =========================
+   CREATE REQUEST
+========================= */
+
+document
+    .getElementById('createForm')
+    .addEventListener(
+        'submit',
+        async function(event) {
+
+            event.preventDefault();
+
+
+            // Guard against double-submit (double-click, slow
+            // network + impatient second click, etc.) — the button
+            // is disabled the instant Submit fires and only
+            // re-enabled if the request actually fails, so a
+            // success never leaves a way to fire it twice.
+            const submitBtn =
+                document.getElementById('createSubmitBtn');
+
+            if (submitBtn.disabled) {
+                return;
+            }
+
+            submitBtn.disabled = true;
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+
+
+            clearError();
+
+
+            const vehicleIds =
+                Array.from(
+
+                    document.querySelectorAll(
+                        '.vehicle-checkbox:checked'
+                    )
+
+                )
+                .map(
+                    input =>
+                        input.value
+                );
+
+
+            if (!vehicleIds.length) {
+
+                alert(
+                    'Please select at least one vehicle.'
+                );
+
+                return;
+
+            }
+
+
+            const title =
+                document.getElementById(
+                    'title'
+                ).value.trim();
+
+
+            const description =
+                document.getElementById(
+                    'description'
+                ).value.trim();
+
+
+            const priority =
+                document.getElementById(
+                    'priority'
+                ).value;
+
+
+            try {
+
+                const data =
+                    await api(
+                        '/api/maintenance/',
+                        {
+
+                            method: 'POST',
+
+                            body:
+                                JSON.stringify({
+
+                                    vehicleIds,
+
+                                    title,
+
+                                    description,
+
+                                    priority
+
+                                })
+
+                        }
+                    );
+
+
+                alert(
+                    'Maintenance request created successfully.'
+                );
+
+
+                closeCreateModal();
+
+
+                await loadRequests();
+
+
+                if (data.request) {
+
+                    openDetails(
+                        data.request._id
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    'Create request error:',
+                    error
+                );
+
+
+                alert(
+                    error.message
+                );
+
+                // Only the failure path needs to re-enable here —
+                // success closes the modal, and openCreateModal()
+                // resets the button fresh the next time it's opened.
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   OPEN DETAILS
+========================= */
+
+async function openDetails(id) {
+
+    document.getElementById(
+        'detailsModal'
+    ).style.display = 'block';
+
+
+    document.getElementById(
+        'detailsContent'
+    ).innerHTML = `
+
+        <div class="loading">
+            Loading...
+        </div>
+
+    `;
+
+
+    try {
+
+        const data =
+            await api(
+                '/api/maintenance/' +
+                id
+            );
+
+
+        currentRequest =
+            data.request ||
+            data.data ||
+            data;
+
+
+        renderDetails(
+            currentRequest
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            'Details error:',
+            error
+        );
+
+
+        document.getElementById(
+            'detailsContent'
+        ).innerHTML = `
+
+            <div class="error">
+
+                ${escapeHtml(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function closeDetailsModal() {
+
+    document.getElementById(
+        'detailsModal'
+    ).style.display = 'none';
+
+
+    currentRequest = null;
+
+}
+
+
+/* =========================
+   RENDER DETAILS
+========================= */
+
+function renderDetails(request) {
+
+    document.getElementById(
+        'detailsTitle'
+    ).textContent =
+        request.requestNumber ||
+        'Maintenance Request';
+
+
+    const vehicles =
+        (request.vehicles || [])
+
+            .map(
+                v =>
+                    `🚗 ${escapeHtml(
+                        v.unitName
+                    )}`
+            )
+
+            .join('<br>');
+
+
+    const messages =
+        (request.messages || [])
+
+            .map(
+                message => `
+
+                    <div class="message">
+
+                        <strong>
+
+                            ${escapeHtml(
+                                message.senderName
+                            )}
+
+                            (
+                            ${escapeHtml(
+                                message.senderRole
+                            )}
+                            )
+
+                        </strong>
+
+
+                        <div>
+
+                            ${escapeHtml(
+                                message.message
+                            )}
+
+                        </div>
+
+
+                        <small>
+
+                            ${escapeHtml(
+                                formatDate(
+                                    message.createdAt
+                                )
+                            )}
+
+                        </small>
+
+                    </div>
+
+                `
+            )
+
+            .join('');
+
+
+    const history =
+        (request.history || [])
+
+            .slice()
+            .reverse()
+
+            .map(
+                item => `
+
+                    <div class="history-item">
+
+                        <strong>
+
+                            ${escapeHtml(
+                                item.action
+                            )}
+
+                        </strong>
+
+                        —
+                        ${escapeHtml(
+                            item.byName
+                        )}
+
+
+                        <br>
+
+
+                        <small>
+
+                            ${escapeHtml(
+                                formatDate(
+                                    item.createdAt
+                                )
+                            )}
+
+                        </small>
+
+
+                        ${
+                            item.details
+                                ? `
+                                    <br>
+                                    ${escapeHtml(
+                                        item.details
+                                    )}
+                                  `
+                                : ''
+                        }
+
+                    </div>
+
+                `
+            )
+
+            .join('');
+
+
+    document.getElementById(
+        'detailsContent'
+    ).innerHTML = `
+
+
+        <div class="details-box">
+
+            <div>
+
+                <strong>
+                    Status:
+                </strong>
+
+                <span
+                    class="badge ${escapeHtml(
+                        request.status
+                    )}">
+
+                    ${escapeHtml(
+                        statusText(
+                            request.status
+                        )
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <br>
+
+
+            <div>
+
+                <strong>
+                    Priority:
+                </strong>
+
+                ${escapeHtml(
+                    request.priority
+                )}
+
+            </div>
+
+
+            <br>
+
+
+            <div>
+
+                <strong>
+                    Vehicles:
+                </strong>
+
+                <br>
+
+                ${vehicles || '-'}
+
+            </div>
+
+
+            <br>
+
+
+            <div>
+
+                <strong>
+                    Problem:
+                </strong>
+
+                <p>
+
+                    ${escapeHtml(
+                        request.description
+                    )}
+
+                </p>
+
+            </div>
+
+
+            ${
+                request.resolution
+                    ? `
+
+                        <div>
+
+                            <strong>
+                                Resolution:
+                            </strong>
+
+                            <p>
+
+                                ${escapeHtml(
+                                    request.resolution
+                                )}
+
+                            </p>
+
+                        </div>
+
+                    `
+                    : ''
+            }
+
+        </div>
+
+
+        <h3>
+            💬 Messages
+        </h3>
+
+
+        ${
+            messages ||
+            '<p>No messages yet.</p>'
+        }
+
+
+        <div style="margin-top:15px">
+
+            <textarea
+                id="replyMessage"
+                placeholder="Write a reply...">
+            </textarea>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="sendReply('${request._id}')">
+
+                Send Reply
+
+            </button>
+
+        </div>
+
+
+        <h3 style="margin-top:25px">
+
+            📋 History
+
+        </h3>
+
+
+        <div class="details-box">
+
+            ${
+                history ||
+                'No history available.'
+            }
+
+        </div>
+
+
+        <div class="actions">
+
+            ${getActionButtons(request)}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+function getActionButtons(request) {
+
+    const isAdmin =
+        currentUser &&
+        currentUser.role === 'admin';
+
+
+    let html = '';
+
+
+    if (
+        isAdmin &&
+        request.status === 'pending'
+    ) {
+
+        html += `
+
+            <button
+                class="btn btn-primary"
+                onclick="receiveRequest(
+                    '${request._id}'
+                )">
+
+                Receive
+
+            </button>
+
+        `;
+
+    }
+
+
+    if (
+        isAdmin &&
+        (
+            request.status === 'received' ||
+            request.status === 'pending'
+        )
+    ) {
+
+        html += `
+
+            <button
+                class="btn btn-warning"
+                onclick="assignRequest(
+                    '${request._id}'
+                )">
+
+                Start / Assign
+
+            </button>
+
+        `;
+
+    }
+
+
+    if (
+        isAdmin &&
+        request.status === 'in_progress'
+    ) {
+
+        html += `
+
+            <button
+                class="btn btn-success"
+                onclick="resolveRequest(
+                    '${request._id}'
+                )">
+
+                Resolve
+
+            </button>
+
+        `;
+
+    }
+
+
+    if (
+        request.status === 'resolved'
+    ) {
+
+        html += `
+
+            <button
+                class="btn btn-danger"
+                onclick="closeRequest(
+                    '${request._id}'
+                )">
+
+                Close Request
+
+            </button>
+
+        `;
+
+    }
+
+
+    return html;
+
+}
+
+
+/* =========================
+   SEND REPLY
+========================= */
+
+async function sendReply(id) {
+
+    const input =
+        document.getElementById(
+            'replyMessage'
+        );
+
+
+    const message =
+        input.value.trim();
+
+
+    if (!message) {
+
+        alert(
+            'Write a message first.'
+        );
+
+        return;
+
+    }
+
+
+    try {
+
+        await api(
+
+            '/api/maintenance/' +
+            id +
+            '/reply',
+
+            {
+
+                method: 'POST',
+
+                body:
+                    JSON.stringify({
+                        message
+                    })
+
+            }
+
+        );
+
+
+        input.value = '';
+
+
+        await openDetails(id);
+
+        await loadRequests();
+
+
+    } catch (error) {
+
+        console.error(
+            'Reply error:',
+            error
+        );
+
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   RECEIVE
+========================= */
+
+async function receiveRequest(id) {
+
+    try {
+
+        await api(
+
+            '/api/maintenance/' +
+            id +
+            '/receive',
+
+            {
+                method: 'PATCH'
+            }
+
+        );
+
+
+        await openDetails(id);
+
+        await loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   ASSIGN
+========================= */
+
+async function assignRequest(id) {
+
+    const userId =
+        prompt(
+            'Enter Support/Admin User ID to assign this request:'
+        );
+
+
+    if (!userId) {
+        return;
+    }
+
+
+    try {
+
+        await api(
+
+            '/api/maintenance/' +
+            id +
+            '/assign',
+
+            {
+
+                method: 'PATCH',
+
+                body:
+                    JSON.stringify({
+
+                        assignedTo:
+                            userId.trim()
+
+                    })
+
+            }
+
+        );
+
+
+        await openDetails(id);
+
+        await loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   RESOLVE
+========================= */
+
+async function resolveRequest(id) {
+
+    const resolution =
+        prompt(
+            'Enter the resolution:'
+        );
+
+
+    if (!resolution) {
+        return;
+    }
+
+
+    try {
+
+        await api(
+
+            '/api/maintenance/' +
+            id +
+            '/resolve',
+
+            {
+
+                method: 'PATCH',
+
+                body:
+                    JSON.stringify({
+
+                        resolution:
+                            resolution.trim()
+
+                    })
+
+            }
+
+        );
+
+
+        await openDetails(id);
+
+        await loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CLOSE
+========================= */
+
+async function closeRequest(id) {
+
+    const confirmed =
+        confirm(
+            'Are you sure the maintenance is finished and you want to close this request?'
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        await api(
+
+            '/api/maintenance/' +
+            id +
+            '/close',
+
+            {
+                method: 'PATCH'
+            }
+
+        );
+
+
+        await openDetails(id);
+
+        await loadRequests();
+
+
+    } catch (error) {
+
+        alert(
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================
+   MODAL CLICK OUTSIDE
+========================= */
+
+window.onclick =
+    function(event) {
+
+        const createModal =
+            document.getElementById(
+                'createModal'
+            );
+
+
+        const detailsModal =
+            document.getElementById(
+                'detailsModal'
+            );
+
+
+        if (
+            event.target ===
+            createModal
+        ) {
+
+            closeCreateModal();
+
+        }
+
+
+        if (
+            event.target ===
+            detailsModal
+        ) {
+
+            closeDetailsModal();
+
+        }
+
+    };
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+(async function init() {
+
+    const authenticated =
+        await checkAuth();
+
+
+    if (!authenticated) {
+        return;
+    }
+
+
+    await loadRequests();
+
+})();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,3342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate">
+
+    <meta
+        http-equiv="Pragma"
+        content="no-cache">
+
+    <meta
+        http-equiv="Expires"
+        content="0">
+
+    <title>Observer | Wialon Reports</title>
+
+    <style>
+
+        /* =========================================================
+           OBSERVER PREMIUM BLUE REPORTS
+           UI / FRONTEND ONLY
+           Backend + API endpoints unchanged
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+
+            --bg: #060b14;
+            --bg-2: #0a1220;
+
+            --panel: rgba(14, 23, 37, 0.88);
+            --panel-2: rgba(18, 30, 48, 0.92);
+
+            --blue: #60a5fa;
+            --blue-primary: #4ea1ff;
+            --blue-dark: #2563eb;
+            --blue-deep: #1d4ed8;
+            --blue-light: #93c5fd;
+
+            --blue-soft:
+                rgba(96,165,250,0.10);
+
+            --blue-border:
+                rgba(96,165,250,0.24);
+
+            --blue-glow:
+                rgba(59,130,246,0.28);
+
+            --text: #f5f7fb;
+
+            --muted: #8d9aae;
+            --muted-2: #657286;
+
+            --border:
+                rgba(96,165,250,0.20);
+
+            --border-soft:
+                rgba(255,255,255,0.07);
+
+            --green: #43c58a;
+            --red: #ef6262;
+
+            --shadow:
+                0 25px 70px rgba(0,0,0,0.42);
+
+            --radius: 18px;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                Inter,
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(78,161,255,0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(37,99,235,0.10),
+                    transparent 28%
+                ),
+                linear-gradient(
+                    145deg,
+                    #050912 0%,
+                    #08111e 48%,
+                    #050a12 100%
+                );
+
+            padding: 34px;
+
+            overflow-x: hidden;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,0.7),
+                    transparent 80%
+                );
+
+            z-index: -1;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+
+            width: min(1450px, 100%);
+
+            margin:
+                0 auto 24px;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+            padding: 20px 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(18,29,46,0.92),
+                    rgba(8,15,26,0.94)
+                );
+
+            border:
+                1px solid var(--border-soft);
+
+            border-radius:
+                var(--radius);
+
+            box-shadow:
+                var(--shadow);
+
+            backdrop-filter:
+                blur(18px);
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .brand img {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 14px;
+
+            object-fit: cover;
+
+            border:
+                1px solid rgba(
+                    96,165,250,0.45
+                );
+
+            box-shadow:
+                0 0 0 4px
+                    rgba(96,165,250,0.05),
+                0 8px 25px
+                    rgba(0,0,0,0.35);
+        }
+
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 3px;
+        }
+
+
+        h1 {
+
+            margin: 0;
+
+            color: #fff;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .brand-subtitle {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            letter-spacing: 1.8px;
+
+            text-transform: uppercase;
+        }
+
+
+        .header-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .user-chip {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            font-size: 12px;
+
+            color: var(--blue-light);
+
+            background:
+                rgba(96,165,250,0.07);
+
+            padding: 9px 13px;
+
+            border:
+                1px solid
+                rgba(96,165,250,0.18);
+
+            border-radius: 999px;
+        }
+
+
+        .user-chip::before {
+
+            content: "";
+
+            width: 7px;
+
+            height: 7px;
+
+            background:
+                var(--green);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 10px
+                rgba(67,197,138,0.7);
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        button {
+
+            font-family: inherit;
+
+            border: 0;
+
+            padding: 10px 14px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition:
+                transform 0.18s ease,
+                box-shadow 0.18s ease,
+                border-color 0.18s ease,
+                background 0.18s ease,
+                opacity 0.18s ease;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+        }
+
+
+        button:hover {
+
+            opacity: 1;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        button:disabled {
+
+            cursor:
+                not-allowed;
+
+            transform:
+                none !important;
+        }
+
+
+        .back-btn {
+
+            background:
+                rgba(255,255,255,0.055);
+        }
+
+
+        .back-btn:hover {
+
+            background:
+                rgba(255,255,255,0.09);
+
+            border-color:
+                rgba(96,165,250,0.22);
+        }
+
+
+        .logout-btn {
+
+            background:
+                rgba(239,98,98,0.12);
+
+            color:
+                #ff9a9a;
+
+            border-color:
+                rgba(239,98,98,0.18);
+        }
+
+
+        .logout-btn:hover {
+
+            background:
+                rgba(239,98,98,0.19);
+        }
+
+
+        #manage-users-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(96,165,250,0.20),
+                    rgba(37,99,235,0.14)
+                ) !important;
+
+            color:
+                var(--blue-light);
+
+            border-color:
+                rgba(96,165,250,0.28)
+                !important;
+
+            box-shadow:
+                0 5px 18px
+                rgba(37,99,235,0.10);
+        }
+
+
+        #manage-users-btn:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(96,165,250,0.30),
+                    rgba(37,99,235,0.20)
+                ) !important;
+
+            border-color:
+                rgba(96,165,250,0.42)
+                !important;
+
+            box-shadow:
+                0 8px 24px
+                rgba(37,99,235,0.18);
+        }
+
+
+        /* =========================================================
+           MAIN PANEL
+        ========================================================= */
+
+        .panel {
+
+            width:
+                min(1450px, 100%);
+
+            margin:
+                0 auto;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(15,25,41,0.94),
+                    rgba(8,15,26,0.94)
+                );
+
+            border:
+                1px solid
+                var(--border-soft);
+
+            border-radius:
+                22px;
+
+            padding:
+                28px;
+
+            box-shadow:
+                var(--shadow);
+
+            backdrop-filter:
+                blur(20px);
+
+            position:
+                relative;
+
+            overflow:
+                visible;
+        }
+
+
+        .panel::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 7%;
+
+            right: 7%;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(96,165,250,0.70),
+                    transparent
+                );
+        }
+
+
+        .hint {
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            color:
+                var(--muted);
+
+            margin-top: 5px;
+        }
+
+
+        .panel > .hint {
+
+            margin:
+                0 0 26px;
+
+            max-width:
+                900px;
+
+            padding-left:
+                14px;
+
+            border-left:
+                2px solid
+                rgba(96,165,250,0.45);
+        }
+
+
+        /* =========================================================
+           FORM GRID
+        ========================================================= */
+
+        .field-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    4,
+                    minmax(180px, 1fr)
+                );
+
+            gap: 17px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .field {
+
+            position:
+                relative;
+        }
+
+
+        .field label {
+
+            display: flex;
+
+            align-items: center;
+
+            font-size: 10px;
+
+            color:
+                var(--blue-light);
+
+            margin-bottom: 8px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1.3px;
+
+            font-weight: 700;
+        }
+
+
+        select,
+        input[type="date"] {
+
+            width: 100%;
+
+            height: 45px;
+
+            padding:
+                0 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            border-radius:
+                11px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color:
+                #f5f7fb;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+
+        select {
+
+            cursor:
+                pointer;
+        }
+
+
+        select option {
+
+            background:
+                #0b1422;
+
+            color:
+                white;
+        }
+
+
+        select:focus,
+        input[type="date"]:focus {
+
+            border-color:
+                rgba(96,165,250,0.60);
+
+            background:
+                rgba(255,255,255,0.065);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(59,130,246,0.08);
+        }
+
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+
+            filter:
+                invert(0.8)
+                sepia(0.15)
+                saturate(2)
+                hue-rotate(175deg);
+
+            cursor:
+                pointer;
+        }
+
+
+        /* =========================================================
+           UNITS DROPDOWN
+        ========================================================= */
+
+        .units-dropdown {
+
+            position:
+                relative;
+
+            width:
+                100%;
+        }
+
+
+        .units-dropdown-button {
+
+            width:
+                100%;
+
+            height:
+                45px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            color:
+                #f5f7fb;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
+            padding:
+                0 13px;
+
+            border-radius:
+                11px;
+
+            text-align:
+                left;
+
+            cursor:
+                pointer;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+        }
+
+
+        .units-dropdown-button:hover {
+
+            background:
+                rgba(255,255,255,0.065);
+
+            border-color:
+                rgba(96,165,250,0.32);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(59,130,246,0.045);
+        }
+
+
+        .arrow {
+
+            font-size:
+                10px;
+
+            color:
+                var(--blue-light);
+        }
+
+
+        .units-menu {
+
+            display:
+                none;
+
+            position:
+                absolute;
+
+            top:
+                calc(100% + 7px);
+
+            left:
+                0;
+
+            right:
+                0;
+
+            background:
+                #0c1727;
+
+            border:
+                1px solid
+                rgba(96,165,250,0.22);
+
+            border-radius:
+                13px;
+
+            box-shadow:
+                0 22px 55px
+                    rgba(0,0,0,0.55),
+                0 0 30px
+                    rgba(37,99,235,0.08);
+
+            z-index:
+                1000;
+
+            max-height:
+                280px;
+
+            overflow-y:
+                auto;
+
+            padding:
+                6px;
+        }
+
+
+        .units-menu.show {
+
+            display:
+                block;
+
+            animation:
+                dropdownIn 0.16s ease;
+        }
+
+
+        @keyframes dropdownIn {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(-5px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        .units-menu::-webkit-scrollbar {
+
+            width:
+                5px;
+        }
+
+
+        .units-menu::-webkit-scrollbar-track {
+
+            background:
+                transparent;
+        }
+
+
+        .units-menu::-webkit-scrollbar-thumb {
+
+            background:
+                rgba(96,165,250,0.30);
+
+            border-radius:
+                20px;
+        }
+
+
+        .unit-option {
+
+            padding:
+                10px 11px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                12px;
+
+            color:
+                #dce3ed;
+
+            border-radius:
+                8px;
+
+            transition:
+                background 0.15s ease;
+        }
+
+
+        .unit-option:hover {
+
+            background:
+                rgba(96,165,250,0.08);
+        }
+
+
+        .unit-option input {
+
+            accent-color:
+                var(--blue-primary);
+
+            cursor:
+                pointer;
+        }
+
+
+        .select-all-option {
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                8px 8px 5px 5px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--blue-light);
+
+            margin-bottom:
+                4px;
+        }
+
+
+        .units-loading {
+
+            padding:
+                13px;
+
+            color:
+                var(--muted-2);
+
+            font-size:
+                12px;
+
+            text-align:
+                center;
+        }
+
+
+        /* =========================================================
+           RUN BUTTON
+        ========================================================= */
+
+        .run-btn {
+
+            position:
+                relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #60a5fa,
+                    #2563eb
+                );
+
+            color:
+                #ffffff;
+
+            font-weight:
+                800;
+
+            padding:
+                12px 22px;
+
+            border:
+                0;
+
+            border-radius:
+                11px;
+
+            box-shadow:
+                0 8px 25px
+                    rgba(37,99,235,0.28),
+                inset 0 1px 0
+                    rgba(255,255,255,0.22);
+        }
+
+
+        .run-btn:hover {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #93c5fd,
+                    #3b82f6
+                );
+
+            box-shadow:
+                0 12px 30px
+                    rgba(37,99,235,0.38),
+                0 0 25px
+                    rgba(59,130,246,0.15);
+        }
+
+
+        /* =========================================================
+           EXPORT BUTTONS
+        ========================================================= */
+
+        .export-row {
+
+            display:
+                flex;
+
+            gap:
+                9px;
+
+            flex-wrap:
+                wrap;
+
+            margin-top:
+                15px;
+
+            padding-top:
+                17px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.06);
+        }
+
+
+        .export-row button {
+
+            background:
+                rgba(96,165,250,0.065);
+
+            color:
+                #cfe3ff;
+
+            border:
+                1px solid
+                rgba(96,165,250,0.16);
+
+            padding:
+                9px 13px;
+
+            font-size:
+                11px;
+
+            box-shadow:
+                0 4px 14px
+                rgba(0,0,0,0.12);
+        }
+
+
+        .export-row button:hover {
+
+            background:
+                rgba(96,165,250,0.13);
+
+            color:
+                #ffffff;
+
+            border-color:
+                rgba(96,165,250,0.36);
+
+            box-shadow:
+                0 7px 20px
+                rgba(37,99,235,0.14);
+        }
+
+
+        .excel-btn {
+
+            background:
+                rgba(67,197,138,0.07)
+                !important;
+
+            border-color:
+                rgba(67,197,138,0.15)
+                !important;
+
+            color:
+                #bcefd5
+                !important;
+        }
+
+
+        .excel-btn:hover {
+
+            color:
+                #7ee7b3
+                !important;
+
+            border-color:
+                rgba(67,197,138,0.35)
+                !important;
+
+            background:
+                rgba(67,197,138,0.12)
+                !important;
+        }
+
+
+        .pdf-btn {
+
+            background:
+                rgba(96,165,250,0.065)
+                !important;
+        }
+
+
+        /* =========================================================
+           RESULTS
+        ========================================================= */
+
+        #result-area {
+
+            margin-top:
+                25px;
+        }
+
+
+        .unit-block {
+
+            margin-bottom:
+                25px;
+
+            padding:
+                18px;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.06);
+
+            border-radius:
+                15px;
+
+            overflow:
+                hidden;
+        }
+
+
+        .unit-title {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            font-weight:
+                700;
+
+            color:
+                var(--blue-light);
+
+            margin:
+                0 0 13px;
+
+            font-size:
+                14px;
+        }
+
+
+        .unit-title::before {
+
+            content:
+                "";
+
+            width:
+                4px;
+
+            height:
+                18px;
+
+            border-radius:
+                4px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #93c5fd,
+                    #2563eb
+                );
+
+            box-shadow:
+                0 0 12px
+                rgba(59,130,246,0.35);
+        }
+
+
+        table {
+
+            width:
+                100%;
+
+            border-collapse:
+                separate;
+
+            border-spacing:
+                0;
+
+            margin-top:
+                10px;
+
+            font-size:
+                11px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius:
+                11px;
+        }
+
+
+        th,
+        td {
+
+            border:
+                0;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.055);
+
+            padding:
+                10px 11px;
+
+            text-align:
+                left;
+        }
+
+
+        th {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(96,165,250,0.17),
+                    rgba(37,99,235,0.07)
+                );
+
+            color:
+                var(--blue-light);
+
+            font-size:
+                10px;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                0.7px;
+
+            font-weight:
+                700;
+        }
+
+
+        td {
+
+            color:
+                #cbd4df;
+
+            background:
+                rgba(255,255,255,0.012);
+        }
+
+
+        tbody tr:last-child td {
+
+            border-bottom:
+                0;
+        }
+
+
+        tbody tr:hover td {
+
+            background:
+                rgba(96,165,250,0.035);
+        }
+
+
+        .empty-msg {
+
+            color:
+                var(--muted-2);
+
+            font-style:
+                italic;
+
+            padding:
+                20px;
+
+            text-align:
+                center;
+        }
+
+
+        .error-msg {
+
+            color:
+                #ffb0b0;
+
+            background:
+                rgba(239,98,98,0.08);
+
+            border:
+                1px solid
+                rgba(239,98,98,0.18);
+
+            padding:
+                12px 15px;
+
+            border-radius:
+                11px;
+
+            margin-top:
+                14px;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =========================================================
+           PAGE LOADER
+        ========================================================= */
+
+        .page-loader {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                20px;
+
+            color:
+                var(--blue-light);
+
+            font-size:
+                12px;
+        }
+
+
+        .spinner {
+
+            width:
+                18px;
+
+            height:
+                18px;
+
+            border:
+                2px solid
+                rgba(96,165,250,0.18);
+
+            border-top-color:
+                var(--blue);
+
+            border-radius:
+                50%;
+
+            animation:
+                spin 0.8s linear infinite;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .field-grid {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(200px, 1fr)
+                    );
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding:
+                    15px;
+            }
+
+
+            .header {
+
+                padding:
+                    17px;
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .header-buttons {
+
+                width:
+                    100%;
+
+                justify-content:
+                    flex-start;
+            }
+
+
+            .panel {
+
+                padding:
+                    18px;
+
+                border-radius:
+                    17px;
+            }
+
+
+            .field-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .export-row {
+
+                display:
+                    grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .export-row button {
+
+                width:
+                    100%;
+            }
+
+
+            .run-btn {
+
+                width:
+                    100%;
+            }
+
+
+            table {
+
+                display:
+                    block;
+
+                overflow-x:
+                    auto;
+
+                white-space:
+                    nowrap;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .brand {
+
+                width:
+                    100%;
+            }
+
+
+            .header-buttons {
+
+                display:
+                    grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+
+            .user-chip {
+
+                grid-column:
+                    1 / -1;
+
+                justify-content:
+                    center;
+            }
+
+
+            .header-buttons button {
+
+                width:
+                    100%;
+            }
+
+
+            .export-row {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <div class="header">
+
+        <div class="brand">
+
+            <img
+                src="/assets/logo-icon.jpg"
+                alt="Observer">
+
+            <div class="brand-text">
+
+                <h1>
+                    Wialon Reports
+                </h1>
+
+                <div class="brand-subtitle">
+                    Observer Fleet Intelligence
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-buttons">
+
+            <span
+                class="user-chip"
+                id="user-chip">
+
+                Loading...
+
+            </span>
+
+
+            <button
+                class="back-btn"
+                onclick="window.location.href='/index.html'">
+
+                ← Summary
+
+            </button>
+
+
+            <button
+                id="manage-users-btn"
+                style="display:none;"
+                onclick="window.location.href='/admin-users.html'">
+
+                Manage Users
+
+            </button>
+
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MAIN PANEL
+    ========================================================= -->
+
+    <div class="panel">
+
+        <p class="hint">
+
+            This runs report templates that already exist in your
+            Wialon account. All available Wialon report templates
+            that you have permission to see will appear below.
+
+        </p>
+
+
+        <div class="field-grid">
+
+
+            <!-- REPORT TEMPLATE -->
+
+            <div class="field">
+
+                <label>
+                    Report Template
+                </label>
+
+
+                <select
+                    id="template-select">
+
+                    <option value="">
+                        Loading Wialon templates...
+                    </option>
+
+                </select>
+
+
+                <div
+                    class="hint"
+                    id="template-hint">
+
+                    Connecting to Wialon...
+
+                </div>
+
+            </div>
+
+
+            <!-- UNITS -->
+
+            <div class="field">
+
+                <label>
+                    Units
+                </label>
+
+
+                <div class="units-dropdown">
+
+                    <button
+                        type="button"
+                        class="units-dropdown-button"
+                        onclick="toggleUnitsDropdown()">
+
+                        <span
+                            id="units-selected-text">
+
+                            All Units
+
+                        </span>
+
+
+                        <span class="arrow">
+                            ▼
+                        </span>
+
+                    </button>
+
+
+                    <div
+                        id="units-menu"
+                        class="units-menu">
+
+
+                        <label
+                            class="unit-option select-all-option">
+
+                            <input
+                                type="checkbox"
+                                id="select-all-units"
+                                onchange="toggleAllUnits(this)">
+
+                            <span>
+                                Select All Units
+                            </span>
+
+                        </label>
+
+
+                        <div id="units-list">
+
+                            <div class="units-loading">
+
+                                Loading units from Wialon...
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hint">
+
+                    Select one or more units,
+                    or Select All Units.
+
+                </div>
+
+            </div>
+
+
+            <!-- FROM -->
+
+            <div class="field">
+
+                <label>
+                    From
+                </label>
+
+
+                <input
+                    type="date"
+                    id="date-from">
+
+            </div>
+
+
+            <!-- TO -->
+
+            <div class="field">
+
+                <label>
+                    To
+                </label>
+
+
+                <input
+                    type="date"
+                    id="date-to">
+
+            </div>
+
+        </div>
+
+
+        <!-- RUN -->
+
+        <button
+            class="run-btn"
+            onclick="runReport()">
+
+            ✦ Run Report
+
+        </button>
+
+
+        <!-- EXPORT -->
+
+        <div class="export-row">
+
+
+            <button
+                class="excel-btn"
+                onclick="exportReport('xlsx','en')">
+
+                ▣ Excel (EN)
+
+            </button>
+
+
+            <button
+                class="excel-btn"
+                onclick="exportReport('xlsx','ar')">
+
+                ▣ Excel (AR)
+
+            </button>
+
+
+            <button
+                class="pdf-btn"
+                onclick="exportReport('pdf','en',false)">
+
+                ◉ View PDF (EN)
+
+            </button>
+
+
+            <button
+                class="pdf-btn"
+                onclick="exportReport('pdf','ar',false)">
+
+                ◉ View PDF (AR)
+
+            </button>
+
+
+            <button
+                class="pdf-btn"
+                onclick="exportReport('pdf','en',true)">
+
+                ↓ Download PDF (EN)
+
+            </button>
+
+
+            <button
+                class="pdf-btn"
+                onclick="exportReport('pdf','ar',true)">
+
+                ↓ Download PDF (AR)
+
+            </button>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div id="result-area">
+
+            <div class="page-loader">
+
+                <span class="spinner"></span>
+
+                Initializing Wialon Reports...
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<script>
+
+
+    /* =========================================================
+       GLOBAL STATE
+    ========================================================= */
+
+    let currentUser = null;
+
+
+    /* =========================================================
+       API FETCH HELPER
+       Prevent browser cache / 304-related frontend issues
+    ========================================================= */
+
+    async function apiFetch(
+        url,
+        options = {},
+        timeout = 30000
+    ) {
+
+        const controller =
+            new AbortController();
+
+
+        const timer =
+            setTimeout(
+                () => controller.abort(),
+                timeout
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    url,
+                    {
+
+                        ...options,
+
+                        cache:
+                            'no-store',
+
+                        headers:
+                            {
+                                'Accept':
+                                    'application/json',
+
+                                ...(options.headers || {})
+                            },
+
+                        signal:
+                            controller.signal
+
+                    }
+                );
+
+
+            return response;
+
+        }
+
+        catch (error) {
+
+            if (
+                error.name ===
+                'AbortError'
+            ) {
+
+                throw new Error(
+                    'Request timed out. Please try again.'
+                );
+
+            }
+
+
+            throw error;
+
+        }
+
+        finally {
+
+            clearTimeout(
+                timer
+            );
+
+        }
+
+    }
+
+
+    /* =========================================================
+       LOAD USER
+    ========================================================= */
+
+    async function loadMe() {
+
+        const chip =
+            document.getElementById(
+                'user-chip'
+            );
+
+
+        try {
+
+            chip.textContent =
+                'Loading...';
+
+
+            const res =
+                await apiFetch(
+                    '/api/me',
+                    {},
+                    15000
+                );
+
+
+            if (!res.ok) {
+
+                window.location.href =
+                    '/login.html';
+
+                return false;
+
+            }
+
+
+            const data =
+                await res.json();
+
+
+            if (
+                !data ||
+                !data.user
+            ) {
+
+                throw new Error(
+                    'Invalid user response.'
+                );
+
+            }
+
+
+            currentUser =
+                data.user;
+
+
+            chip.textContent =
+                `${currentUser.displayName} (${currentUser.role})`;
+
+
+            if (
+                currentUser.role ===
+                'admin'
+            ) {
+
+                document
+                    .getElementById(
+                        'manage-users-btn'
+                    )
+                    .style.display =
+                    'inline-block';
+
+            }
+
+
+            return true;
+
+        }
+
+        catch (error) {
+
+            console.error(
+                '[WIALON REPORTS] loadMe error:',
+                error
+            );
+
+
+            chip.textContent =
+                'Session error';
+
+
+            throw error;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       LOGOUT
+    ========================================================= */
+
+    async function logout() {
+
+        try {
+
+            await fetch(
+                '/api/logout',
+                {
+
+                    method:
+                        'POST',
+
+                    cache:
+                        'no-store'
+
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.warn(
+                'Logout request failed:',
+                error
+            );
+
+        }
+
+        finally {
+
+            window.location.href =
+                '/login.html';
+
+        }
+
+    }
+
+
+    /* =========================================================
+       DEFAULT DATES
+    ========================================================= */
+
+    function defaultDates() {
+
+        const to =
+            new Date();
+
+
+        const from =
+            new Date();
+
+
+        from.setDate(
+            from.getDate() - 7
+        );
+
+
+        document
+            .getElementById(
+                'date-to'
+            )
+            .value =
+            to.toISOString()
+                .slice(0, 10);
+
+
+        document
+            .getElementById(
+                'date-from'
+            )
+            .value =
+            from.toISOString()
+                .slice(0, 10);
+
+    }
+
+
+    /* =========================================================
+       LOAD REPORT TEMPLATES
+    ========================================================= */
+
+    async function loadTemplates() {
+
+        const select =
+            document.getElementById(
+                'template-select'
+            );
+
+
+        const hint =
+            document.getElementById(
+                'template-hint'
+            );
+
+
+        select.innerHTML =
+            `
+            <option value="">
+                Loading Wialon templates...
+            </option>
+            `;
+
+
+        hint.textContent =
+            'Connecting to Wialon...';
+
+
+        try {
+
+            console.log(
+                '[WIALON REPORTS] Loading templates...'
+            );
+
+
+            const res =
+                await apiFetch(
+                    '/api/wialon-reports/templates',
+                    {},
+                    30000
+                );
+
+
+            console.log(
+                '[WIALON REPORTS] Templates status:',
+                res.status
+            );
+
+
+            if (!res.ok) {
+
+                throw new Error(
+                    `Templates request failed (${res.status})`
+                );
+
+            }
+
+
+            const data =
+                await res.json();
+
+
+            console.log(
+                '[WIALON REPORTS] Templates response:',
+                data
+            );
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.error ||
+                    'Failed to load Wialon report templates.'
+                );
+
+            }
+
+
+            if (
+                !Array.isArray(
+                    data.templates
+                ) ||
+                !data.templates.length
+            ) {
+
+                select.innerHTML =
+                    `
+                    <option value="">
+                        No report templates found in Wialon
+                    </option>
+                    `;
+
+
+                hint.textContent =
+                    'No report templates were found in your Wialon account.';
+
+
+                return;
+
+            }
+
+
+            select.innerHTML =
+                data.templates
+                    .map(
+                        t => {
+
+                            return `
+                                <option
+                                    value="${t.templateId}"
+                                    data-resource="${t.resourceId}">
+
+                                    ${t.name}
+
+                                </option>
+                            `;
+
+                        }
+                    )
+                    .join('');
+
+
+            hint.textContent =
+                `${data.templates.length} report template(s) available from Wialon.`;
+
+
+            console.log(
+                '[WIALON REPORTS] Templates loaded:',
+                data.templates.length
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                '[WIALON REPORTS] Template loading error:',
+                error
+            );
+
+
+            select.innerHTML =
+                `
+                <option value="">
+                    Error loading templates
+                </option>
+                `;
+
+
+            hint.textContent =
+                error.message ||
+                'Unable to load report templates.';
+
+        }
+
+    }
+
+
+    /* =========================================================
+       LOAD UNITS
+    ========================================================= */
+
+    async function loadUnits() {
+
+        const list =
+            document.getElementById(
+                'units-list'
+            );
+
+
+        list.innerHTML =
+            `
+            <div class="units-loading">
+
+                Loading units from Wialon...
+
+            </div>
+            `;
+
+
+        try {
+
+            console.log(
+                '[WIALON REPORTS] Loading units...'
+            );
+
+
+            const res =
+                await apiFetch(
+                    '/api/wialon-reports/units',
+                    {},
+                    30000
+                );
+
+
+            console.log(
+                '[WIALON REPORTS] Units status:',
+                res.status
+            );
+
+
+            if (!res.ok) {
+
+                throw new Error(
+                    `Units request failed (${res.status})`
+                );
+
+            }
+
+
+            const data =
+                await res.json();
+
+
+            console.log(
+                '[WIALON REPORTS] Units response:',
+                data
+            );
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.error ||
+                    'Failed to load units.'
+                );
+
+            }
+
+
+            if (
+                !Array.isArray(
+                    data.units
+                ) ||
+                !data.units.length
+            ) {
+
+                list.innerHTML =
+                    `
+                    <div class="units-loading">
+
+                        No units found
+
+                    </div>
+                    `;
+
+
+                updateUnitsText();
+
+
+                return;
+
+            }
+
+
+            list.innerHTML =
+                data.units
+                    .map(
+                        unit => {
+
+                            return `
+                                <label
+                                    class="unit-option">
+
+                                    <input
+                                        type="checkbox"
+                                        class="unit-checkbox"
+                                        value="${unit.id}"
+                                        data-name="${unit.name}"
+                                        onchange="unitSelectionChanged()">
+
+                                    <span>
+                                        ${unit.name}
+                                    </span>
+
+                                </label>
+                            `;
+
+                        }
+                    )
+                    .join('');
+
+
+            updateUnitsText();
+
+
+            console.log(
+                '[WIALON REPORTS] Units loaded:',
+                data.units.length
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                '[WIALON REPORTS] Units loading error:',
+                error
+            );
+
+
+            list.innerHTML =
+                `
+                <div
+                    class="units-loading"
+                    style="color:#ff9a9a;">
+
+                    ${error.message ||
+                    'Error loading units'}
+
+                </div>
+                `;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       UNITS DROPDOWN
+    ========================================================= */
+
+    function toggleUnitsDropdown() {
+
+        const menu =
+            document.getElementById(
+                'units-menu'
+            );
+
+
+        menu.classList.toggle(
+            'show'
+        );
+
+    }
+
+
+    document.addEventListener(
+        'click',
+        function(event) {
+
+            const dropdown =
+                document.querySelector(
+                    '.units-dropdown'
+                );
+
+
+            if (
+                dropdown &&
+                !dropdown.contains(
+                    event.target
+                )
+            ) {
+
+                document
+                    .getElementById(
+                        'units-menu'
+                    )
+                    .classList.remove(
+                        'show'
+                    );
+
+            }
+
+        }
+    );
+
+
+    function toggleAllUnits(
+        checkbox
+    ) {
+
+        const unitCheckboxes =
+            document.querySelectorAll(
+                '.unit-checkbox'
+            );
+
+
+        unitCheckboxes.forEach(
+            unit => {
+
+                unit.checked =
+                    checkbox.checked;
+
+            }
+        );
+
+
+        updateUnitsText();
+
+    }
+
+
+    function unitSelectionChanged() {
+
+        const unitCheckboxes =
+            Array.from(
+                document.querySelectorAll(
+                    '.unit-checkbox'
+                )
+            );
+
+
+        const selected =
+            unitCheckboxes.filter(
+                checkbox =>
+                    checkbox.checked
+            );
+
+
+        const selectAll =
+            document.getElementById(
+                'select-all-units'
+            );
+
+
+        if (selectAll) {
+
+            selectAll.checked =
+                unitCheckboxes.length > 0 &&
+                selected.length ===
+                    unitCheckboxes.length;
+
+        }
+
+
+        updateUnitsText();
+
+    }
+
+
+    function updateUnitsText() {
+
+        const unitCheckboxes =
+            Array.from(
+                document.querySelectorAll(
+                    '.unit-checkbox'
+                )
+            );
+
+
+        const selected =
+            unitCheckboxes.filter(
+                checkbox =>
+                    checkbox.checked
+            );
+
+
+        const text =
+            document.getElementById(
+                'units-selected-text'
+            );
+
+
+        if (!text) {
+            return;
+        }
+
+
+        if (
+            selected.length === 0 ||
+            selected.length ===
+                unitCheckboxes.length
+        ) {
+
+            text.textContent =
+                'All Units';
+
+            return;
+
+        }
+
+
+        if (
+            selected.length === 1
+        ) {
+
+            text.textContent =
+                selected[0]
+                    .dataset
+                    .name;
+
+            return;
+
+        }
+
+
+        text.textContent =
+            `${selected.length} Units Selected`;
+
+    }
+
+
+    function getSelectedUnitIds() {
+
+        const unitCheckboxes =
+            Array.from(
+                document.querySelectorAll(
+                    '.unit-checkbox'
+                )
+            );
+
+
+        return unitCheckboxes
+            .filter(
+                checkbox =>
+                    checkbox.checked
+            )
+            .map(
+                checkbox =>
+                    checkbox.value
+            );
+
+    }
+
+
+    /* =========================================================
+       CURRENT QUERY
+    ========================================================= */
+
+    function currentQuery() {
+
+        const template =
+            document.getElementById(
+                'template-select'
+            );
+
+
+        const templateId =
+            template.value;
+
+
+        const selectedOption =
+            template
+                .selectedOptions[0];
+
+
+        const resourceId =
+            selectedOption?.dataset
+                .resource ||
+            '';
+
+
+        const unitIds =
+            getSelectedUnitIds();
+
+
+        const dateFrom =
+            document.getElementById(
+                'date-from'
+            ).value;
+
+
+        const dateTo =
+            document.getElementById(
+                'date-to'
+            ).value;
+
+
+        return {
+
+            templateId,
+
+            resourceId,
+
+            unitIds,
+
+            dateFrom,
+
+            dateTo
+
+        };
+
+    }
+
+
+    /* =========================================================
+       RENDER RESULTS
+    ========================================================= */
+
+    function renderResults(
+        results
+    ) {
+
+        const area =
+            document.getElementById(
+                'result-area'
+            );
+
+
+        if (
+            !Array.isArray(results) ||
+            !results.length
+        ) {
+
+            area.innerHTML =
+                `
+                <p class="empty-msg">
+                    No results
+                </p>
+                `;
+
+            return;
+
+        }
+
+
+        area.innerHTML =
+            results
+                .map(
+                    result => {
+
+                        if (
+                            !result.tables ||
+                            !result.tables.length
+                        ) {
+
+                            return `
+                                <div
+                                    class="unit-block">
+
+                                    <div
+                                        class="unit-title">
+
+                                        ${result.unitName}
+
+                                    </div>
+
+                                    <p
+                                        class="empty-msg">
+
+                                        No data in this period
+
+                                        ${
+                                            result.warning
+                                                ? ' — ' +
+                                                    result.warning
+                                                : ''
+                                        }
+
+                                    </p>
+
+                                </div>
+                            `;
+
+                        }
+
+
+                        const tablesHtml =
+                            result.tables
+                                .map(
+                                    table => {
+
+                                        const headers =
+                                            Array.isArray(
+                                                table.headers
+                                            )
+                                                ? table.headers
+                                                : [];
+
+
+                                        const rows =
+                                            Array.isArray(
+                                                table.rows
+                                            )
+                                                ? table.rows
+                                                : [];
+
+
+                                        return `
+                                            <p>
+
+                                                <b>
+                                                    ${table.name || ''}
+                                                </b>
+
+                                            </p>
+
+                                            <table>
+
+                                                <thead>
+
+                                                    <tr>
+
+                                                        ${
+                                                            headers
+                                                                .map(
+                                                                    h =>
+                                                                        `<th>${h}</th>`
+                                                                )
+                                                                .join('')
+                                                        }
+
+                                                    </tr>
+
+                                                </thead>
+
+
+                                                <tbody>
+
+                                                    ${
+                                                        rows.length
+
+                                                        ?
+
+                                                        rows
+                                                            .map(
+                                                                row => {
+
+                                                                    return `
+                                                                        <tr>
+
+                                                                            ${
+                                                                                row
+                                                                                    .map(
+                                                                                        cell =>
+                                                                                            `<td>${
+                                                                                                cell == null
+                                                                                                    ? ''
+                                                                                                    : cell
+                                                                                            }</td>`
+                                                                                    )
+                                                                                    .join('')
+                                                                            }
+
+                                                                        </tr>
+                                                                    `;
+
+                                                                }
+                                                            )
+                                                            .join('')
+
+                                                        :
+
+                                                        `
+                                                            <tr>
+
+                                                                <td
+                                                                    colspan="${
+                                                                        headers.length ||
+                                                                        1
+                                                                    }"
+                                                                    class="empty-msg">
+
+                                                                    No data
+
+                                                                </td>
+
+                                                            </tr>
+                                                        `
+                                                    }
+
+                                                </tbody>
+
+                                            </table>
+                                        `;
+
+                                    }
+                                )
+                                .join('');
+
+
+                        return `
+                            <div
+                                class="unit-block">
+
+                                <div
+                                    class="unit-title">
+
+                                    ${result.unitName}
+
+                                </div>
+
+                                ${tablesHtml}
+
+                            </div>
+                        `;
+
+                    }
+                )
+                .join('');
+
+    }
+
+
+    /* =========================================================
+       RUN REPORT
+    ========================================================= */
+
+    async function runReport() {
+
+        const q =
+            currentQuery();
+
+
+        const area =
+            document.getElementById(
+                'result-area'
+            );
+
+
+        const runButton =
+            document.querySelector(
+                '.run-btn'
+            );
+
+
+        if (!q.templateId) {
+
+            area.innerHTML =
+                `
+                <p class="error-msg">
+                    Pick a report template first.
+                </p>
+                `;
+
+            return;
+
+        }
+
+
+        if (
+            !q.dateFrom ||
+            !q.dateTo
+        ) {
+
+            area.innerHTML =
+                `
+                <p class="error-msg">
+                    Pick a from/to date.
+                </p>
+                `;
+
+            return;
+
+        }
+
+
+        const originalText =
+            runButton.innerHTML;
+
+
+        runButton.disabled =
+            true;
+
+
+        runButton.innerHTML =
+            '⏳ Running Report...';
+
+
+        runButton.style.opacity =
+            '0.7';
+
+
+        area.innerHTML =
+            `
+            <div class="page-loader">
+
+                <span class="spinner"></span>
+
+                Running Wialon report...
+
+            </div>
+            `;
+
+
+        try {
+
+            console.log(
+                '[WIALON REPORTS] Running report:',
+                q
+            );
+
+
+            const res =
+                await apiFetch(
+                    '/api/wialon-reports/run',
+                    {
+
+                        method:
+                            'POST',
+
+                        headers:
+                            {
+                                'Content-Type':
+                                    'application/json'
+                            },
+
+                        body:
+                            JSON.stringify(q)
+
+                    },
+                    120000
+                );
+
+
+            console.log(
+                '[WIALON REPORTS] Run status:',
+                res.status
+            );
+
+
+            if (!res.ok) {
+
+                throw new Error(
+                    `Report request failed (${res.status})`
+                );
+
+            }
+
+
+            const data =
+                await res.json();
+
+
+            console.log(
+                '[WIALON REPORTS] Run response:',
+                data
+            );
+
+
+            if (!data.success) {
+
+                throw new Error(
+                    data.error ||
+                    'Failed to run report.'
+                );
+
+            }
+
+
+            renderResults(
+                data.results || []
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                '[WIALON REPORTS] Run error:',
+                error
+            );
+
+
+            area.innerHTML =
+                `
+                <p class="error-msg">
+
+                    ${error.message ||
+                    'Failed to run report.'}
+
+                </p>
+                `;
+
+        }
+
+        finally {
+
+            runButton.disabled =
+                false;
+
+
+            runButton.innerHTML =
+                originalText;
+
+
+            runButton.style.opacity =
+                '1';
+
+        }
+
+    }
+
+
+    /* =========================================================
+       EXPORT
+    ========================================================= */
+
+    function exportReport(
+        format,
+        lang,
+        download
+    ) {
+
+        const q =
+            currentQuery();
+
+
+        if (!q.templateId) {
+
+            alert(
+                'Pick a report template first.'
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !q.dateFrom ||
+            !q.dateTo
+        ) {
+
+            alert(
+                'Pick a from/to date.'
+            );
+
+            return;
+
+        }
+
+
+        const params =
+            new URLSearchParams({
+
+                templateId:
+                    q.templateId,
+
+                resourceId:
+                    q.resourceId,
+
+                dateFrom:
+                    q.dateFrom,
+
+                dateTo:
+                    q.dateTo,
+
+                format,
+
+                lang
+
+            });
+
+
+        q.unitIds.forEach(
+            id => {
+
+                params.append(
+                    'unitIds',
+                    id
+                );
+
+            }
+        );
+
+
+        if (download) {
+
+            params.append(
+                'download',
+                '1'
+            );
+
+        }
+
+
+        window.open(
+            `/api/wialon-reports/export?${params.toString()}`,
+            '_blank'
+        );
+
+    }
+
+
+    /* =========================================================
+       PAGE INIT
+    ========================================================= */
+
+    (async function init() {
+
+        const resultArea =
+            document.getElementById(
+                'result-area'
+            );
+
+
+        resultArea.innerHTML =
+            `
+            <div class="page-loader">
+
+                <span class="spinner"></span>
+
+                Initializing Wialon Reports...
+
+            </div>
+            `;
+
+
+        try {
+
+            console.log(
+                '========================================'
+            );
+
+
+            console.log(
+                '[WIALON REPORTS] PAGE INIT'
+            );
+
+
+            console.log(
+                '========================================'
+            );
+
+
+            const loggedIn =
+                await loadMe();
+
+
+            if (!loggedIn) {
+                return;
+            }
+
+
+            defaultDates();
+
+
+            /*
+             * Templates and units load independently.
+             * One failure will not stop the other.
+             */
+
+            await Promise.allSettled(
+                [
+                    loadTemplates(),
+                    loadUnits()
+                ]
+            );
+
+
+            resultArea.innerHTML =
+                `
+                <p class="empty-msg">
+
+                    Select a template, units and
+                    date range, then click
+                    <b>Run Report</b>.
+
+                </p>
+                `;
+
+
+            console.log(
+                '[WIALON REPORTS] PAGE READY'
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(
+                '[WIALON REPORTS] INIT ERROR:',
+                error
+            );
+
+
+            resultArea.innerHTML =
+                `
+                <p class="error-msg">
+
+                    Failed to initialize Wialon Reports:
+
+                    ${
+                        error.message ||
+                        'Unknown error'
+                    }
+
+                </p>
+                `;
+
+        }
+
+    })();
+
+
+</script>
+
+</body>
+
+</html>
+

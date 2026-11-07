@@ -1,0 +1,272 @@
+/* EDIT BY NADA — styles apply only to the dedicated preview shell. */
+/* Keep the installation form within the visible mobile screen while its own fields scroll. */
+@media(max-width:900px){
+ body.preview-installation-modal{overflow:hidden!important}
+ body.preview-installation-modal #page-frame{position:fixed!important;top:var(--preview-modal-top,0px)!important;left:0!important;width:100vw!important;height:var(--preview-modal-height,100dvh)!important;min-height:0!important;z-index:80!important}
+}
+@font-face { font-family: "Cairo"; src: url("/assets/cairo-variable.ttf") format("truetype"); font-style: normal; font-weight: 200 1000; font-display: swap; }
+/* EDIT BY NADA — a light sage shell matches the dashboard's ivory and botanical palette. */
+html body{color:#2e4a36;background:#eff4eb;color-scheme:light}
+body #preview-sidebar{background:linear-gradient(165deg,#e5eddd,#dbe7d2 65%,#d0e1c7);border-right:1px solid #c3d4b7;scrollbar-color:#8eae7d transparent}
+body .preview-brand{border-bottom-color:#c3d3b5}
+body #preview-sidebar label{color:#637b54;font-size:10px;letter-spacing:.12em}
+body .preview-sidebar-controls,body .preview-sidebar-actions{border-color:#becfb0}
+body .sidebar-picker{color:#35522f}
+body .sidebar-picker summary{background:#f4f7ed;border:1px solid #c0d2b0;color:#35522f;box-shadow:0 3px 8px #5f7c3e08}
+body .sidebar-picker summary::before{content:'▦';font-size:18px;color:#6c8b54;margin-right:2px}
+body .preview-sidebar-controls label:nth-child(1) summary::before{content:'◎'}
+body .preview-sidebar-controls label:nth-child(2) summary::before{content:'◇'}
+body .preview-sidebar-controls label:nth-child(3) summary::before{content:'◉'}
+body .sidebar-picker summary::after{margin-left:auto;color:#8d7d43}
+body .sidebar-picker[open] summary{border-color:#9aba83}
+body .sidebar-picker-options{background:#f4f7ed;border-color:#b6cc9f;scrollbar-color:#8fac78 #f4f7ed}
+body .sidebar-picker-options button{color:#35522f}
+body .sidebar-picker-options button.is-selected{background:#dbe8ca;color:#2e512d}
+body .sidebar-picker-options button:hover,body .sidebar-picker-options button:focus-visible{background:#e1ecd4}
+body #preview-sidebar button#reset,body #preview-sidebar button#activity-toggle,body #mobile-menu-toggle{background:#f1f6e8;border-color:#b6cda1;color:#3b5d31;box-shadow:0 3px 8px #4667310a}
+body #preview-sidebar button#reset:hover,body #preview-sidebar button#activity-toggle:hover{background:#dfebd0}
+body #preview-sidebar #preview-logout{background:#f4e9df;color:#865b49;border-color:#dcc5b3}
+body #preview-sidebar #preview-logout:hover{background:#eddccd}
+body #reset::before{content:'↻';margin-right:8px;font-size:17px}
+body #activity-toggle::before{content:'≋';margin-right:8px;font-size:18px}
+body #preview-logout::before{content:'⇥';margin-right:8px;font-size:18px}
+@media(max-width:720px){body #preview-sidebar{border-bottom-color:#c3d4b7}}
+/* EDIT BY NADA — sidebar layout applies only to the dedicated preview shell. */
+/* EDIT BY NADA — status text stays available to assistive technology without occupying the page header. */
+.preview-status-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+:root{font-family:Cairo,sans-serif;color:#e6edf6;background:#0a1220;color-scheme:dark}*{box-sizing:border-box}body{margin:0}button,select,input{font:inherit}button,select,input{border:1px solid #53617a;border-radius:7px;background:#172439;color:#edf4ff;padding:8px 10px}button{cursor:pointer}button:hover{background:#294262}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #64d9d0;outline-offset:2px}label{display:grid;gap:4px;font-size:11px;font-weight:650}#preview-layout{display:grid;grid-template-columns:minmax(240px,280px) minmax(0,1fr);min-height:100dvh}#preview-sidebar{background:#102b35;border-right:3px solid #f4c46b;min-height:100dvh;position:sticky;top:0;align-self:start;z-index:50}#preview-toolbar{display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:18px 15px;min-height:100dvh}.preview-brand{display:flex;gap:10px;align-items:center}.preview-brand img{width:72px;height:54px;flex:0 0 72px;object-fit:contain;border-radius:8px}.preview-brand strong{color:#fbd98f;letter-spacing:.12em}.preview-brand small{display:block;margin-top:4px;color:#bdd7dc}.preview-nav,.preview-sidebar-controls,.preview-sidebar-actions{display:grid;gap:10px}.preview-sidebar-controls{padding-top:14px;border-top:1px solid #42616a}.preview-sidebar-actions{margin-top:auto;padding-top:14px;border-top:1px solid #42616a}.preview-sidebar-actions button{width:100%}#preview-content{min-width:0;min-height:100dvh}#preview-status{font-size:12px;padding:8px 18px;margin:0;background:#172333;min-height:32px}#page-frame{display:block;width:100%;height:calc(100dvh - 40px);min-height:600px;border:0;background:#101724}#activity{padding:12px 24px;background:#172333;max-height:220px;overflow:auto}#activity h2{font-size:17px}#activity li{font:12px Cairo,sans-serif;padding:3px}dialog{color:#e6edf6;background:#172439;border:1px solid #71849c;border-radius:14px;max-width:min(95vw,600px);padding:24px}dialog::backdrop{background:#000a}dialog input{width:100%;margin-top:8px}.dialog-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}#scan-video{width:100%;max-height:300px}#report-panel{position:fixed;inset:0;z-index:100;background:#fff;color:#182536;overflow:auto;padding:24px}.report-controls{display:flex;gap:10px;flex-wrap:wrap;position:sticky;top:0;background:#fff;padding-bottom:16px}#report-content table{border-collapse:collapse;width:100%;font-size:13px}#report-content th,#report-content td{padding:10px;border:1px solid #c8d0dc;text-align:start}#report-content h1{font-size:24px}#report-content img{max-height:180px;max-width:220px;margin:8px}#report-content pre{white-space:pre-wrap}#report-panel[hidden],aside[hidden]{display:none}#answer-label[hidden]{display:none}@media(max-width:900px){#preview-layout{display:block}#preview-sidebar{position:relative;min-height:0;border-right:0;border-bottom:3px solid #f4c46b}#preview-toolbar{min-height:0;padding:12px;gap:12px}.preview-sidebar-actions{margin-top:0}.preview-brand{width:100%}#preview-toolbar label{min-width:140px}#page-frame{height:75dvh}button{min-height:40px}}
+/* EDIT BY NADA — final compact-laptop override keeps the sidebar beside the dashboard. */
+@media (min-width:721px) and (max-width:900px){#preview-layout{display:grid;grid-template-columns:minmax(240px,280px) minmax(0,1fr)}#preview-sidebar{position:sticky;min-height:100dvh;border-right:3px solid #f4c46b;border-bottom:0}#preview-toolbar{min-height:100dvh;padding:18px 15px;gap:16px}.preview-sidebar-actions{margin-top:auto}.preview-brand{width:auto}#preview-toolbar label{min-width:0}#page-frame{height:calc(100dvh - 40px)}}
+/* EDIT BY NADA — final logo sizing wins over the base shell dimensions. */
+.preview-brand{flex-direction:column;align-items:flex-start;gap:6px}.preview-brand img{width:144px;height:108px;flex:0 0 108px}
+/* EDIT BY NADA — the hidden status no longer reserves vertical space above the frame. */
+#page-frame{height:100vh}
+@media(max-width:720px){#page-frame{height:75vh}}
+/* EDIT BY NADA — coordinated Observer palette and contained sidebar dropdowns. */
+:root{color-scheme:dark;background:#081821;color:#e7f3f1}
+#preview-sidebar{background:linear-gradient(165deg,#28605f,#204b50 68%,#285b55);border-right:1px solid #6c9890;max-height:100dvh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#91c1af transparent}
+#preview-toolbar{gap:15px;padding:20px 16px}
+.preview-brand{align-items:center;padding:4px 0 16px;border-bottom:1px solid #31504e}
+.preview-brand img{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}
+.preview-sidebar-controls,.preview-sidebar-actions{border-color:#31504e}
+#preview-sidebar label{color:#a7c8c3;font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+#preview-sidebar select[hidden]{display:none}
+.sidebar-picker{min-width:0;color:#e7f3f1;text-transform:none;letter-spacing:normal;font-size:13px;font-weight:550}
+.sidebar-picker summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px;padding:10px 12px;border:1px solid #80aea2;border-radius:10px;background:#356f69;overflow-wrap:anywhere}
+.sidebar-picker summary::-webkit-details-marker{display:none}
+.sidebar-picker summary::after{content:'⌄';font-size:17px;color:#d5b66b;line-height:1;flex:none}
+.sidebar-picker[open] summary{border-color:#80b8aa;border-radius:10px 10px 0 0}
+.sidebar-picker-options{max-height:200px;overflow-y:auto;overscroll-behavior:contain;background:#275b58;border:1px solid #80aea2;border-top:0;border-radius:0 0 10px 10px;scrollbar-width:thin;scrollbar-color:#a4cbbc #275b58}
+.sidebar-picker-options button{display:block;width:100%;border:0;border-radius:0;padding:10px 12px;text-align:left;color:#d8e9e6;background:transparent;white-space:normal}
+.sidebar-picker-options button:hover,.sidebar-picker-options button:focus-visible{background:#44847a}
+.sidebar-picker-options button.is-selected{background:#39766e;color:#fff1c6}
+#preview-sidebar button#reset,#preview-sidebar button#activity-toggle{background:#38786e;color:#f5fffa;border-color:#88b8a5;border-radius:10px}
+#preview-sidebar button#reset:hover,#preview-sidebar button#activity-toggle:hover{background:#4a8c7e}
+/* EDIT BY NADA — a distinct logout action remains at the bottom of the sidebar. */
+#preview-sidebar #preview-logout{background:#633941;color:#fff1f0;border:1px solid #a26a70;border-radius:10px}
+#preview-sidebar #preview-logout:hover{background:#794952}
+.sidebar-picker summary:focus-visible{outline:3px solid #d5b66b;outline-offset:2px}
+@media(max-width:720px){#preview-sidebar{max-height:none;overflow:visible;border-right:0;border-bottom:1px solid #31504e}.preview-brand{align-items:flex-start}}
+/* EDIT BY NADA — desktop sidebar and compact mobile navigation share the same controls. */
+#mobile-menu-toggle{display:none}
+#mobile-sidebar-controls{display:flex;flex:1;min-height:0;flex-direction:column;gap:15px}
+@media(max-width:720px){
+  #preview-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px 12px;min-height:0}
+  .preview-brand{border:0;padding:0;align-items:flex-start;width:auto}
+  .preview-brand img{width:90px;height:64px;flex:0 0 64px}
+  #mobile-menu-toggle{display:block;background:#356f69;border-color:#80aea2;color:#fff;min-height:42px}
+  #mobile-sidebar-controls{display:none;grid-column:1 / -1;gap:12px}
+  #mobile-sidebar-controls.is-open{display:flex}
+  #preview-toolbar label{min-width:0}
+  .preview-sidebar-actions{margin-top:0}
+  #preview-content{min-height:0}
+  #page-frame{height:calc(100dvh - 80px);min-height:520px}
+  #report-panel{padding:12px}
+  .report-controls{gap:6px}
+  .report-controls button{flex:1 1 140px}
+}
+
+/* EDIT BY NADA — use Cairo consistently in the preview shell and its controls. */
+html, body, body * {
+  font-family: "Cairo", sans-serif !important;
+}
+
+/* Shared operational navigation: daily pages only, with local Lucide icons. */
+[hidden] { display: none !important; }
+html { background: #edf3e6; }
+body #preview-sidebar { background: linear-gradient(155deg, #e8efdf, #dbe7ce); border-right: 1px solid #c4d5b3; }
+body #preview-toolbar { gap: 20px; padding: 20px 14px 15px; }
+body .preview-brand { justify-content: center; border-bottom: 1px solid #c3d3b1; padding: 0 0 18px; }
+body .preview-brand img { width: 142px; height: 124px; flex: 0 0 142px; object-fit: contain; }
+.sidebar-section-label { color: #728761; font-size: 10px; font-weight: 800; letter-spacing: .16em; padding: 0 12px; }
+.sidebar-page-links { display: grid; gap: 5px; }
+body .sidebar-page-link {
+  width: 100%; min-height: 44px; display: flex; align-items: center; gap: 11px;
+  text-align: left; padding: 11px 12px; border: 1px solid transparent; border-radius: 12px;
+  background: transparent; color: #4b6643; font-size: 13px; font-weight: 600;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+body .sidebar-page-link .observer-icon { width: 19px; height: 19px; flex: 0 0 19px; stroke-width: 1.7; color: #789061; }
+body .sidebar-page-link:hover { background: #f5f9ecb3; transform: translateX(2px); border-color: #c4d6b3; }
+body .sidebar-page-link.is-selected { color: #34532c; background: linear-gradient(110deg, #d1e0b5, #e3edcf); border-color: #b0c78e; box-shadow: 0 4px 12px #4966290c; font-weight: 800; }
+body .sidebar-page-link.is-selected .observer-icon { color: #5a7b36; }
+body .sidebar-external-link { margin-top: 12px; background: #f4edcf9c; border-color: #d7ca9b; color: #6d653b; }
+body .sidebar-external-link .observer-icon { color: #9b8844; }
+body .preview-sidebar-actions { border-top: 1px solid #c3d3b1; padding-top: 14px; }
+body #preview-sidebar #preview-logout { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 43px; color: #875f48; background: #f3eade; border-color: #dbc9b3; font-size: 13px; }
+#preview-logout .observer-icon { width: 18px; height: 18px; }
+body #preview-sidebar #preview-logout::before { content: none; display: none; }
+body #page-frame { height: 100dvh; }
+@media (min-width: 721px) { body #preview-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); } }
+@media (max-width: 720px) {
+  body #preview-toolbar { padding: 8px 14px; gap: 10px; }
+  body .preview-brand { justify-content: flex-start; border: 0; padding: 0; }
+  body .preview-brand img { width: 90px; height: 64px; flex: 0 0 90px; }
+  body #mobile-menu-toggle {
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;
+    color:#385b35;background:linear-gradient(145deg,#fffef8,#deebd2);border:1px solid #a9c596;
+    border-radius:13px;box-shadow:0 4px 0 #9bb888,0 10px 20px #3f62351c,inset 0 1px #fff;
+    font-weight:800;transition:transform .18s,box-shadow .18s;
+  }
+  body #mobile-menu-toggle:hover{transform:translateY(-1px);background:linear-gradient(145deg,#fffef8,#d5e6c6)}
+  body #mobile-menu-toggle:active,body #mobile-menu-toggle[aria-expanded="true"]{transform:translateY(2px);box-shadow:0 2px 0 #8eaa7b,0 5px 12px #3f62351c,inset 0 1px #fff}
+  #mobile-menu-toggle .observer-icon { width: 19px; height: 19px; }
+  #mobile-sidebar-controls.is-open {
+    max-height:none;overflow:visible;margin-top:4px;padding:13px 10px 16px;
+    border:1px solid #b5cba4;border-radius:16px;
+    background:linear-gradient(145deg,#f9fbed,#dce9cf);
+    box-shadow:0 5px 0 #a9bf96,0 14px 28px #3c5d321b,inset 0 1px #fff;
+  }
+  body #page-frame { height:520px;min-height:520px;overflow:hidden; }
+}
+@media (prefers-reduced-motion: reduce) { body .sidebar-page-link { transition: none; } }
+
+/* Light, print-friendly report reader and consistent back action. */
+body #report-panel {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  height: 100dvh;
+  overflow: hidden;
+  padding: clamp(12px, 2vw, 28px);
+  color: #304d37;
+  background: #eaf1e2ee;
+  backdrop-filter: blur(14px);
+}
+body .report-controls {
+  z-index: 2;
+  max-width: 1720px;
+  width: 100%;
+  flex: 0 0 auto;
+  margin: 0 auto 14px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid #bfd1b2;
+  border-radius: 17px;
+  background: #fbfcf6f2;
+  box-shadow: 0 6px 18px #355b2815;
+  backdrop-filter: blur(12px);
+}
+body .report-controls button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 14px;
+  color: #42613d;
+  border: 1px solid #c3d5b7;
+  border-radius: 11px;
+  background: #edf4e7;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform .18s, background .18s, box-shadow .18s;
+}
+body .report-controls button:hover { transform: translateY(-1px); background: #e1edda; box-shadow: 0 5px 12px #355b2813; }
+body #report-back { margin-right: auto; color: #f8fbf4; border-color: #66874e; background: linear-gradient(135deg,#789956,#4d753e); }
+#report-back .observer-icon { width: 18px; height: 18px; }
+body #report-content {
+  max-width: 1720px;
+  width: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: clamp(18px, 2.4vw, 34px);
+  overflow: hidden;
+  color: #304b35;
+  border: 1px solid #c4d6b8;
+  border-radius: 22px;
+  background: linear-gradient(145deg,#fcfdf8,#f0f5e9);
+  box-shadow: 0 15px 40px #355b2818, inset 0 1px #fff;
+}
+body #report-content h1 { margin: 0 0 15px; color: #294f35; font-size: clamp(25px,3vw,36px); line-height: 1.25; }
+body #report-content p { margin: 13px 0; color: #61775d; font-size: 14px; line-height: 1.8; }
+body #report-content .report-summary { flex: 0 0 auto; }
+body .report-table-scroll {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #cbd9c1;
+  border-radius: 13px;
+  background: #fffef9;
+  scrollbar-color: #96ad83 #eef3e8;
+}
+body #report-content table {
+  width: 100%;
+  min-width: 1250px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: visible;
+  background: #fffef9;
+  font-size: 13px;
+}
+body #report-content th, body #report-content td {
+  padding: 11px 13px;
+  text-align: left;
+  white-space: nowrap;
+  border-right: 1px solid #dce6d4;
+  border-bottom: 1px solid #dce6d4;
+}
+body #report-content th { position: sticky; top: 0; z-index: 1; color: #385c3d; background: #e6efdc; font-size: 12px; font-weight: 800; }
+body #report-content td { color: #405343; background: #fffef9; }
+body #report-content tbody tr:nth-child(even) td { background: #f4f7ee; }
+body #report-content tbody tr:hover td { background: #eaf2e2; }
+@media (max-width: 720px) {
+  body #report-panel { padding: 10px; }
+  body .report-controls { position: relative; flex-wrap: wrap; padding: 8px; margin-bottom: 8px; }
+  body .report-controls button { flex: 1 1 135px; padding: 9px 10px; }
+  body #report-back { flex: 0 0 auto; }
+  body #report-content { padding: 18px 14px; border-radius: 16px; }
+  body #report-content table { min-width: 1200px; }
+}
+/* Report language can be changed directly in the viewer toolbar. */
+body #report-language-switch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:5px 8px;border:1px solid #c2d3ae;border-radius:12px;background:#edf4e3}
+#report-language-label{font-size:11px;font-weight:750;color:#64814f;margin-inline-end:4px}
+body .report-controls #report-language-switch button{flex:0 0 auto;padding:6px 11px;min-height:34px;box-shadow:0 2px 0 #bed0a9}
+body .report-controls #report-language-switch button[aria-pressed=true]{color:#fff;background:linear-gradient(135deg,#749c5b,#3d7850);border-color:#4e804c;box-shadow:0 2px 0 #315f3d}
+body .sidebar-page-link[hidden],body .report-controls button[hidden]{display:none!important}
+body #report-content[dir=rtl] :is(th,td){text-align:right}
+body #report-content[dir=rtl] .report-summary{text-align:right}
+@media(max-width:600px){body #report-language-switch{width:100%;justify-content:center}}
+
+/* EDIT BY NADA — compact language choice for Units downloads, using the existing Cairo/sage theme. */
+body #units-export-dialog{width:min(420px,calc(100vw - 32px));max-width:420px;padding:24px;border:1px solid #bccfa9;border-radius:20px;color:#35583c;background:linear-gradient(135deg,#fffffb,#edf5e5);box-shadow:0 6px 0 #b9cda0,0 24px 70px #294c3740}
+#units-export-dialog::backdrop{background:#294c375e;backdrop-filter:blur(4px)}
+#units-export-dialog h2{font-size:19px;font-weight:800;margin:0 0 8px;line-height:1.7}
+#units-export-dialog p{font-size:12px;color:#7a8c65;margin:0 0 18px;line-height:1.7}
+#units-export-dialog fieldset{border:0;padding:0;margin:0}
+#units-export-dialog legend{font-size:12px;color:#6b8259;margin-bottom:8px}
+.units-export-languages{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#units-export-dialog .units-export-languages label{display:flex;align-items:center;justify-content:center;gap:9px;min-height:54px;margin:0;border:1px solid #ccdcb9;border-radius:12px;background:#fbfdf6;color:#6e855c;font-size:15px;cursor:pointer;box-shadow:0 3px 0 #c8d8b788}
+#units-export-dialog .units-export-languages label:has(:checked){border-color:#779a61;background:#e4efd7;color:#406c40}
+#units-export-dialog input[type=radio]{appearance:auto;width:16px;height:16px;margin:0;padding:0;accent-color:#58864c}
+#units-export-dialog .dialog-actions{justify-content:flex-end;gap:10px;margin-top:22px}
+#units-export-dialog .dialog-actions button{font-size:12px;border-radius:10px;border:1px solid #bdcfa8;background:#f4f8eb;color:#678154;padding:9px 13px;box-shadow:0 2px 0 #c8d8b788}
+#units-export-dialog #units-export-download{color:white;background:linear-gradient(135deg,#699654,#3b774e);border-color:#467c4c;box-shadow:0 3px 0 #315f3d}

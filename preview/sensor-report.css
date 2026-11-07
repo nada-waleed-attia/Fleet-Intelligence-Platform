@@ -1,0 +1,40 @@
+/* EDIT BY NADA — retain the existing 3D controls on Sensor Report only. */
+.sensor-report-filters{position:relative;z-index:4;flex:0 0 auto;margin:16px 0 21px;padding:18px;border:1px solid #bed2ac;border-radius:15px;background:linear-gradient(145deg,#fffffa,#eaf2de);box-shadow:0 3px 0 #c0d3af;color:#3d603f;font-family:Cairo,sans-serif;min-width:0}
+.sensor-report-filters:has(details[open]){z-index:10}
+.sensor-filter-fields{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+.sensor-filter-field{min-width:0}
+.sensor-filter-label{display:block;color:#668252;font-size:12px;font-weight:800;margin-bottom:8px}
+.sensor-filter-menu{position:relative;min-width:0}
+.sensor-filter-menu[open]{z-index:20}
+.sensor-filter-trigger{position:relative;display:block;list-style:none;cursor:pointer;padding:11px 35px 11px 13px;min-height:45px;font-size:13px;font-weight:750;color:#456b40;border:1px solid #adc799;border-radius:11px;background:linear-gradient(#fffffc,#e7f0dc);box-shadow:0 4px 0 #b2c99f,inset 0 1px #fff;transition:transform .18s,box-shadow .18s}
+.sensor-filter-trigger::-webkit-details-marker{display:none}
+.sensor-filter-trigger::after{content:'';position:absolute;right:15px;top:17px;width:7px;height:7px;transform:rotate(45deg);border-right:2px solid #7d9c62;border-bottom:2px solid #7d9c62}
+.sensor-filter-menu[open] .sensor-filter-trigger{transform:translateY(2px);box-shadow:0 2px 0 #a1bb8a}
+.sensor-filter-menu[open] .sensor-filter-trigger::after{transform:rotate(225deg);top:21px}
+.sensor-filter-trigger:focus-visible,.sensor-report-filters button:focus-visible{outline:3px solid #88aa6f;outline-offset:3px}
+.sensor-filter-popover{position:absolute;inset-inline:0;top:calc(100% + 11px);padding:12px;border:1px solid #b1c89e;border-radius:13px;background:linear-gradient(145deg,#fffffb,#eaf2de);box-shadow:0 5px 0 #b0c79c,0 20px 28px #31552d30;animation:sensor-filter-enter .17s ease-out}
+.sensor-filter-search{display:block;margin:0 0 10px}
+body .sensor-report-filters input[type=search]{display:block;width:100%;min-width:0;padding:9px 11px;border:1px solid #bbd1a7;border-radius:9px;background:#fffffc;color:#385c3e;font:13px Cairo,sans-serif;min-height:40px;box-shadow:inset 0 1px 3px #46663e09}
+.sensor-filter-bulk{display:flex;justify-content:space-between;gap:8px;margin-bottom:9px}
+body .sensor-report-filters button{cursor:pointer;min-height:32px;padding:6px 10px;border:1px solid #bed2aa;border-radius:8px;background:linear-gradient(#fffefa,#e5efd7);color:#617e4b;font:750 11px Cairo,sans-serif;box-shadow:0 2px 0 #c2d4b0}
+.sensor-filter-choices{display:grid;gap:6px;max-height:196px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9bb985 #eef4e6}
+body .sensor-report-filters label.sensor-filter-option{display:flex;align-items:center;gap:9px;padding:9px;border:1px solid #d1dfc2;border-radius:8px;background:#fffffb;color:#526e45;font:650 12px Cairo,sans-serif;cursor:pointer;margin:0;min-width:0}
+body .sensor-report-filters label.sensor-filter-option:has(:checked){background:#e3efcf;border-color:#a1bc87}
+.sensor-filter-option>span{flex:1;overflow-wrap:anywhere}
+.sensor-filter-option small{font-size:10px;color:#83986b}
+body .sensor-report-filters input[type=checkbox]{appearance:auto;-webkit-appearance:auto;flex:0 0 16px;width:16px;height:16px;min-width:16px;min-height:16px;margin:0;padding:0;border:0;accent-color:#61884b;box-shadow:none;background:transparent}
+.sensor-filter-empty{font-size:12px;color:#7e9369;padding:8px;margin:0;line-height:1.8}
+.sensor-filter-footer{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px}
+.sensor-filter-count{margin-inline-end:auto;font-size:11px;color:#7b9164;line-height:1.8}
+body .sensor-report-filters .sensor-filter-apply{color:#fff;background:linear-gradient(135deg,#759e5d,#3c7750);border-color:#4f7e4c;box-shadow:0 3px 0 #345f3d}
+.sensor-visually-hidden{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+body#observer-reports-view .card.featured:has(.sensor-filter-menu[open]){overflow:visible;z-index:10}
+body #report-content:has(.sensor-filter-menu[open]){overflow:visible}
+body .sensor-report-empty{font-size:14px;color:#7c9169;text-align:center;padding:25px;background:#f7faef}
+/* EDIT BY NADA — failures stay beside the filters while unavailable data remains a neutral fallback. */
+body .sensor-report-filters .sensor-filter-error{padding:10px 12px;margin:12px 0 0;border:1px solid #dfc0ad;border-radius:9px;background:#fbefe5;color:#a36555;font-size:12px;line-height:1.8}
+body .sensor-report-filters .sensor-filter-error[hidden]{display:none}
+@keyframes sensor-filter-enter{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.sensor-report-filters{padding:13px}.sensor-filter-fields{gap:13px;grid-template-columns:1fr}.sensor-filter-footer{gap:8px}.sensor-filter-count{width:100%}body .sensor-report-filters input[type=search]{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.sensor-filter-popover{animation:none}.sensor-filter-trigger{transition:none}}
+@media print{.sensor-report-filters{display:none!important}}

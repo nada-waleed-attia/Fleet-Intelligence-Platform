@@ -1,0 +1,149 @@
+/* EDIT BY NADA — sage Wialon workspace, raised controls and CSS paper sculpture. */
+body#wialon-reports-view[data-preview-page][data-preview-page] { --text:#294c37;--muted:#657d59;--blue:#4d8052;--blue-light:#59794b;--border:#c6d8b5;--border-soft:#dce6d1;--blue-soft:#e9f1e0;--blue-border:#bbcfaa;--blue-primary:#51834f;--blue-dark:#386d46;--blue-deep:#2c593b;--muted-2:#7e8e6d;--green:#4e8554;color:var(--text)!important;color-scheme:light;background:#edf3e5!important;padding:0!important;isolation:isolate; }
+body#wialon-reports-view * { font-family:"Cairo",sans-serif!important; }
+body#wialon-reports-view::before { display:none!important; }
+.wr-backdrop { position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none;background:linear-gradient(135deg,#f6f8ed,#e6eedb 55%,#f5efdb); }
+.wr-glow { position:absolute;width:65vw;height:65vw;border-radius:50%;filter:blur(32px);animation:wr-drift 18s ease-in-out infinite alternate; }
+.wr-glow-green { left:-29%;top:-24%;background:radial-gradient(circle,#b6d19eaa,transparent 70%); }
+.wr-glow-gold { right:-25%;top:12%;background:radial-gradient(circle,#e9d29799,transparent 65%);animation-delay:-9s; }
+.wr-contours { position:absolute;width:1100px;height:1100px;right:-630px;top:-420px;border-radius:45%;transform:rotate(-23deg);background:repeating-radial-gradient(ellipse at center,transparent 0 30px,#71935e2b 31px 32px,transparent 33px 58px);mask-image:linear-gradient(135deg,#000,transparent 90%); }
+.wr-grid-floor { position:absolute;width:170%;height:80vh;left:-35%;bottom:-42vh;transform:perspective(600px) rotateX(57deg) rotateZ(-9deg);background-image:linear-gradient(#7b9c6529 1px,transparent 1px),linear-gradient(90deg,#7b9c6529 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse,#000,transparent 65%); }
+body#wialon-reports-view .wr-page { position:relative;z-index:1;width:min(1500px,calc(100% - 48px));margin:0 auto;padding:24px 0 34px; }
+body#wialon-reports-view[data-preview-page][data-preview-page] :is(.header,.panel,.wr-results-panel) { color:#294c37!important;background:linear-gradient(135deg,#fffffff0,#f1f6e9f2)!important;border:1px solid #c6d7b7!important;box-shadow:0 4px 0 #bdcdac88,0 16px 35px #35582b12,inset 0 1px #fff!important;border-radius:24px; }
+body#wialon-reports-view .header { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:20px 26px;margin-bottom:25px;animation:wr-enter .65s both; }
+body#wialon-reports-view .brand { gap:17px; }
+body#wialon-reports-view .brand>img { filter:drop-shadow(0 5px 4px #38502b15); }
+body#wialon-reports-view .wr-eyebrow { color:#759259;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:4px; }
+body#wialon-reports-view h1 { color:#294c37!important;font-size:clamp(25px,2.7vw,36px);font-weight:850;line-height:1.4;letter-spacing:-.7px;margin:0 0 3px; }
+body#wialon-reports-view .brand-subtitle { color:#657d59!important;font-size:14px;letter-spacing:0; }
+body#wialon-reports-view .header-buttons { gap:12px; }
+body#wialon-reports-view .user-chip { color:#657b59!important;background:#edf4e4!important;border:1px solid #d5e1c6!important;padding:9px 12px;font-size:12px;box-shadow:none;border-radius:12px; }
+body#wialon-reports-view .header-buttons :is(#manage-users-btn,.logout-btn) { display:none!important; }
+body#wialon-reports-view[data-preview-page][data-preview-page] :is(.back-btn,.wr-export-button,.run-btn) { display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:11px 16px;font-size:14px;font-weight:750;border:1px solid #b8cda5!important;border-radius:12px;color:#3e653f!important;background:linear-gradient(#fafcf4,#e5eedb)!important;box-shadow:0 3px 0 #bdceac88,inset 0 1px #fff!important;transition:transform .23s,box-shadow .23s,background .23s; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .run-btn { color:#fff!important;background:linear-gradient(135deg,#669554,#36734e)!important;border-color:#3c754c!important;box-shadow:0 4px 0 #2d5d3d,0 10px 20px #35582b20!important;min-width:175px;width:auto;margin:0; }
+body#wialon-reports-view :is(.back-btn,.wr-export-button,.run-btn):hover:not(:disabled) { transform:translateY(-3px); }
+body#wialon-reports-view button:disabled { opacity:.48;cursor:not-allowed; }
+.wr-icon { display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+.wr-icon .observer-icon { width:20px;height:20px;stroke-width:1.8; }
+body#wialon-reports-view .panel { position:relative;z-index:3;padding:26px 28px;margin:0 0 28px;max-width:none;overflow:visible;animation:wr-enter .7s .05s backwards; }
+body#wialon-reports-view .panel::before { display:none!important; }
+.wr-builder-heading { display:flex;align-items:center;justify-content:space-between;gap:25px;margin-bottom:24px;min-height:95px; }
+body#wialon-reports-view .wr-builder-heading h2 { display:flex;align-items:center;gap:11px;color:#35583d!important;font-size:25px;font-weight:800;margin:0 0 9px; }
+.wr-builder-heading h2>.wr-icon { width:37px;height:37px;background:#e7efdd;border:1px solid #c9d9b9;border-radius:12px;color:#709057;box-shadow:0 3px 0 #cad8b9; }
+body#wialon-reports-view .wr-builder-heading p { color:#69815b!important;font-size:16px;line-height:1.8;margin:0; }
+.wr-paper-art { position:relative;width:150px;height:100px;flex:0 0 150px;perspective:500px;pointer-events:none; }
+.wr-sheet { position:absolute;width:64px;height:80px;left:40px;top:5px;border-radius:9px;border:1px solid #c1d0aa;background:linear-gradient(145deg,#fffdf4,#f0f5e4);box-shadow:2px 4px 0 #bfceac,5px 12px 16px #36582b16; }
+.wr-sheet-back { transform:rotate(17deg) translate(15px,3px);background:linear-gradient(#e5d29d,#d6b95e);border-color:#cfb565; }
+.wr-sheet-middle { transform:rotate(-17deg) translate(-12px,-2px);background:linear-gradient(#d9e7c6,#9fbc7b); }
+.wr-sheet-front { display:grid;place-items:center;transform:rotate(-3deg);animation:wr-paper-float 5s ease-in-out infinite; }
+.wr-sheet-front .observer-icon { width:36px;height:36px;color:#658c4f;stroke-width:1.5; }
+body#wialon-reports-view .field-grid { display:grid;grid-template-columns:minmax(220px,1.45fr) minmax(220px,1.45fr) repeat(2,minmax(160px,1fr));gap:18px;margin-bottom:23px; }
+body#wialon-reports-view .field { position:relative;min-width:0;animation:wr-enter .65s backwards;animation-delay:var(--field-delay); }
+body#wialon-reports-view .field>label { display:flex;align-items:center;gap:8px;color:#627c50!important;font-size:13px;font-weight:750;letter-spacing:0;text-transform:none;margin:0 0 12px; }
+.field>label .wr-icon { width:27px;height:27px;color:#78955d;border:1px solid #d0dfbf;border-radius:8px;background:linear-gradient(#fff,#edf3e4);box-shadow:0 2px 0 #d5e1c7; }
+.field>label .observer-icon { width:15px;height:15px; }
+body#wialon-reports-view[data-preview-page][data-preview-page] :is(input[type="date"],.units-dropdown-button,.wr-select-trigger,.wr-unit-search) { width:100%;min-width:0;min-height:49px;border:1px solid #b9cda8!important;border-radius:12px;color:#35563b!important;background:linear-gradient(145deg,#fffefb,#edf4e5)!important;box-shadow:0 3px 0 #c1d1b2,0 9px 16px #35582b10,inset 0 1px #fff!important;font-size:14px;padding:11px 13px;transition:border-color .2s,box-shadow .2s,transform .2s; }
+body#wialon-reports-view :is(input[type="date"],.units-dropdown-button,.wr-select-trigger):focus-visible { outline:3px solid #8baa6e55;outline-offset:3px; }
+body#wialon-reports-view input[type="date"] { color-scheme:light; }
+body#wialon-reports-view .hint { color:#7b8b6b!important;font-size:12px;line-height:1.75;margin-top:11px; }
+.wr-run-row { display:flex;align-items:center;flex-wrap:wrap;gap:20px;padding-top:18px;border-top:1px solid #d9e4cc; }
+body#wialon-reports-view .wr-run-row p { margin:0;color:#718561!important;font-size:13px; }
+.wr-field-open { z-index:25; }
+body#wialon-reports-view .wr-native-select { display:none!important; }
+.wr-select { position:relative;min-width:0; }
+body#wialon-reports-view .wr-select-trigger { display:flex;align-items:center;text-align:left;position:relative;padding-right:38px!important;cursor:pointer; }
+.wr-select-trigger::after { content:"";position:absolute;right:16px;top:19px;width:7px;height:7px;border-right:2px solid #718e5b;border-bottom:2px solid #718e5b;transform:rotate(45deg);transition:transform .2s; }
+.wr-select.is-open .wr-select-trigger::after { transform:rotate(225deg);top:23px; }
+body#wialon-reports-view[data-preview-page][data-preview-page] :is(.wr-select-menu,.units-menu) { position:absolute;top:calc(100% + 9px);left:0;right:0;z-index:30;padding:8px;border:1px solid #b9cda8!important;border-radius:14px;color:#35563b!important;background:linear-gradient(145deg,#fff,#edf5e6)!important;box-shadow:0 5px 0 #bdcdac,0 18px 30px #35582b2b,inset 0 1px #fff!important;max-height:220px;overflow:auto;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df;overscroll-behavior:contain; }
+.wr-select-menu { display:none; }
+.wr-select.is-open .wr-select-menu { display:grid;gap:5px;animation:wr-dropdown .18s ease both; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .wr-select-option { display:block;width:100%;min-height:40px;padding:9px 10px;border:1px solid transparent;border-radius:9px;text-align:left;color:#466546!important;background:transparent!important;font-size:13px;white-space:normal;cursor:pointer; }
+body#wialon-reports-view .wr-select-option:hover:not(:disabled),body#wialon-reports-view .wr-select-option:focus-visible { background:#e3edd8!important;outline:0; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .wr-select-option[aria-selected="true"]:not(:disabled) { color:#fff!important;border-color:#477a4e;background:linear-gradient(135deg,#5f8f57,#397149)!important;box-shadow:0 2px 0 #2f5d3c; }
+body#wialon-reports-view .units-dropdown-button { display:flex;align-items:center;justify-content:space-between;text-align:left;gap:8px; }
+body#wialon-reports-view .arrow { display:flex;align-items:center;transition:transform .2s;color:#718e5b; }
+body#wialon-reports-view [aria-expanded="true"] .arrow { transform:rotate(90deg); }
+body#wialon-reports-view[data-preview-page][data-preview-page] .units-menu { max-height:none!important;overflow:hidden; }
+body#wialon-reports-view #units-list { max-height:132px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df;scrollbar-gutter:stable;touch-action:pan-y; }
+body#wialon-reports-view #units-list .unit-option { box-sizing:border-box;height:44px;min-height:44px; }
+body#wialon-reports-view .unit-option { display:flex;align-items:center;gap:10px;margin:0;padding:11px 9px;color:#4e6e43!important;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;border:0;border-bottom:1px solid #e2ead8;border-radius:7px;cursor:pointer; }
+body#wialon-reports-view .unit-option[hidden] { display:none!important; }
+body#wialon-reports-view .unit-option:hover { background:#e5efda; }
+body#wialon-reports-view .unit-option:has(input:checked) { color:#3a6e43!important;background:#e7f0df; }
+body#wialon-reports-view .select-all-option { position:sticky;top:-8px;z-index:1;background:#edf4e5;border-bottom:1px solid #cfdfbf; }
+body#wialon-reports-view .units-menu .select-all-option { position:static; }
+body#wialon-reports-view .unit-option input { width:16px;height:16px;min-height:0;accent-color:#618b50;flex-shrink:0; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .wr-unit-search { min-height:40px;font-size:13px;margin-bottom:8px;box-shadow:inset 0 2px 3px #61774808!important;background:#fffef9!important; }
+.wr-results-panel { position:relative;z-index:1;overflow:hidden;animation:wr-enter .75s .25s backwards; }
+.wr-results-header { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:23px 26px;border-bottom:1px solid #d3e0c6; }
+body#wialon-reports-view .wr-results-header h2 { color:#35583d!important;font-size:22px;font-weight:800;margin:0 0 5px; }
+body#wialon-reports-view #wr-result-summary { font-size:13px;color:#718561!important;line-height:1.7;margin:0; }
+.wr-exports { display:flex;align-items:flex-end;flex-wrap:wrap;gap:9px; }
+.wr-language { display:flex;flex-direction:column;gap:6px;min-width:120px; }
+.wr-language-label { color:#7b8b6b;font-size:10px;font-weight:700; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .wr-language .wr-select-trigger { min-height:44px;font-size:12px; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .wr-export-button { font-size:12px;min-height:44px;padding:10px 12px; }
+body#wialon-reports-view[data-preview-page][data-preview-page] #result-area { margin:0;padding:24px;border:0;background:transparent!important;box-shadow:none!important;max-height:70vh;overflow:auto;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df; }
+.wr-empty { min-height:215px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px; }
+.wr-empty>.wr-icon { width:58px;height:58px;color:#7a9b5e;border:1px solid #ccdaba;background:linear-gradient(145deg,#fff,#e8f0dc);border-radius:18px;box-shadow:0 4px 0 #bdcdac,0 14px 25px #35582b15;margin-bottom:16px;transform:rotate(-5deg); }
+.wr-empty>.wr-icon .observer-icon { width:30px;height:30px;stroke-width:1.5; }
+body#wialon-reports-view .wr-empty h3 { color:#536f44!important;font-size:19px;margin:0 0 7px; }
+body#wialon-reports-view .wr-empty p { color:#7b8c6b!important;font-size:14px;margin:0;line-height:1.8; }
+body#wialon-reports-view #result-area[dir="rtl"] .unit-title { text-align:right; }
+body#wialon-reports-view[data-preview-page][data-preview-page] .unit-block { padding:20px;margin:0 0 18px;border:1px solid #cbdcbe!important;border-radius:16px;background:linear-gradient(135deg,#fcfef7,#f0f6e9)!important;box-shadow:0 3px 0 #d1dfc388,0 10px 20px #35582b08!important;animation:wr-enter .5s backwards;animation-delay:var(--result-delay); }
+body#wialon-reports-view .unit-block:last-child { margin-bottom:0; }
+body#wialon-reports-view .unit-title { display:flex;align-items:center;gap:9px;color:#3c6743!important;font-size:19px;font-weight:800;margin:0 0 15px;padding:0;background:transparent!important; }
+body#wialon-reports-view .unit-title::before { display:none; }
+body#wialon-reports-view .unit-block>p { color:#74885e!important;font-size:13px; }
+.wr-table-scroll { width:100%;overflow:auto;max-height:360px;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df;border:1px solid #d2dfc7;border-radius:11px; }
+body#wialon-reports-view table { width:100%;min-width:520px;border-collapse:separate;border-spacing:0;margin:0;border:0; }
+body#wialon-reports-view[data-preview-page][data-preview-page] th { position:sticky;top:0;z-index:1;color:#41653d!important;background:linear-gradient(#edf4e2,#e1ecd5)!important;border:0;border-bottom:1px solid #c5d6b4!important;padding:13px 15px;font-size:13px;letter-spacing:0;white-space:nowrap; }
+body#wialon-reports-view[data-preview-page][data-preview-page] td { color:#50694a!important;background:#fcfef7!important;border:0;border-bottom:1px solid #dfe8d5!important;padding:13px 15px;font-size:14px;white-space:nowrap; }
+body#wialon-reports-view[data-preview-page][data-preview-page] tbody tr:nth-child(even) td { background:#f1f6e8!important; }
+body#wialon-reports-view[data-preview-page][data-preview-page] tbody tr:hover td { background:#e7f0da!important; }
+body#wialon-reports-view .error-msg { color:#ae655a!important;background:#fbefe7;border:1px solid #e5c9b9;border-radius:12px;padding:18px;font-size:14px; }
+body#wialon-reports-view .empty-msg { color:#738568!important;font-size:14px; }
+body#wialon-reports-view .page-loader { color:#668052;font-size:14px;min-height:130px; }
+body#wialon-reports-view .spinner { border-color:#d5e0c5;border-top-color:#6c9057; }
+body#wialon-reports-view button:focus-visible,body#wialon-reports-view .wr-table-scroll:focus-visible { outline:3px solid #72985f;outline-offset:3px; }
+@keyframes wr-enter { from{opacity:0;translate:0 17px;}to{opacity:1;translate:0 0;} }
+@keyframes wr-drift { to{transform:translate(7vw,6vh) scale(1.1);} }
+@keyframes wr-paper-float { 0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-7px) rotate(1deg);} }
+@keyframes wr-dropdown { from{opacity:0;transform:translateY(-6px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);} }
+@media(max-width:1150px) {
+  body#wialon-reports-view .field-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:20px; }
+  body#wialon-reports-view .header-buttons { margin-left:auto; }
+  .wr-exports { width:100%; }
+}
+@media(max-width:700px) {
+  body#wialon-reports-view .wr-page { width:calc(100% - 28px);padding:14px 0 28px; }
+  body#wialon-reports-view .header { padding:19px 17px;gap:15px; }
+  body#wialon-reports-view .brand { gap:12px; }
+  body#wialon-reports-view h1 { font-size:25px; }
+  body#wialon-reports-view .brand-subtitle { font-size:13px; }
+  body#wialon-reports-view .header-buttons { width:100%;margin:0;justify-content:space-between; }
+  body#wialon-reports-view .user-chip { font-size:10px;padding:8px; }
+  body#wialon-reports-view[data-preview-page][data-preview-page] .back-btn { font-size:12px;padding:10px; }
+  body#wialon-reports-view .panel { padding:21px 18px; }
+  .wr-builder-heading { min-height:80px;gap:10px; }
+  body#wialon-reports-view .wr-builder-heading h2 { font-size:21px; }
+  body#wialon-reports-view .wr-builder-heading p { font-size:14px; }
+  .wr-paper-art { width:65px;flex-basis:65px;transform:scale(.65);transform-origin:center; }
+  .wr-paper-art .wr-sheet { left:0; }
+  body#wialon-reports-view .field-grid { grid-template-columns:minmax(0,1fr); }
+  body#wialon-reports-view .field>label { font-size:13px; }
+  .wr-run-row { gap:14px; }
+  body#wialon-reports-view[data-preview-page][data-preview-page] .run-btn { width:100%; }
+  .wr-run-row p { font-size:12px; }
+  .wr-results-header { padding:20px 18px;gap:15px; }
+  .wr-exports { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+  .wr-language { min-width:0; }
+  body#wialon-reports-view[data-preview-page][data-preview-page] .wr-export-button { padding:10px 8px; }
+  body#wialon-reports-view[data-preview-page][data-preview-page] #result-area { padding:17px; }
+  body#wialon-reports-view[data-preview-page][data-preview-page] .unit-block { padding:15px; }
+  .wr-empty { min-height:210px;padding:15px 0; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body#wialon-reports-view *,body#wialon-reports-view *::before,body#wialon-reports-view *::after { animation:none!important;transition:none!important; }
+  body#wialon-reports-view button:hover { transform:none!important; }
+}

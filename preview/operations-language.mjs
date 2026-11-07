@@ -1,0 +1,19 @@
+// English interface copy for local field-service reports.
+export function englishOperations(html) {
+  const phrases = [
+    ['Observer Fleet · تقارير الصيانة','Observer Fleet · Maintenance Reports'],['إدارة عمليات الصيانة واستبدال أجهزة التتبع الميدانية','Field maintenance & tracking device replacements'],
+    ['سجل عمليات الصيانة','Maintenance Reports'],['تابع عمليات الاستبدال والفحص وسجّل تفاصيل كل مركبة وأجهزة التتبع المرتبطة بها.','Track inspections and device replacements, with a complete record for every vehicle.'],
+    ['إنشاء تقرير صيانة','New maintenance report'],['تقرير صيانة جديد','New maintenance report'],['سجّل الجهاز القديم اللي اتشال والجديد اللي اتركب بدله','Record the removed device and its replacement, then add photos and technician details.'],
+    ['الشركة (الاسم الذي سيظهر عليه التقرير) *','Company shown on the report *'],['تاريخ الصيانة *','Maintenance date *'],['كل الشركات','All companies'],['اختر الشركة...','Select a company…'],['بحث بالاسم / رقم التقرير...','Search company, vehicle or report number…'],
+    ['من تاريخ','From date'],['إلى تاريخ','To date'],['↻ تحديث السجل','Refresh reports'],['جارِ التحميل...','Loading reports…'],['لا توجد تقارير صيانة بعد','No maintenance reports yet'],['لا توجد نتائج مطابقة لبحثك','No reports match your filters'],['تعذر تحميل التقارير','Unable to load reports'],
+    ['اسم الموظف *','Technician name *'],['المسمى الوظيفي *','Job title *'],['اسم الفني القائم بالصيانة','Technician full name'],['مثال: فني صيانة','Example: Field technician'],['بيانات الفني','Technician details'],['الأجهزة','Vehicles & devices'],['＋ إضافة عربية','Add vehicle'],['حفظ التقرير','Save report'],['جارِ الحفظ...','Saving report…'],
+    ['رقم / اسم العربية *','Vehicle number / name *'],['اختر العربية...','Select a vehicle…'],['اكتب اسم/رقم العربية يدويًا','Enter vehicle name / number'],['✎ إدخال يدوي','Manual entry'],['📋 اختيار من القائمة','Choose from list'],['هتكتب اسم العربية بنفسك بدل ما تختارها من القايمة','Enter a vehicle name when it is unavailable in the list.'],
+    ['الجهاز القديم (المُستبدَل)','Removed device'],['الجهاز الجديد (المركَّب)','Replacement device'],['IMEI الجهاز القديم','Removed device IMEI'],['IMEI الجهاز الجديد','Replacement device IMEI'],['الرقم التسلسلي القديم','Removed device serial number'],['الرقم التسلسلي الجديد','Replacement device serial number'],
+    ['ملاحظات هذه العربية','Vehicle notes'],['تفاصيل الصيانة / سبب الاستبدال...','Maintenance details / reason for replacement…'],['صور الصيانة الخاصة بهذه العربية','Vehicle maintenance photos'],['📷 امسح الباركود / الـ QR الخاص بالـ IMEI','Scan the IMEI barcode / QR code'],['📷 مسح','Scan'],['✕ إزالة','Remove'],
+    ['يجب أن يحتوي التقرير على عربية واحدة على الأقل','Keep at least one vehicle in the report.'],['من فضلك أكمل كل الحقول المطلوبة','Complete all required fields.'],['من فضلك اكتب اسم العربية لكل صف مُدخَل يدويًا','Enter a vehicle name for every manual entry.'],['من فضلك اختر عربية لكل صف، أو استخدم الإدخال اليدوي','Select a vehicle for each row or use manual entry.'],
+    ['هل تريد حذف هذا التقرير نهائيًا؟','Delete this report permanently?'],['تعذر تشغيل الكاميرا: ','Unable to start the camera: '],['تعذر الحذف','Unable to delete report'],['حدث خطأ أثناء الحفظ','Unable to save report'],['تعذر الاتصال بالسيرفر','Unable to connect to the server'],
+    ['◫ عرض PDF','View PDF'],['↓ تحميل PDF','Download PDF'],['بواسطة:','Created by:'],['قديم','Removed'],['جديد','Replacement'],['حذف','Delete'],['إلغاء','Cancel'],['رجوع','Dashboard'],['عربية ','Vehicle ']
+  ];
+  for (const [from,to] of phrases.sort((a,b)=>b[0].length-a[0].length)) html=html.split(from).join(to);
+  return html.replace('<html lang="ar" dir="rtl">','<html lang="en" dir="ltr">').replaceAll('Serial Number (Sim)','Serial number').replaceAll('Sim Number','SIM number');
+}

@@ -1,0 +1,168 @@
+/* Preview-only sage theme for Wialon Reports. Shared sidebar styles stay untouched. */
+body[data-preview-page="wialon-reports.html"] {
+  --bg: #edf3e8;
+  --bg-2: #e3ecdc;
+  --panel: #f8faf4;
+  --panel-2: #edf4e8;
+  --blue: #56805c;
+  --blue-primary: #4f8058;
+  --blue-dark: #3e6d49;
+  --blue-deep: #315b3c;
+  --blue-light: #46694b;
+  --blue-soft: rgba(106, 145, 98, .12);
+  --blue-border: rgba(100, 139, 91, .28);
+  --blue-glow: rgba(96, 137, 83, .18);
+  --text: #294435;
+  --muted: #657b67;
+  --muted-2: #7a8d78;
+  --border: rgba(102, 139, 91, .25);
+  --border-soft: rgba(113, 145, 102, .2);
+  --green: #4d8555;
+  --shadow: 0 20px 50px rgba(58, 88, 52, .12);
+  color: var(--text) !important;
+  color-scheme: light;
+  min-height: 100vh;
+  padding: clamp(18px, 3vw, 42px) !important;
+  background:
+    radial-gradient(ellipse at 8% 0%, rgba(157, 191, 148, .24), transparent 38%),
+    radial-gradient(ellipse at 92% 10%, rgba(216, 196, 139, .14), transparent 33%),
+    linear-gradient(145deg, #f7f9f1, #eaf1e5 58%, #dfeadc) !important;
+}
+
+body[data-preview-page="wialon-reports.html"]::before {
+  opacity: .35;
+  background-image:
+    radial-gradient(circle, rgba(91, 128, 82, .17) 1px, transparent 1.5px),
+    linear-gradient(135deg, transparent 42%, rgba(255, 255, 255, .45) 50%, transparent 58%);
+  background-size: 30px 30px, 100% 100%;
+  mask-image: linear-gradient(to bottom, #000, transparent 82%);
+}
+
+body[data-preview-page="wialon-reports.html"] .header,
+body[data-preview-page="wialon-reports.html"] .panel {
+  border: 1px solid #c2d3b8 !important;
+  border-top-color: #fff !important;
+  background: linear-gradient(135deg, rgba(249, 251, 245, .97), rgba(234, 242, 229, .96)) !important;
+  box-shadow: 0 18px 44px rgba(55, 86, 49, .12), inset 0 1px rgba(255,255,255,.9) !important;
+  backdrop-filter: blur(14px);
+}
+body[data-preview-page="wialon-reports.html"] .header { animation: wr-enter .55s ease both; }
+body[data-preview-page="wialon-reports.html"] .brand img {
+  object-fit: contain;
+  background: transparent;
+  border: 1px solid #c4d4b9;
+  box-shadow: 0 5px 16px rgba(62, 94, 53, .12);
+}
+body[data-preview-page="wialon-reports.html"] .brand-text { color: #294435 !important; }
+body[data-preview-page="wialon-reports.html"] .brand-subtitle { color: #6a8369 !important; }
+body[data-preview-page="wialon-reports.html"] .user-chip {
+  color: #3d6647 !important;
+  border-color: #c6d8bc !important;
+  background: linear-gradient(135deg, #f8fbf3, #e8f1e3) !important;
+}
+body[data-preview-page="wialon-reports.html"] .panel::before {
+  background: linear-gradient(90deg, transparent, rgba(101, 145, 89, .5), transparent) !important;
+}
+body[data-preview-page="wialon-reports.html"] .hint { color: #667e68 !important; }
+body[data-preview-page="wialon-reports.html"] .panel > .hint {
+  padding: 12px 14px;
+  border: 1px solid #d1dfc8;
+  border-left: 3px solid #84a875;
+  border-radius: 10px;
+  background: #f6f9f1;
+}
+body[data-preview-page="wialon-reports.html"] .field label { color: #3e5d43 !important; }
+body[data-preview-page="wialon-reports.html"] :is(input, select, textarea, .units-dropdown-button) {
+  color: #294435 !important;
+  border-color: #b9cdae !important;
+  background: #fffef9 !important;
+  box-shadow: inset 0 1px 2px rgba(69, 101, 59, .045);
+}
+body[data-preview-page="wialon-reports.html"] :is(input, select, textarea)::placeholder { color: #81917c !important; }
+body[data-preview-page="wialon-reports.html"] :is(input, select, textarea):focus,
+body[data-preview-page="wialon-reports.html"] .units-dropdown-button:focus-visible {
+  border-color: #76a16b !important;
+  box-shadow: 0 0 0 3px rgba(113, 157, 100, .16) !important;
+}
+body[data-preview-page="wialon-reports.html"] select option { color: #294435; background: #fbfcf8; }
+body[data-preview-page="wialon-reports.html"] .units-dropdown-button:hover { background: #f2f7ed !important; }
+body[data-preview-page="wialon-reports.html"] .units-menu {
+  border-color: #bdcfb2 !important;
+  background: #f9fbf5 !important;
+  box-shadow: 0 16px 32px rgba(51, 81, 45, .16) !important;
+  scrollbar-color: #91ad82 #eef4e9;
+}
+body[data-preview-page="wialon-reports.html"] .units-menu::-webkit-scrollbar-track { background: #eef4e9 !important; }
+body[data-preview-page="wialon-reports.html"] .units-menu::-webkit-scrollbar-thumb { background: #91ad82 !important; }
+body[data-preview-page="wialon-reports.html"] .unit-option { color: #36553b !important; border-bottom-color: #e0e9d9 !important; }
+body[data-preview-page="wialon-reports.html"] .unit-option:hover,
+body[data-preview-page="wialon-reports.html"] .select-all-option { background: #edf5e8 !important; }
+body[data-preview-page="wialon-reports.html"] :is(.back-btn, #manage-users-btn, .run-btn, .export-row button) {
+  color: #f5faf2 !important;
+  border-color: #6d9470 !important;
+  background: linear-gradient(135deg, #56815c, #3f704b) !important;
+  box-shadow: 0 7px 18px rgba(55, 98, 58, .16);
+}
+body[data-preview-page="wialon-reports.html"] :is(.back-btn, #manage-users-btn, .run-btn, .export-row button):hover {
+  border-color: #527c55 !important;
+  background: linear-gradient(135deg, #659368, #477b50) !important;
+  transform: translateY(-1px);
+}
+body[data-preview-page="wialon-reports.html"] .logout-btn {
+  color: #79504a !important;
+  border-color: #e2c8b7 !important;
+  background: #f6ebe2 !important;
+}
+body[data-preview-page="wialon-reports.html"] .logout-btn:hover { background: #efded1 !important; }
+body[data-preview-page="wialon-reports.html"] .excel-btn {
+  color: #3f7048 !important;
+  border-color: #b9d3ae !important;
+  background: #edf6e8 !important;
+}
+body[data-preview-page="wialon-reports.html"] .pdf-btn {
+  color: #f5faf2 !important;
+  border-color: #6d9470 !important;
+  background: linear-gradient(135deg, #56815c, #3f704b) !important;
+}
+body[data-preview-page="wialon-reports.html"] .export-row { border-top-color: #d3dfcb !important; }
+body[data-preview-page="wialon-reports.html"] #result-area,
+body[data-preview-page="wialon-reports.html"] .unit-block {
+  color: #304a36 !important;
+  border-color: #cbdcc2 !important;
+  background: linear-gradient(145deg, #f8faf4, #eef4e9) !important;
+  box-shadow: 0 8px 22px rgba(59, 88, 50, .08);
+}
+body[data-preview-page="wialon-reports.html"] .unit-title { color: #446d4b !important; }
+body[data-preview-page="wialon-reports.html"] .unit-title::before {
+  background: linear-gradient(to bottom, #9cbe8d, #56815c) !important;
+  box-shadow: 0 0 10px rgba(87, 132, 76, .22) !important;
+}
+body[data-preview-page="wialon-reports.html"] table { border-color: #d0ddc7 !important; }
+body[data-preview-page="wialon-reports.html"] :is(th, td) { border-bottom-color: #dce6d6 !important; }
+body[data-preview-page="wialon-reports.html"] th {
+  color: #3f6545 !important;
+  background: linear-gradient(135deg, #e5efde, #dce9d5) !important;
+}
+body[data-preview-page="wialon-reports.html"] td { color: #3d5140 !important; background: #fbfcf8 !important; }
+body[data-preview-page="wialon-reports.html"] tbody tr:nth-child(even) td { background: #f1f6ed !important; }
+body[data-preview-page="wialon-reports.html"] tbody tr:hover td { background: #e8f1e2 !important; }
+body[data-preview-page="wialon-reports.html"] .empty-msg { color: #687e68 !important; }
+body[data-preview-page="wialon-reports.html"] .units-loading,
+body[data-preview-page="wialon-reports.html"] .page-loader { color: #5e785f !important; }
+body[data-preview-page="wialon-reports.html"] .spinner { border-color: #c9d9c0 !important; border-top-color: #5b875d !important; }
+body[data-preview-page="wialon-reports.html"] .preview-note {
+  color: #3e6042 !important;
+  border-color: #c2d6b6 !important;
+  background: #edf5e8 !important;
+}
+@keyframes wr-enter { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 720px) {
+  body[data-preview-page="wialon-reports.html"] { padding: 16px !important; }
+  body[data-preview-page="wialon-reports.html"] .header,
+  body[data-preview-page="wialon-reports.html"] .panel { border-radius: 16px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-preview-page="wialon-reports.html"] .header { animation: none !important; }
+  body[data-preview-page="wialon-reports.html"] button { transition: none !important; }
+}

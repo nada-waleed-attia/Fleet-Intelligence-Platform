@@ -1,0 +1,56 @@
+<!doctype html>
+<!-- EDIT BY NADA — separate preview shell; production HTML is untouched. -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Observer Fleet · PREVIEW MODE</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/preview/preview.css"><link rel="stylesheet" href="/preview/print.css"><link rel="stylesheet" href="/preview/sensor-report.css"></head>
+<body>
+  <!-- EDIT BY NADA — dedicated preview navigation stays outside the sandboxed production page. -->
+  <div id="preview-layout">
+    <aside id="preview-sidebar" aria-label="Preview controls">
+      <header id="preview-toolbar">
+        <!-- EDIT BY NADA — keep the requested logo without the former sidebar message. -->
+        <div class="preview-brand"><img src="/assets/observe-logo.png" alt="Observer"></div>
+        <!-- EDIT BY NADA — compact navigation on small screens. -->
+        <button id="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-sidebar-controls">Menu ☰</button>
+        <div id="mobile-sidebar-controls">
+        <nav class="preview-nav" aria-label="Main navigation">
+          <span class="sidebar-section-label">WORKSPACE</span>
+          <select id="page-picker" aria-label="Current page" hidden></select>
+          <div id="sidebar-page-links" class="sidebar-page-links"></div>
+        </nav>
+        <div class="preview-sidebar-controls" hidden>
+          <label>Persona<select id="persona" aria-label="Demo persona"></select></label>
+          <label>Access<select id="access-mode"><option value="explore">Explore all pages</option><option value="permissions">Demonstrate permissions</option></select></label>
+          <label>Scenario<select id="scenario"><option value="normal">Normal</option><option value="empty">Empty results</option><option value="error">Simulated service failure</option><option value="send-failure">Simulated send failure</option></select></label>
+        </div>
+        <div class="preview-sidebar-actions">
+          <button id="reset" type="button" hidden>Reset demo data</button>
+          <button id="activity-toggle" type="button" aria-expanded="false" hidden>Local activity</button>
+          <!-- EDIT BY NADA — local demo logout is available at the bottom of the sidebar. -->
+          <button id="preview-logout" type="button">Logout</button>
+        </div>
+        </div>
+      </header>
+    </aside>
+    <div id="preview-content">
+      <p id="preview-status" class="preview-status-hidden" role="status">Loading isolated preview…</p>
+      <aside id="activity" hidden><h2>Local activity only</h2><p>These are browser messages, not network requests. Demo submissions never leave this browser.</p><ol id="activity-list"></ol></aside>
+      <main id="preview-main"><iframe id="page-frame" title="Observer Fleet isolated demo page" sandbox="allow-scripts allow-forms allow-downloads"></iframe></main>
+    </div>
+  </div>
+  <!-- EDIT BY NADA — keep the legacy JSON control available to the shell but permanently hidden from every report viewer. -->
+  <section id="report-panel" hidden aria-label="Fleet report"><div class="report-controls"><button id="report-back" type="button" aria-label="Back to reports"></button><div id="report-language-switch" role="group" aria-label="Report language"><span id="report-language-label">Report language</span><button type="button" data-report-lang="ar" lang="ar" aria-pressed="false">العربية</button><button type="button" data-report-lang="en" lang="en" aria-pressed="true">English</button></div><button id="report-csv">Download demo CSV</button><button id="report-json" hidden aria-hidden="true" tabindex="-1">Download demo JSON</button><button id="report-print">Print / Save as PDF</button></div><article id="report-content"></article></section>
+  <dialog id="question-dialog"><form method="dialog" id="question-form"><h2 id="question-title">Demo action</h2><p id="question-text"></p><label id="answer-label">Value<input id="question-answer" autocomplete="off"></label><div class="dialog-actions"><button value="cancel">Cancel</button><button id="question-ok" value="ok">Continue locally</button></div></form></dialog>
+  <!-- EDIT BY NADA — language choice is scoped to direct Fleet directory downloads on Units. -->
+  <dialog id="units-export-dialog" aria-labelledby="units-export-title">
+    <form method="dialog">
+      <h2 id="units-export-title">لغة التقرير / Report language</h2>
+      <p id="units-export-format"></p>
+      <fieldset><legend>اللغة / Language</legend><div class="units-export-languages">
+        <label><input type="radio" name="units-export-lang" value="ar"><span lang="ar">العربية</span></label>
+        <label><input type="radio" name="units-export-lang" value="en" checked><span lang="en">English</span></label>
+      </div></fieldset>
+      <div class="dialog-actions"><button value="cancel">إلغاء / Cancel</button><button id="units-export-download" value="download">تنزيل / Download</button></div>
+    </form>
+  </dialog>
+  <dialog id="scan-dialog"><h2>Local scanner</h2><p>Nothing is uploaded. Camera decoding depends on browser support. Manual and sample input always work.</p><video id="scan-video" autoplay muted playsinline hidden></video><label>Scan value<input id="scan-value" value="990000000000001"></label><div class="dialog-actions"><button id="scan-sample">Use sample / entered value</button><button id="scan-camera">Enable local camera</button><button id="scan-close">Cancel</button></div><p id="scan-status" role="status"></p></dialog>
+  <script src="/preview/fixtures.js"></script><script src="/preview/storage.js"></script><script src="/preview/handlers.js"></script><script src="/preview/report-language.js"></script><script src="/preview/sensor-report.js"></script><script src="/preview/battery-filter.js"></script><script src="/preview/exports.js"></script><script src="/preview/icons.js"></script><script src="/preview/shell.js"></script>
+</body></html>

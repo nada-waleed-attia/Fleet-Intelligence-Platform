@@ -1,0 +1,318 @@
+/* EDIT BY NADA — scoped SMS workspace, raised sage controls and a CSS message preview. */
+body#sms-workspace-view[data-preview-page][data-preview-page] { --sms-ink:#294c37;--sms-muted:#667e59;color:#294c37!important;color-scheme:light;background:#edf3e5!important;padding:0!important;isolation:isolate; }
+body#sms-workspace-view * { font-family:"Cairo",sans-serif!important; }
+body#sms-workspace-view::before,body#sms-workspace-view::after { display:none!important; }
+.sm-backdrop { position:fixed;inset:0;overflow:hidden;z-index:-1;pointer-events:none;background:linear-gradient(135deg,#f6f8ed,#e6eedb 56%,#f5efdb); }
+.sm-glow { position:absolute;width:65vw;height:65vw;border-radius:50%;filter:blur(32px);animation:sm-drift 18s ease-in-out infinite alternate; }
+.sm-glow-green { left:-29%;top:-25%;background:radial-gradient(circle,#b5ce9bab,transparent 70%); }
+.sm-glow-gold { right:-27%;top:10%;background:radial-gradient(circle,#ebd39999,transparent 66%);animation-delay:-9s; }
+.sm-contours { position:absolute;width:1100px;height:1100px;right:-625px;top:-410px;border-radius:45%;transform:rotate(-24deg);background:repeating-radial-gradient(ellipse at center,transparent 0 30px,#71935e2b 31px 32px,transparent 33px 58px);mask-image:linear-gradient(135deg,#000,transparent 90%); }
+.sm-grid-floor { position:absolute;width:170%;height:85vh;left:-35%;bottom:-45vh;transform:perspective(600px) rotateX(57deg) rotateZ(-9deg);background-image:linear-gradient(#7b9c6529 1px,transparent 1px),linear-gradient(90deg,#7b9c6529 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse,#000,transparent 65%); }
+body#sms-workspace-view .sm-page { position:relative;z-index:1;width:min(1500px,calc(100% - 48px));margin:0 auto;padding:24px 0 34px; }
+body#sms-workspace-view[data-preview-page][data-preview-page] :is(.header,.panel) { color:#294c37!important;border:1px solid #c5d6b5!important;border-radius:24px;background:linear-gradient(135deg,#fffffff2,#f0f6e8f0)!important;box-shadow:0 4px 0 #bdcdac88,0 16px 35px #35582b12,inset 0 1px #fff!important; }
+body#sms-workspace-view .header { display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding:20px 26px;margin-bottom:24px;animation:sm-enter .65s both; }
+body#sms-workspace-view .brand { gap:17px; }
+body#sms-workspace-view .brand::after { display:none!important; }
+body#sms-workspace-view .brand>img { filter:drop-shadow(0 5px 4px #38502b15); }
+.sm-eyebrow { color:#759259;font-size:11px;font-weight:800;letter-spacing:2px;margin-bottom:3px; }
+body#sms-workspace-view h1 { color:#294c37!important;font-size:clamp(28px,3vw,37px);font-weight:850;line-height:1.4;letter-spacing:-.5px;margin:0; }
+body#sms-workspace-view .sm-brand-subtitle { color:#657d59!important;font-size:14px;margin:2px 0 0; }
+body#sms-workspace-view .header-buttons { gap:12px; }
+body#sms-workspace-view .user-chip { color:#657b59!important;background:#edf4e4!important;border:1px solid #d5e1c6!important;padding:9px 12px;font-size:12px;box-shadow:none;border-radius:12px; }
+body#sms-workspace-view .header-buttons :is(#wialon-reports-btn,#maintenance-btn,.logout-btn) { display:none!important; }
+.sm-icon { display:inline-flex;align-items:center;justify-content:center;flex-shrink:0; }
+.sm-icon .observer-icon { width:20px;height:20px;stroke-width:1.8; }
+body#sms-workspace-view[data-preview-page][data-preview-page] :is(.back-btn,.send-btn,.contact-form button,.report-controls button,.sm-export-button,#quota-save-btn) { display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:11px 16px;font-size:14px;font-weight:750;border:1px solid #b8cda5!important;border-radius:12px;color:#3e653f!important;background:linear-gradient(#fafcf4,#e5eedb)!important;box-shadow:0 3px 0 #bdceac88,inset 0 1px #fff!important;transition:transform .23s,box-shadow .23s,background .23s; }
+body#sms-workspace-view[data-preview-page][data-preview-page] :is(.send-btn,.contact-form button,#quota-save-btn) { color:#fff!important;background:linear-gradient(135deg,#669554,#36734e)!important;border-color:#3c754c!important;box-shadow:0 4px 0 #2d5d3d,0 10px 20px #35582b20!important; }
+body#sms-workspace-view :is(.back-btn,.send-btn,.contact-form button,.report-controls button,.sm-export-button,#quota-save-btn):hover:not(:disabled) { transform:translateY(-3px); }
+body#sms-workspace-view button:disabled { opacity:.5;cursor:not-allowed; }
+body#sms-workspace-view :is(.tab-btn,.send-btn)::before { display:none!important;content:none!important; }
+body#sms-workspace-view .tabs { display:flex;flex-wrap:wrap;width:fit-content;gap:7px;padding:7px;margin:0 0 23px;border:1px solid #bfd2ad;border-radius:17px;background:linear-gradient(145deg,#f0f5e8,#e2ecd8);box-shadow:0 3px 0 #bdcdac88,0 12px 25px #35582b10,inset 0 1px #fff;animation:sm-enter .7s .06s backwards; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .tab-btn { display:inline-flex;align-items:center;justify-content:center;gap:9px;color:#5c7750!important;background:transparent!important;border:1px solid transparent!important;border-radius:11px;padding:12px 18px;font-size:14px;font-weight:750;box-shadow:none;transition:background .2s,transform .2s; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .tab-btn.active { color:#fff!important;background:linear-gradient(135deg,#669554,#36734e)!important;border-color:#4b8050!important;box-shadow:0 3px 0 #2e5e3e,0 7px 14px #35582b20,inset 0 1px #d4e3bf66; }
+body#sms-workspace-view .tab-btn:hover:not(.active) { background:#dae7cd!important;transform:translateY(-2px); }
+body#sms-workspace-view .panel { position:relative;overflow:visible;padding:27px 28px; }
+body#sms-workspace-view .panel.active { animation:sm-enter .6s both; }
+body#sms-workspace-view .panel::before { display:none!important; }
+.sm-panel-heading { display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:26px;min-height:79px; }
+body#sms-workspace-view .sm-panel-heading h2 { color:#33573b!important;font-size:26px;font-weight:800;line-height:1.5;margin:0 0 7px;letter-spacing:-.4px; }
+body#sms-workspace-view .sm-panel-heading p { color:#6b815c!important;font-size:16px;line-height:1.8;margin:0; }
+.sm-heading-mark { position:relative;width:60px;height:60px;border:1px solid #c5d4b2;border-radius:18px;color:#6a8f50;background:linear-gradient(145deg,#fffffb,#e4edda);box-shadow:3px 5px 0 #bdceaa,7px 14px 22px #35582b20;transform:rotate(-8deg);margin:4px 10px; }
+.sm-heading-mark .observer-icon { width:31px;height:31px;stroke-width:1.5; }
+.sm-send-grid { display:grid;grid-template-columns:minmax(0,1fr) 310px;align-items:start;gap:32px; }
+.sm-composer { min-width:0; }
+body#sms-workspace-view .row { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:19px; }
+body#sms-workspace-view .row>div { position:relative;min-width:0!important; }
+body#sms-workspace-view .panel label { display:block;color:#617b51!important;margin:0 0 10px;font-size:13px;font-weight:750;line-height:1.7;letter-spacing:0;text-transform:none; }
+body#sms-workspace-view .sm-composer>label { margin-top:22px; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .panel :is(input,textarea,.sm-select-trigger) { width:100%;min-width:0;min-height:49px;margin:0;padding:12px 13px;border:1px solid #b9cda8!important;border-radius:12px;color:#35563b!important;background:linear-gradient(145deg,#fffefb,#f0f6e8)!important;box-shadow:0 3px 0 #c4d4b5,0 8px 15px #35582b0c,inset 0 1px #fff!important;font-size:14px;transition:border-color .2s,box-shadow .2s; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .panel textarea { line-height:1.85;resize:vertical;min-height:105px;background:#fffef9!important;box-shadow:inset 0 2px 4px #61774808,0 3px 0 #c9d8bb88!important; }
+body#sms-workspace-view #send-text { min-height:170px; }
+body#sms-workspace-view .panel :is(input,textarea,.sm-select-trigger):focus-visible { outline:3px solid #8baa6e55!important;outline-offset:3px; }
+body#sms-workspace-view .hint { color:#7a8b69!important;font-size:12px;line-height:1.8;margin-top:11px; }
+body#sms-workspace-view .sm-whatsapp-hint { font-size:12px;line-height:1.8;color:#7d754a!important;background:#f5efda;border:1px solid #e3d8b0;border-radius:10px;padding:10px 13px; }
+.sm-whatsapp-hint[hidden] { display:none!important; }
+.sm-send-actions { display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:24px; }
+.sm-send-actions>span { font-size:12px;color:#7b8b69;max-width:230px;line-height:1.8; }
+/* EDIT BY NADA — replace the decorative phone with a compact native preview disclosure. */
+body#sms-workspace-view #panel-send .sm-message-preview { display:block;position:static;width:100%;margin:12px 0 0;padding:0;border:1px solid #d2dfbd;border-radius:10px;background:#f7faf1;box-shadow:none; }
+.sm-message-preview>summary { padding:9px 12px;color:#668057;cursor:pointer;font-size:12px;font-weight:700; }
+.sm-message-preview>summary .sm-icon { margin:0 8px;vertical-align:middle; }
+.sm-preview-content { padding:0 12px 12px; }
+.sm-preview-head { display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px;color:#5f8051;font-size:12px;font-weight:700; }
+.sm-preview-recipient { font-size:11px;color:#82926e;overflow-wrap:anywhere; }
+.sm-message-bubble { position:relative;min-height:78px;padding:13px;color:#42623b;background:linear-gradient(135deg,#e2eecf,#d2e4be);border:1px solid #c4d9af;border-radius:14px 14px 4px 14px;box-shadow:0 3px 0 #bace9f66,0 8px 15px #35582b10;font-size:13px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;max-height:320px;overflow:auto; }
+.sm-message-bubble.is-placeholder { color:#869672; }
+/* EDIT BY NADA — preview counts stay inline rather than becoming additional cards. */
+.sm-preview-metrics { display:flex;gap:20px;margin-top:10px; }
+.sm-preview-metrics>div { display:flex;gap:6px;align-items:center; }
+.sm-preview-metrics strong { font-size:13px;font-weight:800;color:#5d814c; }
+.sm-preview-metrics span { font-size:11px;color:#7b8f67; }
+body#sms-workspace-view[data-preview-page][data-preview-page] #send-result .result-row { display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;border:1px solid #d0dec1;margin-top:10px;font-size:13px;line-height:1.8;overflow-wrap:anywhere; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .result-ok { color:#4a7548!important;background:#edf5e5!important;border-color:#c9ddb9!important; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .result-simulated { color:#7a6737!important;background:#f8f0d9!important;border-color:#e4d29e!important; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .result-fail { color:#ae635e!important;background:#fbede8!important;border-color:#e6c8c1!important; }
+body#sms-workspace-view .sm-native-select { display:none!important; }
+.sm-select { position:relative;min-width:0; }
+.sm-field-open { position:relative;z-index:30; }
+body#sms-workspace-view .sm-select-trigger { display:flex;align-items:center;position:relative;text-align:left;padding-right:36px!important;cursor:pointer;min-height:49px; }
+.sm-select-trigger::after { content:"";position:absolute;right:16px;top:19px;width:7px;height:7px;border-right:2px solid #718e5b;border-bottom:2px solid #718e5b;transform:rotate(45deg);transition:transform .2s; }
+.sm-select.is-open .sm-select-trigger::after { transform:rotate(225deg);top:23px; }
+.sm-select-menu { display:none;position:absolute;left:0;right:0;top:calc(100% + 9px);z-index:35;padding:8px;border:1px solid #b9cda8;border-radius:14px;background:linear-gradient(145deg,#fff,#edf5e6);box-shadow:0 5px 0 #bdcdac,0 18px 30px #35582b2b,inset 0 1px #fff; }
+.sm-select.is-open .sm-select-menu { display:block;animation:sm-dropdown .18s ease both; }
+.sm-select-options { display:grid;gap:4px;max-height:136px;overflow:auto;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df;overscroll-behavior:contain; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-select-option { display:block;width:100%;min-height:40px;padding:9px 10px;border:1px solid transparent;border-radius:9px;text-align:left;color:#466546!important;background:transparent!important;font-size:13px;white-space:normal;cursor:pointer; }
+body#sms-workspace-view .sm-select-option[hidden] { display:none!important; }
+body#sms-workspace-view .sm-select-option:hover:not(:disabled),body#sms-workspace-view .sm-select-option:focus-visible { background:#e3edd8!important;outline:0; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-select-option[aria-selected="true"]:not(:disabled) { color:#fff!important;border-color:#477a4e;background:linear-gradient(135deg,#5f8f57,#397149)!important;box-shadow:0 2px 0 #2f5d3c; }
+body#sms-workspace-view .sm-select-menu input { min-height:39px!important;margin-bottom:8px!important;font-size:13px!important;box-shadow:inset 0 2px 3px #61774808!important; }
+body#sms-workspace-view .contact-form { display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;align-items:end;gap:17px;padding:21px;margin:0 0 24px;border:1px solid #d1dfc4!important;border-radius:17px;background:#f2f7eaf0!important;box-shadow:0 3px 0 #d4e1c488,inset 0 1px #fff!important; }
+body#sms-workspace-view .contact-form>div { min-width:0;margin:0; }
+body#sms-workspace-view .contact-form label { margin:0 0 10px; }
+.sm-table-scroll { max-width:100%;overflow:auto;max-height:440px;scrollbar-width:thin;scrollbar-color:#8eab78 #e9f1df;border:1px solid #d0dfc1;border-radius:13px; }
+body#sms-workspace-view[data-preview-page][data-preview-page] table { display:table;min-width:570px;width:100%;border-collapse:separate;border-spacing:0;border:0;margin:0;background:#fbfdf6!important; }
+body#sms-workspace-view #panel-report table { min-width:1050px; }
+body#sms-workspace-view[data-preview-page][data-preview-page] th { position:sticky;top:0;z-index:1;padding:14px 16px;border:0;border-bottom:1px solid #c5d6b4!important;color:#45683f!important;background:linear-gradient(#edf4e2,#e1ecd5)!important;font-size:13px;font-weight:800;letter-spacing:0;white-space:nowrap; }
+body#sms-workspace-view[data-preview-page][data-preview-page] td { padding:14px 16px;color:#50694a!important;background:#fcfef7!important;border:0;border-bottom:1px solid #dfe8d5!important;font-size:14px;line-height:1.7;white-space:nowrap; }
+body#sms-workspace-view[data-preview-page][data-preview-page] tbody tr:nth-child(even) td { background:#f1f6e8!important; }
+body#sms-workspace-view[data-preview-page][data-preview-page] tbody tr:hover td { background:#e7f0da!important; }
+body#sms-workspace-view .danger-btn { color:#ae625e!important;border:1px solid #e7c9c0!important;background:#f8eae4!important;border-radius:8px;font-size:12px;padding:7px 11px; }
+body#sms-workspace-view .empty-msg { color:#7e8f6d!important;font-size:14px;line-height:1.8;padding:15px 0; }
+body#sms-workspace-view .report-controls { display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto auto;align-items:end;gap:14px;padding:0;margin-bottom:22px;min-width:0; }
+body#sms-workspace-view .report-controls>div { min-width:0; }
+body#sms-workspace-view .report-controls label { min-height:22px; }
+body#sms-workspace-view .report-controls button { font-size:12px!important;white-space:nowrap; }
+body#sms-workspace-view .report-export-row { display:flex!important;align-items:flex-end;gap:11px!important;padding:17px 0 22px;border-top:1px solid #dbe5cf;border-bottom:1px solid #dbe5cf;margin:18px 0 23px!important; }
+.sm-export-language { width:150px;min-width:120px; }
+body#sms-workspace-view .sm-export-language label { font-size:11px;margin-bottom:7px; }
+body#sms-workspace-view .sm-export-button { font-size:12px!important; }
+body#sms-workspace-view .cards { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-bottom:23px; }
+body#sms-workspace-view[data-preview-page][data-preview-page] .card { position:relative;padding:20px 23px;border:1px solid #cbdcbb!important;border-radius:17px;background:linear-gradient(135deg,#fffffb,#edf5e5)!important;box-shadow:0 4px 0 #c8d8b888,0 12px 25px #35582b0e!important;transition:transform .23s; }
+body#sms-workspace-view .card .num { font-size:35px;color:#5a8050!important;font-weight:850;line-height:1.4; }
+body#sms-workspace-view .card:nth-child(2) .num { color:#35856d!important; }
+body#sms-workspace-view .card:nth-child(3) .num { color:#b65f6a!important; }
+body#sms-workspace-view .card .label { color:#738a62!important;font-size:13px;margin-top:6px; }
+.sm-stat-icon { position:absolute;right:19px;top:22px;width:34px;height:34px;color:#75935b;background:linear-gradient(#fff,#e4eed8);border:1px solid #d0e0bf;border-radius:10px;box-shadow:0 3px 0 #d2dfc3; }
+body#sms-workspace-view .status-badge { display:inline-flex;align-items:center;gap:7px;border-radius:8px;font-size:12px;padding:6px 10px;font-weight:700; }
+body#sms-workspace-view .status-badge::before { content:"";width:6px;height:6px;border-radius:50%;background:currentColor; }
+body#sms-workspace-view .status-submitted { color:#4a7c4b!important;background:#e4f0dd!important;border:1px solid #c8ddb9; }
+body#sms-workspace-view .status-simulated { color:#7a6737!important;background:#f8f0d9!important;border:1px solid #e4d29e; }
+body#sms-workspace-view .status-failed { color:#ae625e!important;background:#f8eae4!important;border:1px solid #e8ccc2; }
+body#sms-workspace-view .quota-grid { display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.5fr);gap:23px;align-items:stretch; }
+body#sms-workspace-view[data-preview-page][data-preview-page] :is(.quota-overview-card,.quota-settings-card,.quota-last-msg-card) { padding:24px;border:1px solid #cbdcbb!important;border-radius:18px;color:#4c6e43!important;background:linear-gradient(135deg,#fffffb,#edf5e5)!important;box-shadow:0 4px 0 #c8d8b888,0 12px 25px #35582b0e!important; }
+body#sms-workspace-view .quota-settings-card h3,body#sms-workspace-view .quota-last-msg-card h3,.sm-overview-title { display:flex;align-items:center;gap:9px;color:#537748!important;font-size:18px;font-weight:800;margin:0 0 20px; }
+body#sms-workspace-view .quota-settings-card label { margin-top:20px; }
+body#sms-workspace-view .quota-overview-card { justify-content:flex-start; }
+body#sms-workspace-view .gauge { margin:5px auto 16px;background:conic-gradient(var(--gauge-color,#678d53) calc(var(--pct) * 1%),#e0ebd2 0);box-shadow:0 5px 0 #c4d3b4,0 15px 25px #35582b12,inset 0 1px #fff; }
+body#sms-workspace-view .gauge-center { color:#5e8050;background:linear-gradient(145deg,#fffffb,#edf4e5)!important;border:1px solid #c5d7b3;box-shadow:inset 0 2px 4px #35582b0d; }
+body#sms-workspace-view .gauge-pct { color:#547c48;font-size:31px; }
+body#sms-workspace-view .gauge-label { color:#8b976f!important;font-size:12px; }
+body#sms-workspace-view .quota-stats { width:100%; }
+body#sms-workspace-view .quota-stat { color:#6c825c!important;border-color:#d6e2c8;font-size:14px; }
+body#sms-workspace-view .quota-stat b { color:#547747;font-size:19px; }
+body#sms-workspace-view .dot-blue { background:#6f9255; }
+body#sms-workspace-view .dot-orange { background:#c7a451; }
+body#sms-workspace-view .dot-green { background:#45846a; }
+body#sms-workspace-view .quota-bottom-grid { display:grid;grid-template-columns:minmax(0,1fr);margin-top:23px; }
+body#sms-workspace-view .ip-box[hidden] { display:none!important; }
+body#sms-workspace-view #status-last { text-align:left;padding:0; }
+body#sms-workspace-view #status-last table { min-width:0; }
+body#sms-workspace-view #status-last :is(th,td) { white-space:normal;overflow-wrap:anywhere; }
+body#sms-workspace-view #status-last th { width:130px; }
+body#sms-workspace-view button:focus-visible,body#sms-workspace-view .sm-table-scroll:focus-visible { outline:3px solid #72985f;outline-offset:3px; }
+@keyframes sm-enter { from{opacity:0;translate:0 17px;}to{opacity:1;translate:0 0;} }
+@keyframes sm-drift { to{transform:translate(7vw,7vh) scale(1.1);} }
+@keyframes sm-phone-float { 0%,100%{transform:translateY(0) rotate(-1deg);}50%{transform:translateY(-5px) rotate(1deg);} }
+@keyframes sm-dropdown { from{opacity:0;transform:translateY(-6px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);} }
+@media(max-width:1150px) {
+  .sm-send-grid { grid-template-columns:minmax(0,1fr) 270px;gap:23px; }
+  body#sms-workspace-view .report-controls { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body#sms-workspace-view .contact-form { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  body#sms-workspace-view .quota-grid { grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr); }
+}
+@media(max-width:1000px) {
+  .sm-send-grid { grid-template-columns:minmax(0,1fr); }
+  .sm-message-preview { position:relative;top:auto;width:min(100%,440px);justify-self:center; }
+  body#sms-workspace-view .header-buttons { margin-left:auto; }
+}
+@media(max-width:700px) {
+  body#sms-workspace-view .sm-page { width:calc(100% - 28px);padding:14px 0 28px; }
+  body#sms-workspace-view .header { padding:19px 17px;gap:16px; }
+  body#sms-workspace-view .brand { gap:12px; }
+  body#sms-workspace-view .header-buttons { width:100%;margin:0;justify-content:space-between; }
+  body#sms-workspace-view .user-chip { font-size:10px;padding:8px; }
+  body#sms-workspace-view[data-preview-page][data-preview-page] .back-btn { font-size:12px;padding:10px; }
+  body#sms-workspace-view .tabs { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:7px; }
+  body#sms-workspace-view[data-preview-page][data-preview-page] .tab-btn { padding:12px 8px;font-size:12px;gap:7px; }
+  body#sms-workspace-view .tab-btn .observer-icon { width:17px;height:17px; }
+  body#sms-workspace-view .panel { padding:22px 18px; }
+  .sm-panel-heading { gap:12px;align-items:flex-start; }
+  body#sms-workspace-view .sm-panel-heading h2 { font-size:22px; }
+  body#sms-workspace-view .sm-panel-heading p { font-size:14px; }
+  .sm-heading-mark { width:43px;height:43px;border-radius:13px;margin:4px; }
+  .sm-heading-mark .observer-icon { width:23px;height:23px; }
+  body#sms-workspace-view .row { grid-template-columns:minmax(0,1fr);gap:20px; }
+  body#sms-workspace-view[data-preview-page][data-preview-page] .panel :is(input,textarea,.sm-select-trigger) { font-size:16px; }
+  body#sms-workspace-view .contact-form { grid-template-columns:minmax(0,1fr);padding:18px; }
+  body#sms-workspace-view .contact-form button { width:100%; }
+  .sm-send-actions { gap:15px; }
+  body#sms-workspace-view[data-preview-page][data-preview-page] .send-btn { width:100%; }
+  .sm-message-preview { width:100%;padding:22px 17px; }
+  body#sms-workspace-view .report-controls { grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px; }
+  body#sms-workspace-view .report-controls :is(input,.sm-select-trigger) { font-size:13px!important; }
+  body#sms-workspace-view .report-export-row { display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px!important; }
+  .sm-export-language { width:auto;min-width:0; }
+  body#sms-workspace-view .cards { gap:10px; }
+  body#sms-workspace-view[data-preview-page][data-preview-page] .card { padding:16px 12px; }
+  body#sms-workspace-view .card .num { font-size:28px; }
+  body#sms-workspace-view .card .label { font-size:11px; }
+  .sm-stat-icon { display:none; }
+  body#sms-workspace-view .quota-grid { grid-template-columns:minmax(0,1fr); }
+  body#sms-workspace-view[data-preview-page][data-preview-page] :is(.quota-overview-card,.quota-settings-card,.quota-last-msg-card) { padding:20px 17px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body#sms-workspace-view *,body#sms-workspace-view *::before,body#sms-workspace-view *::after { animation:none!important;transition:none!important; }
+  body#sms-workspace-view button:hover { transform:none!important; }
+}
+/* Searchable recipients and channel tabs share the sage workspace surfaces. */
+body#sms-workspace-view [hidden]{display:none!important}
+body#sms-workspace-view .sm-channel-tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:7px;border:1px solid #b9cda5;border-radius:17px;background:linear-gradient(145deg,#f1f6e8,#e3ecd8);box-shadow:0 4px 0 #bdcda9;margin-bottom:24px}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-channel-tab{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border:1px solid transparent;border-radius:11px;background:transparent!important;box-shadow:none;color:#688259!important;font-size:16px;font-weight:800;cursor:pointer;transition:transform .18s,box-shadow .18s}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-channel-tab.is-active{background:linear-gradient(135deg,#719d5b,#39764e)!important;color:#fff!important;border-color:#4d7d4e;box-shadow:0 3px 0 #315f3d,0 8px 14px #35582b18}
+body#sms-workspace-view .sm-channel-tab:focus-visible,body#sms-workspace-view .sm-recipient-sources button:focus-visible{outline:3px solid #85a96c!important;outline-offset:3px}
+.sm-recipient-picker{padding:21px;border:1px solid #bfd3ac;border-radius:18px;background:linear-gradient(145deg,#fffef9,#eff5e5);box-shadow:0 4px 0 #c3d5b1,inset 0 1px #fff;min-width:0}
+/* EDIT BY NADA — prepared Wialon connection state follows the existing sage palette. */
+.sm-wialon-connection{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;margin:0 0 16px;border:1px solid #cbdcbb;border-radius:10px;background:linear-gradient(135deg,#fffffb,#eaf3df);color:#537648;font-size:12px;font-weight:700;box-shadow:0 3px 0 #cbdaba66}
+.sm-wialon-connection::before{content:"";width:7px;height:7px;border-radius:50%;background:#ba9d56}
+.sm-wialon-connection[data-state="connected"]::before{background:#43896c}
+.sm-wialon-connection[data-state="error"]::before{background:#ae625e}
+.sm-wialon-connection[hidden]{display:none}
+body#sms-workspace-view .sm-picker-pending{justify-items:center;gap:10px;padding:22px 12px;background:radial-gradient(ellipse at center,#e7f0dd88,transparent 75%);border:1px dashed #cbdcbb;border-radius:12px}
+.sm-picker-pending>.sm-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(#fffffb,#e0eccf);box-shadow:0 3px 0 #c7d8b6;color:#648653}
+body#sms-workspace-view .sm-picker-pending strong{font-size:16px;color:#42613d}
+body#sms-workspace-view .sm-picker-pending p{max-width:380px;margin:0;color:#7b8c69;font-size:12px;line-height:1.8}
+.sm-pending-fields{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.sm-pending-fields span{padding:3px 9px;border:1px solid #d4e1c6;border-radius:7px;background:#f8fbf1;color:#6c815b;font-size:11px}
+.sm-picker-search input:disabled{cursor:wait;opacity:.65}
+.sm-picker-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:17px}
+body#sms-workspace-view .sm-picker-heading h3{font-size:20px;color:#355b3e;margin:0 0 5px}
+body#sms-workspace-view .sm-picker-heading p{font-size:12px;color:#7a8d66;line-height:1.8;margin:0;max-width:490px}
+#sm-selected-total{font-size:11px;white-space:nowrap;padding:6px 10px;color:#657f50;background:#e7efd9;border:1px solid #c9dab5;border-radius:20px;font-weight:750}
+.sm-recipient-sources{display:flex;gap:8px;border-bottom:1px solid #d4e1c7;padding-bottom:14px;margin-bottom:16px}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-recipient-sources button{flex:1;border:1px solid #cbdaba;border-radius:10px;background:linear-gradient(#fffffc,#eff4e6)!important;color:#758a62!important;min-height:40px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 2px 0 #cad8b9}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-recipient-sources button[aria-selected=true]{color:#4c733e!important;border-color:#9fbc86;background:linear-gradient(#f5f9eb,#dcebc9)!important;box-shadow:0 3px 0 #a4be8b}
+.sm-picker-tools{display:flex;gap:12px;align-items:flex-end;margin-bottom:13px}
+body#sms-workspace-view .sm-picker-search{flex:1;min-width:0;margin:0;font-size:12px}
+body#sms-workspace-view .sm-picker-search>span{display:block;margin-bottom:7px}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-picker-tools button,body#sms-workspace-view[data-preview-page][data-preview-page] .sm-picker-bulk button,body#sms-workspace-view[data-preview-page][data-preview-page] .sm-contact-tools button{min-height:42px;padding:9px 12px;border:1px solid #b7cea0;border-radius:11px;background:linear-gradient(#fffef9,#e5efd8)!important;color:#65804c!important;box-shadow:0 3px 0 #bdcea9;cursor:pointer;font-size:12px;font-weight:750}
+.sm-picker-bulk{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0 13px}
+#sm-visible-count{font-size:11px;color:#7d9168}
+.sm-picker-bulk>div{display:flex;gap:6px}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-picker-bulk button{min-height:30px;padding:5px 8px;font-size:10px;box-shadow:0 2px 0 #c4d4b3}
+.sm-recipient-list{display:grid;gap:8px;max-height:298px;overflow-y:auto;overflow-x:hidden;padding:4px 6px 7px 3px;scrollbar-width:thin;scrollbar-color:#9fb98a #eff5e6;overscroll-behavior:contain}
+body#sms-workspace-view .panel label.sm-recipient-option{display:flex;align-items:center;gap:11px;min-width:0;margin:0;padding:11px 12px;border:1px solid #d1dfc3;border-radius:12px;background:#fffffb;box-shadow:0 2px 0 #d3dfc7;cursor:pointer}
+body#sms-workspace-view .panel label.sm-recipient-option:has(:checked){border-color:#9bbd80;background:linear-gradient(145deg,#f4f9ea,#e1edcf);box-shadow:0 2px 0 #b0c796}
+body#sms-workspace-view .sm-recipient-option>.sm-icon{color:#88a371;width:26px;height:26px}
+body#sms-workspace-view[data-preview-page][data-preview-page] .panel input[type=checkbox]{appearance:auto;-webkit-appearance:auto;accent-color:#5c884a;flex:0 0 18px;width:18px;height:18px;min-width:18px;min-height:18px;padding:0;margin:0;border:0;box-shadow:none!important;background:transparent!important;cursor:pointer}
+body#sms-workspace-view .panel input[type=checkbox]::after{display:none!important}
+.sm-recipient-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.sm-recipient-copy strong{font-size:13px;font-weight:800;overflow-wrap:anywhere;color:#42683f}
+.sm-recipient-copy small{font-size:10px;line-height:1.7;font-weight:500;color:#8a9a76;overflow-wrap:anywhere}
+.sm-recipient-phone{font-size:10px;font-weight:650;color:#6d8854;text-align:right;line-height:1.6;max-width:43%;overflow-wrap:anywhere}
+.sm-recipient-phone.is-missing{color:#af8153;background:#f9f0dc;border-radius:7px;padding:4px 7px}
+body#sms-workspace-view .sm-picker-empty{color:#7e9168;font-size:13px;line-height:1.9;text-align:center;min-height:130px;display:grid;place-content:center;margin:0}
+.sm-selected-recipients{display:flex;gap:7px;flex-wrap:wrap;max-height:108px;overflow:auto;scrollbar-width:thin;margin-top:15px}
+.sm-selected-recipients:empty{display:none}
+body#sms-workspace-view[data-preview-page][data-preview-page] .sm-recipient-chip{display:inline-flex;align-items:center;gap:9px;max-width:100%;font-size:10px;font-weight:750;min-height:30px;padding:5px 9px;background:#e4efd6!important;border:1px solid #bad0a4;color:#5a7b44!important;border-radius:9px;cursor:pointer;overflow-wrap:anywhere}
+.sm-recipient-chip>span{font-size:17px;line-height:1;color:#809b67}
+.sm-recipient-warning{background:#faf2db;border:1px solid #e0ce98;border-radius:10px;font-size:11px;color:#957e43;line-height:1.8;padding:10px 12px;margin-top:13px}
+.sm-manual-numbers{margin-top:22px;border:1px dashed #c6d7b2;border-radius:12px;padding:13px 15px;background:#f8fbf0}
+.sm-manual-numbers>summary{font-size:12px;font-weight:750;color:#7c9364;cursor:pointer}
+body#sms-workspace-view .sm-manual-numbers label{margin-top:17px}
+body#sms-workspace-view .sm-manual-numbers textarea{min-height:80px}
+.sm-message-context{font-size:12px;color:#7b8d67;line-height:1.9;margin:-3px 0 13px}
+.sm-contact-tools{display:flex;flex-wrap:wrap;gap:15px;align-items:flex-end;padding:18px 0 22px;border-top:1px solid #d6e1c9;margin-top:25px}
+body#sms-workspace-view .sm-contact-tools label{flex:1;min-width:190px;margin:0;font-size:12px}
+.sm-contact-tools label>input{margin-top:8px!important}
+#sm-contact-selection{font-size:12px;color:#7e9369;align-self:center;margin-top:23px}
+body#sms-workspace-view[data-preview-page][data-preview-page] #sm-message-contacts{color:#fff!important;background:linear-gradient(135deg,#729c5c,#3a7650)!important;border-color:#4b7e4d;box-shadow:0 3px 0 #315f3d}
+body#sms-workspace-view #panel-contacts tr:has(input:checked) td{background:#e6f1da!important}
+@media(max-width:1200px){.sm-send-grid{grid-template-columns:minmax(0,1fr) 260px;gap:23px}.sm-recipient-option{flex-wrap:wrap}.sm-recipient-phone{flex-basis:100%;max-width:none;margin-left:40px;text-align:left}.sm-recipient-option>.sm-icon{display:none!important}}
+@media(max-width:1000px){.sm-send-grid{grid-template-columns:minmax(0,1fr)}.sm-message-preview{display:none}}
+@media(max-width:600px){.sm-recipient-picker{padding:17px 13px}.sm-picker-heading{gap:8px}.sm-picker-heading h3{font-size:18px}.sm-picker-heading p{font-size:11px}.sm-picker-tools{gap:8px}.sm-picker-bulk{align-items:flex-start;gap:5px;flex-direction:column}.sm-picker-bulk>div{align-self:flex-end}.sm-recipient-list{max-height:260px}.sm-recipient-option{padding:10px;gap:9px}.sm-recipient-copy strong{font-size:13px}.sm-recipient-copy small{font-size:10px}.sm-recipient-phone{margin-left:27px;font-size:10px}.sm-channel-tabs{gap:6px}.sm-channel-tab{font-size:14px!important;gap:7px!important}.sm-contact-tools{gap:12px}.sm-contact-tools label{flex-basis:100%}#sm-contact-selection{margin:0}.sm-contact-tools button{margin-left:auto}.sm-contact-tools #sm-message-contacts{width:100%}}
+
+/* EDIT BY NADA — compact the Send message block only; other sections retain their established layout. */
+body#sms-workspace-view .sm-sr-only{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip-path:inset(50%);white-space:nowrap;border:0!important}
+body#sms-workspace-view #panel-send{padding:22px}
+body#sms-workspace-view #panel-send .sm-send-grid{display:block}
+body#sms-workspace-view #panel-send .sm-channel-tabs{width:fit-content;max-width:100%;gap:4px;padding:4px;margin-bottom:15px;border-radius:12px;box-shadow:0 2px 0 #bdcda966}
+body#sms-workspace-view #panel-send .sm-channel-tab{min-height:40px;padding:8px 22px;font-size:14px!important;border-radius:8px;gap:8px}
+body#sms-workspace-view #panel-send .sm-recipient-picker{padding:14px;border-radius:13px;box-shadow:0 2px 0 #c3d5b177,inset 0 1px #fff}
+body#sms-workspace-view #panel-send .sm-picker-heading{align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:10px}
+body#sms-workspace-view #panel-send .sm-picker-heading>div:first-child{flex:1}
+body#sms-workspace-view #panel-send .sm-picker-heading h3{font-size:16px;margin:0}
+body#sms-workspace-view #panel-send #sm-selected-total{order:2;padding:3px 8px;font-size:10px}
+body#sms-workspace-view #panel-send .sm-recipient-sources{order:1;padding:3px;margin:0;border:0;border-radius:9px;gap:3px;background:#eaf1df}
+body#sms-workspace-view #panel-send .sm-recipient-sources button{flex:none;min-height:32px;padding:5px 13px;font-size:12px;border-radius:7px;border-color:transparent;box-shadow:none!important;background:transparent!important}
+body#sms-workspace-view #panel-send .sm-recipient-sources button[aria-selected=true]{background:#fffffa!important;border-color:#cfdebd;box-shadow:0 1px 3px #42613d15!important}
+body#sms-workspace-view #panel-send #sm-refresh-recipients{order:3;min-height:34px;padding:5px 10px;font-size:11px;font-weight:700;border:1px solid #c7d8b5;border-radius:8px;color:#6c855b;background:#f5f9ed;box-shadow:none;cursor:pointer}
+body#sms-workspace-view #panel-send .sm-picker-tools{margin:0 0 10px}
+body#sms-workspace-view #panel-send .sm-picker-search input{min-height:40px;padding:9px 11px;font-size:13px;box-shadow:0 2px 0 #c4d4b566!important}
+body#sms-workspace-view #panel-send .sm-picker-bulk{margin:9px 0}
+body#sms-workspace-view #panel-send .sm-recipient-list{padding:0;max-height:230px;gap:6px}
+body#sms-workspace-view #panel-send .sm-picker-empty{min-height:65px;font-size:12px}
+body#sms-workspace-view #panel-send .sm-picker-pending{display:flex;align-items:center;gap:12px;justify-content:flex-start;min-height:70px;padding:12px;text-align:left;background:#f0f5e7;border:0;border-radius:9px}
+body#sms-workspace-view #panel-send .sm-picker-pending>.sm-icon{width:32px;height:32px;border-radius:9px;box-shadow:0 2px 0 #c7d8b677}
+body#sms-workspace-view #panel-send .sm-picker-pending strong{font-size:13px}
+body#sms-workspace-view #panel-send .sm-picker-pending p{font-size:12px;max-width:none;line-height:1.6;margin:2px 0 0}
+body#sms-workspace-view #panel-send .sm-manual-numbers{margin-top:12px;padding:9px 12px;border-radius:10px}
+body#sms-workspace-view #panel-send .sm-manual-numbers[open] textarea{margin-top:10px}
+body#sms-workspace-view #panel-send .sm-composer>label{margin:14px 0 6px}
+body#sms-workspace-view #panel-send #send-text{min-height:108px;padding:10px 12px;font-size:14px;line-height:1.7}
+body#sms-workspace-view #panel-send .sm-whatsapp-hint{padding:8px 11px;font-size:11px;line-height:1.7;margin:10px 0 0}
+body#sms-workspace-view #panel-send .sm-send-actions{margin-top:14px;gap:12px}
+body#sms-workspace-view #panel-send .sm-send-actions>span{font-size:11px;max-width:none;line-height:1.6}
+body#sms-workspace-view #panel-send .send-btn{min-height:42px;padding:9px 14px;font-size:13px;box-shadow:0 3px 0 #2d5d3d!important}
+@media(max-width:600px){
+  /* EDIT BY NADA — keep source controls readable on narrow screens without horizontal overflow. */
+  body#sms-workspace-view #panel-send{padding:16px}
+  body#sms-workspace-view #panel-send .sm-recipient-sources{order:4;flex-basis:100%}
+  body#sms-workspace-view #panel-send .sm-recipient-sources button{flex:1}
+  body#sms-workspace-view #panel-send .sm-channel-tabs{width:100%}
+  body#sms-workspace-view #panel-send .sm-channel-tab{padding:8px 10px;font-size:13px!important}
+  body#sms-workspace-view #panel-send .sm-picker-pending{padding:10px;gap:9px}
+  body#sms-workspace-view #panel-send .sm-picker-pending p{font-size:11px}
+  body#sms-workspace-view #panel-send .sm-send-actions{align-items:flex-start;flex-direction:column;gap:10px}
+}
+
+/* EDIT BY NADA — let the shared two-box control retain compact dimensions within the original form styles. */
+body#sms-workspace-view #panel-send .sms-transfer label{margin:0;color:#718564!important;font-weight:600;font-size:11px;line-height:1.5}
+body#sms-workspace-view #panel-send .sms-transfer .sms-transfer-tools label{display:grid;font-size:10px;gap:4px}
+body#sms-workspace-view #panel-send .sms-transfer .sms-transfer-checkall{display:flex;margin:0 0 7px;gap:7px}
+body#sms-workspace-view #panel-send .sms-transfer .sms-transfer-row{display:flex;margin:0;padding:9px 5px}
+body#sms-workspace-view[data-preview-page][data-preview-page] #panel-send .sms-transfer :is(input[type=search],select){height:35px;min-height:35px;padding:7px 9px;font-size:12px;border-radius:8px;box-shadow:0 2px 0 #c8d8b777!important}
+body#sms-workspace-view #panel-send .sms-transfer h4{font-size:14px;margin:0}
+/* EDIT BY NADA — match the existing 3D dropdown trigger to the adjacent compact search field. */
+body#sms-workspace-view[data-preview-page][data-preview-page] #panel-send .sms-transfer .sm-select-trigger{min-height:35px;height:35px;padding:7px 25px 7px 9px!important;font-size:12px;border-radius:8px;box-shadow:0 2px 0 #c8d8b777!important}
+body#sms-workspace-view #panel-send .sms-transfer .sm-select-trigger::after{right:11px;top:12px;width:6px;height:6px}
+body#sms-workspace-view #panel-send .sms-transfer .sm-select.is-open .sm-select-trigger::after{top:16px}

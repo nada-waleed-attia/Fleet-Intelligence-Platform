@@ -1,0 +1,19 @@
+# EDIT BY NADA — dependencies are installed from package-lock.json, never committed.
+node_modules/
+
+# EDIT BY NADA — local credentials and machine-specific settings never leave this workspace.
+.env
+.env.*
+!.env.example
+
+# EDIT BY NADA — generated runtime, build, logs, and browser-test artifacts are not source files.
+tmp/
+*.log
+.next/
+coverage/
+preview/artifacts/
+.browser-test-*/
+
+# EDIT BY NADA — editor and operating-system metadata.
+.DS_Store
+Thumbs.db

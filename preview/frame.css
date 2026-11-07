@@ -1,0 +1,116 @@
+/* EDIT BY NADA — additional preview controls; no production style files changed. */
+html[data-wialon-reports-allowed="false"] :is(#wialon-reports-link,[data-url="/wialon-reports.html"],[onclick*="wialon-reports.html"],a[href="/wialon-reports.html"]){display:none!important}
+/* EDIT BY NADA — warm ivory surfaces, sage accents, and local decorative artwork. */
+/* EDIT BY NADA — Reports expands in the header flow, with the same contained sage list as the sidebar. */
+body.preview-dashboard[data-preview-page] #reports-dropdown{width:min(200px,100%);max-width:100%}
+/* EDIT BY NADA — identical alignment in both states prevents the trigger from jumping on open. */
+body.preview-dashboard[data-preview-page] .header,body.preview-dashboard[data-preview-page] .header-buttons{align-items:flex-start;align-content:flex-start}
+body.preview-dashboard[data-preview-page] .header-buttons{flex:1;min-width:0}
+body.preview-dashboard[data-preview-page] #reports-toggle-btn{width:100%;text-align:left}
+body.preview-dashboard[data-preview-page] #reports-dropdown:has(.reports-menu.open) #reports-toggle-btn{border-radius:10px 10px 0 0!important}
+/* EDIT BY NADA — overlay the menu immediately below its trigger without expanding the header. */
+body.preview-dashboard[data-preview-page] #reports-menu{position:absolute!important;top:100%!important;left:0!important;right:auto!important;bottom:auto!important;width:100%!important;min-width:0!important;max-height:200px;overflow-y:auto!important;overscroll-behavior:contain;padding:0!important;background:#f4f7ed!important;border:1px solid #b6cc9f!important;border-top:0!important;border-radius:0 0 10px 10px!important;box-shadow:0 12px 24px rgba(43,76,48,.16)!important;scrollbar-width:thin;scrollbar-color:#8fac78 #f4f7ed}
+body.preview-dashboard[data-preview-page] #reports-menu .report-option{color:#35522f!important;border-radius:0!important;background:transparent!important}
+body.preview-dashboard[data-preview-page] #reports-menu .report-option:hover,body.preview-dashboard[data-preview-page] #reports-menu .report-option:focus-visible{background:#e1ecd4!important;color:#2e512d!important;outline:2px solid #799962!important;outline-offset:-2px}
+@media(max-width:600px){body.preview-dashboard[data-preview-page] #reports-dropdown{width:100%}}
+@media(max-width:380px){body.preview-dashboard[data-preview-page] .header-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}body.preview-dashboard[data-preview-page] #reports-dropdown{min-width:0}body.preview-dashboard[data-preview-page] #reports-menu .report-option{min-width:0;overflow-wrap:anywhere}}
+body[data-preview-page][data-preview-page][data-preview-page]{background-color:#f2f5ee!important;background-image:radial-gradient(ellipse at 0 0,rgba(157,193,164,.23),transparent 45%),radial-gradient(ellipse at 100% 12%,rgba(208,181,119,.16),transparent 34%),linear-gradient(150deg,#fafbf6,#edf3eb 65%,#e4eee5)!important}
+body.preview-dashboard[data-preview-page]{color:#203d32!important;color-scheme:light;--preview-chart-ink:#254b3b;--preview-chart-muted:#647a6a}
+body.preview-dashboard[data-preview-page]::before{background-image:linear-gradient(rgba(75,111,86,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(75,111,86,.04) 1px,transparent 1px)!important;background-size:54px 54px!important}
+body.preview-dashboard[data-preview-page]::after{background:radial-gradient(circle,rgba(179,202,164,.14),transparent 70%)!important}
+body.preview-dashboard[data-preview-page] :is(.header,.welcome,.card,.chart-panel){background:linear-gradient(145deg,rgba(255,255,252,.98),rgba(246,250,241,.97))!important;border-color:#d4dfd0!important;box-shadow:0 12px 32px rgba(43,76,48,.075),inset 0 1px 0 #fff!important}
+body.preview-dashboard[data-preview-page] .header{border-top:3px solid #b8cdb4!important;border-radius:20px!important}
+body.preview-dashboard[data-preview-page] :is(.brand-text h1,.welcome h2,.chart-panel h3){color:#233e32!important}
+body.preview-dashboard[data-preview-page] :is(.brand-text span,.welcome p,.card h3,.chart-subtitle){color:#617665!important}
+body.preview-dashboard[data-preview-page] #welcome-name{color:#2e7052!important}
+body.preview-dashboard[data-preview-page] .welcome{padding-right:310px!important;min-height:148px;display:flex;flex-direction:column;justify-content:center;border-left:4px solid #b99b60!important}
+body.preview-dashboard[data-preview-page] .welcome::after{display:none}
+.preview-route-art{position:absolute;right:16px;top:4px;width:280px;height:140px;pointer-events:none;z-index:0}
+.preview-route-art svg{width:100%;height:100%}
+body.preview-dashboard[data-preview-page] .card{min-height:163px;transition:transform .25s ease,box-shadow .25s ease}
+body.preview-dashboard[data-preview-page] .card p{color:#264a38!important;font-size:38px!important;letter-spacing:-1px}
+body.preview-dashboard[data-preview-page] .card.ok p{color:#28765a!important}body.preview-dashboard[data-preview-page] .card.danger p{color:#bb5667!important}body.preview-dashboard[data-preview-page] .card.warn p{color:#9c7426!important}
+body.preview-dashboard[data-preview-page] .card::before{background:radial-gradient(circle,#dcebd4,transparent 72%)!important;width:160px;height:160px}
+.preview-detail-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;background:#e8f0e1;color:#49734e;border:1px solid #d7e4cc;border-radius:11px}
+.preview-detail-icon svg{width:21px;height:21px}
+body.preview-dashboard[data-preview-page] .card>.preview-detail-icon{position:absolute;right:15px;top:15px}
+body.preview-dashboard[data-preview-page] .card h3{padding-right:38px;max-width:100%;font-size:10px}
+body.preview-dashboard[data-preview-page] .card.danger>.preview-detail-icon{background:#f8e9e9;border-color:#edd6d9;color:#a95160}
+body.preview-dashboard[data-preview-page] .card.warn>.preview-detail-icon{background:#f7efda;border-color:#e9ddbc;color:#997b38}
+body.preview-dashboard[data-preview-page] .chart-panel h3{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+body.preview-dashboard[data-preview-page] .chart-panel:hover{box-shadow:0 20px 40px rgba(43,76,48,.13)!important;border-color:#a4c29c!important}
+body.preview-dashboard[data-preview-page] .preview-chart-key button{background:#edf3e7!important;border:1px solid #cbdac1!important;color:#36583f!important;border-radius:8px;padding:8px 10px}
+body.preview-dashboard[data-preview-page] .preview-chart-key button:hover{background:#deebd5!important}
+body.preview-dashboard[data-preview-page] .preview-chart-key button[aria-pressed="false"]{opacity:.55;text-decoration:line-through}
+body.preview-dashboard[data-preview-page] .user-chip{background:#e9f2e3!important;color:#416344!important;border-color:#cadcbc!important}
+body.preview-dashboard[data-preview-page] .manage-btn{background:linear-gradient(145deg,#ecf2e6,#dce9d4)!important;color:#33563b!important;border-color:#c3d6b8!important;box-shadow:0 3px 8px #3a5c3010!important}
+body.preview-dashboard[data-preview-page] .maintenance-btn{background:#f8efd6!important;color:#81642d!important;border-color:#e7d8af!important}
+body.preview-dashboard[data-preview-page] .cta-btn{background:linear-gradient(135deg,#3d7858,#286045)!important;border-color:#356c4e!important;box-shadow:0 8px 20px #34674925!important}
+@media(max-width:1100px){body.preview-dashboard[data-preview-page] .welcome{padding-right:200px!important}.preview-route-art{width:190px;right:8px}}
+@media(max-width:600px){body.preview-dashboard[data-preview-page] .welcome{padding:22px 20px 104px!important}.preview-route-art{width:185px;height:92px;top:auto;bottom:0;right:8px}body.preview-dashboard[data-preview-page] .card{min-height:150px}}
+/* EDIT BY NADA — dashboard-only light 3D canvas; production page styles are never edited. */
+body.preview-dashboard{color:#19324b!important;background:#fff!important;background-image:radial-gradient(circle at 8% 4%,rgba(20,184,166,.22),transparent 25%),radial-gradient(circle at 96% 12%,rgba(245,158,11,.24),transparent 24%),radial-gradient(circle at 72% 92%,rgba(37,99,235,.18),transparent 30%),linear-gradient(135deg,#fff 0%,#f5fbff 46%,#eef7fb 100%)!important;}
+body.preview-dashboard::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(25,50,75,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(25,50,75,.065) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.85),transparent 88%);}
+body.preview-dashboard::after{content:"";position:fixed;z-index:0;pointer-events:none;width:42vw;height:42vw;right:-16vw;top:18vh;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.94),rgba(37,99,235,.12) 42%,rgba(14,165,233,0) 70%);filter:blur(2px);transform:rotate(-14deg);}
+body.preview-dashboard .app{z-index:1;min-height:100vh!important;}
+body.preview-dashboard .header{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(236,248,251,.9))!important;border-color:rgba(25,50,75,.14)!important;box-shadow:0 24px 65px rgba(25,50,75,.16),inset 0 1px 0 rgba(255,255,255,.98)!important;}
+body.preview-dashboard .brand-logo{background:linear-gradient(145deg,#f8ffff,#d9eef0)!important;border-color:rgba(14,116,144,.22)!important;box-shadow:0 12px 28px rgba(14,116,144,.2),inset 0 1px 0 rgba(255,255,255,.95)!important;}
+body.preview-dashboard .brand-text h1{color:#17324a!important;}body.preview-dashboard .brand-text span{color:#5c748a!important;}
+body.preview-dashboard .user-chip{color:#35566f!important;background:rgba(241,251,252,.94)!important;border-color:rgba(14,116,144,.16)!important;}
+body.preview-dashboard .manage-btn{color:#19324b!important;background:linear-gradient(145deg,#f8ffff,#e5f1f5)!important;border-color:rgba(14,116,144,.18)!important;box-shadow:0 7px 16px rgba(14,116,144,.12),inset 0 1px 0 rgba(255,255,255,.95)!important;}
+body.preview-dashboard .maintenance-btn{color:#8a5b00!important;background:linear-gradient(145deg,#fff9e9,#ffefc4)!important;border-color:rgba(245,158,11,.35)!important;}
+body.preview-dashboard .logout-btn{color:#a33a4b!important;background:linear-gradient(145deg,#fff7f8,#ffe7eb)!important;border-color:rgba(239,68,68,.24)!important;}
+body.preview-dashboard .welcome{background:linear-gradient(110deg,rgba(255,255,255,.98),rgba(231,248,248,.92))!important;border-color:rgba(14,116,144,.16)!important;box-shadow:0 22px 55px rgba(25,50,75,.14),inset 0 1px 0 rgba(255,255,255,.98)!important;}
+body.preview-dashboard .welcome h2{color:#18344d!important;}body.preview-dashboard .welcome p{color:#557087!important;}
+body.preview-dashboard .card{background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(229,242,248,.94))!important;border-color:rgba(25,80,110,.14)!important;box-shadow:0 18px 42px rgba(25,50,75,.14),inset 0 1px 0 rgba(255,255,255,.98)!important;}
+body.preview-dashboard .card h3{color:#5b7388!important;}body.preview-dashboard .card p{color:#19324b!important;text-shadow:0 2px 0 rgba(255,255,255,.8);}
+body.preview-dashboard .card:hover{border-color:rgba(14,165,233,.4)!important;box-shadow:0 26px 55px rgba(14,116,144,.2),inset 0 1px 0 rgba(255,255,255,.98)!important;}
+body.preview-dashboard .chart-panel{background:linear-gradient(145deg,rgba(15,40,62,.97),rgba(8,24,40,.94))!important;border-color:rgba(14,165,233,.2)!important;box-shadow:0 22px 52px rgba(25,50,75,.24),inset 0 1px 0 rgba(255,255,255,.1)!important;}
+/* EDIT BY NADA — a shared teal and navy canvas coordinates preview pages with the sidebar. */
+body[data-preview-page]:not([data-preview-page="maintenance.html"]){background-color:#1b3b3c!important;background-image:radial-gradient(ellipse at 15% 0%,rgba(99,179,153,.23),transparent 40%),radial-gradient(ellipse at 90% 20%,rgba(196,151,65,.09),transparent 34%),linear-gradient(145deg,#285953,#193a3c 65%,#254d47)!important;background-attachment:fixed!important}
+body.preview-dashboard{color:#e8f5f1!important}
+body.preview-dashboard::before{background-image:linear-gradient(rgba(160,213,197,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(160,213,197,.035) 1px,transparent 1px)!important}
+body.preview-dashboard::after{background:radial-gradient(circle at 35% 35%,rgba(102,200,172,.11),transparent 70%)!important}
+body.preview-dashboard .header,body.preview-dashboard .welcome,body.preview-dashboard .card,body.preview-dashboard .chart-panel{background:linear-gradient(145deg,rgba(49,104,96,.98),rgba(30,69,68,.98))!important;border-color:rgba(174,222,204,.3)!important;box-shadow:0 18px 45px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.08)!important}
+body.preview-dashboard .brand-logo{background:linear-gradient(145deg,#e9f7f2,#c9e2dc)!important}
+/* EDIT BY NADA — the dashboard logo has no surrounding tile; logout lives in the sidebar. */
+body.preview-dashboard .brand-logo{background:transparent!important;border:0!important;box-shadow:none!important}
+/* EDIT BY NADA — enlarge the header logo and add a gentle chart hover treatment. */
+body.preview-dashboard .brand-logo{width:76px!important;height:64px!important;flex:0 0 76px!important}
+body.preview-dashboard .brand-logo img{padding:0!important;object-fit:contain!important}
+body.preview-dashboard .chart-panel{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+body.preview-dashboard .chart-panel:hover,body.preview-dashboard .chart-panel:focus-within{transform:translateY(-4px);border-color:rgba(175,231,208,.55)!important;box-shadow:0 25px 50px rgba(0,0,0,.25)!important}
+body.preview-dashboard .preview-chart-key button{transition:transform .2s ease,background-color .2s ease}
+body.preview-dashboard .preview-chart-key button:hover{transform:translateY(-2px);background:#306c60}
+@media (prefers-reduced-motion:reduce){body.preview-dashboard .chart-panel,body.preview-dashboard .preview-chart-key button{transition:none!important}body.preview-dashboard .chart-panel:hover,body.preview-dashboard .chart-panel:focus-within,body.preview-dashboard .preview-chart-key button:hover{transform:none!important}}
+body.preview-dashboard .brand-logo::after{display:none!important}
+body.preview-dashboard .header-buttons .logout-btn{display:none!important}
+body.preview-dashboard .brand-text h1,body.preview-dashboard .welcome h2,body.preview-dashboard .chart-panel h3{color:#edf8f4!important}
+body.preview-dashboard .brand-text span,body.preview-dashboard .welcome p,body.preview-dashboard .card h3,body.preview-dashboard .chart-subtitle{color:#c3ded4!important}
+body.preview-dashboard .card p{color:#f0faf5!important;text-shadow:none!important}
+body.preview-dashboard .card.ok p{color:#66dfad!important}body.preview-dashboard .card.danger p{color:#fb8a98!important}body.preview-dashboard .card.warn p{color:#efc66a!important}
+body.preview-dashboard .user-chip{color:#cde9df!important;background:#1e4649!important;border-color:#47736b!important}
+body.preview-dashboard .manage-btn{color:#f3fffa!important;background:linear-gradient(145deg,#438779,#326b63)!important;border-color:#84b6a6!important;box-shadow:0 5px 14px #0002!important}
+body.preview-dashboard .maintenance-btn{color:#ffdfa0!important;background:#4d452c!important;border-color:#85723f!important}
+body.preview-dashboard .logout-btn{color:#ffd1cf!important;background:#4e3036!important;border-color:#815058!important}
+body.preview-dashboard #welcome-name{color:#7edec6!important}
+/* EDIT BY NADA — preserve the maintenance page's light surfaces while matching the palette. */
+body[data-preview-page="maintenance.html"]{background:linear-gradient(145deg,#eef7f4,#e2f0ed)!important}
+/* EDIT BY NADA — consistent, readable action backgrounds on the other preview pages. */
+body[data-preview-page]:not(.preview-dashboard) :is(.back-btn,.pdf-btn,#sms-btn,#wialon-reports-btn,#manage-users-btn):not(:disabled){background:#244b4b!important;color:#f1faf7!important;border-color:#548178!important}
+body[data-preview-page]:not(.preview-dashboard) :is(.excel-btn,.new-btn,.run-btn,.send-btn,.submit-btn,.btn-primary):not(:disabled){background:#227564!important;color:#fff!important;border-color:#388e79!important}
+body[data-preview-page]:not(.preview-dashboard) #maintenance-btn:not(:disabled){background:#62502f!important;color:#fff1c9!important;border-color:#917440!important}
+body[data-preview-page]:not(.preview-dashboard) .logout-btn:not(:disabled){background:#633941!important;color:#fff1f0!important;border-color:#91545b!important}
+body[data-preview-page] .preview-controls{background:#173b40!important;color:#eaf7f2!important}
+body[data-preview-page] .preview-controls button{background:#2a5551!important;color:#f4fffa!important;border-color:#618a7d!important}
+/* EDIT BY NADA — keep charts, demo controls, and login layouts within narrow screens. */
+@media(max-width:720px){
+  body.preview-dashboard .charts-row{grid-template-columns:minmax(0,1fr)!important}
+  body.preview-dashboard .chart-panel{min-width:0!important;max-width:100%!important}
+  body.preview-dashboard .chart-panel canvas{max-width:100%!important}
+  .preview-controls{min-width:0!important;max-width:calc(100% - 16px)!important;box-sizing:border-box!important}
+  .preview-controls select,.preview-controls input,.preview-controls button{max-width:100%!important;min-width:0!important;box-sizing:border-box!important}
+  body[data-preview-page="login.html"],body[data-preview-page="login-standalone.html"],body[data-preview-page="wialon-callback.html"]{flex-direction:column!important}
+  body[data-preview-page="login.html"] .login-wrapper,body[data-preview-page="login-standalone.html"] .login-box,body[data-preview-page="wialon-callback.html"] .box{max-width:calc(100vw - 32px)!important;box-sizing:border-box!important}
+}
+.preview-note{padding:10px 16px!important;margin:8px!important;background:#fff4c9!important;color:#4a3300!important;border:1px solid #c7a148!important;border-radius:7px!important;font:13px Cairo,sans-serif!important;direction:ltr!important}.preview-controls{display:flex!important;flex-wrap:wrap!important;gap:10px!important;align-items:center!important;padding:12px!important;background:#142839!important;color:#f0f7ff!important;direction:ltr!important;margin:8px!important;border-radius:8px!important}.preview-controls button,.preview-controls select,.preview-controls input{font:13px Cairo,sans-serif!important;min-height:36px!important;padding:7px!important;background:#f4f7fb!important;color:#142839!important;border:1px solid #6c8b99!important;border-radius:5px!important;cursor:pointer!important}.preview-chart-key{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.preview-chart-key button{padding:6px 10px;border-radius:5px;background:#172438;color:#eee;border:1px solid #60768f;cursor:pointer}.preview-banner{font:12px Cairo,sans-serif!important;background:#ffe4a2!important;color:#392600!important;padding:8px!important;margin:0!important;text-align:center!important;position:relative!important;z-index:9999!important}button:focus-visible,a:focus-visible{outline:3px solid #f0c253!important;outline-offset:3px!important}

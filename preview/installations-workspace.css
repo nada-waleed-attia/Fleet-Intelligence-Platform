@@ -1,0 +1,253 @@
+/* Installation reports: mint / sage / brass workspace. Preview-only styles. */
+@keyframes ir-enter{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes ir-float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-10px) rotate(-4deg)}}
+@keyframes ir-drift{from{transform:translate3d(-3%,0,0) scale(1)}to{transform:translate3d(4%,3%,0) scale(1.08)}}
+@keyframes ir-spin{to{transform:rotate(360deg)}}
+@keyframes ir-scan{0%,100%{opacity:.3;transform:translateX(-35%)}50%{opacity:1;transform:translateX(35%)}}
+@keyframes ir-dialog{from{opacity:0;transform:translateY(22px) scale(.96)}to{opacity:1;transform:none}}
+/* EDIT BY NADA — keep one compact bottom inset instead of stacking body and container padding. */
+body#installation-workspace-view[data-preview-page][data-preview-page]{margin:0;padding:0!important;min-height:100vh;color:#294b37!important;background:#eaf1e5!important;color-scheme:light;isolation:isolate}
+html:has(body#installation-workspace-view){scrollbar-gutter:stable;scroll-behavior:smooth;background:#eaf1e5}
+body#installation-workspace-view *{font-family:"Cairo",sans-serif!important;box-sizing:border-box}
+body#installation-workspace-view{overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#789c68 #e5eddd}
+body#installation-workspace-view::-webkit-scrollbar{width:10px}
+body#installation-workspace-view::-webkit-scrollbar-track{background:#e5eddd;border-left:1px solid #d0dec6}
+body#installation-workspace-view::-webkit-scrollbar-thumb{border:2px solid #e5eddd;border-radius:999px;background:linear-gradient(#91ad7f,#648a57)}
+body#installation-workspace-view::-webkit-scrollbar-thumb:hover{background:linear-gradient(#7f9f6e,#527847)}
+body#installation-workspace-view::before,body#installation-workspace-view::after{display:none!important}
+body#installation-workspace-view .ir-backdrop{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(135deg,#f8faf2,#e6f0e1 57%,#f6edda)}
+body#installation-workspace-view .ir-orb{position:absolute;border-radius:50%;filter:blur(2px);animation:ir-drift 17s ease-in-out infinite alternate}
+body#installation-workspace-view .ir-orb-green{width:72vw;height:72vw;top:-48%;left:-23%;background:radial-gradient(circle,#96bd8a9e,transparent 67%)}
+body#installation-workspace-view .ir-orb-gold{width:68vw;height:68vw;right:-31%;top:5%;background:radial-gradient(circle,#e4c47780,transparent 68%);animation-delay:-8s}
+body#installation-workspace-view .ir-contours{position:absolute;inset:-15%;background:repeating-radial-gradient(ellipse at 80% 18%,transparent 0 48px,#759b6433 50px 52px,transparent 54px 95px);transform:rotate(-13deg);mask-image:linear-gradient(120deg,#000,transparent 72%)}
+body#installation-workspace-view .ir-floor{position:absolute;bottom:-45vh;left:-35%;width:170%;height:85vh;transform:perspective(720px) rotateX(58deg) rotateZ(-12deg);background-image:linear-gradient(#6e965d38 1px,transparent 1px),linear-gradient(90deg,#6e965d38 1px,transparent 1px);background-size:58px 58px;mask-image:radial-gradient(ellipse,#000,transparent 67%)}
+body#installation-workspace-view .ir-page{position:relative;z-index:1;width:min(1460px,calc(100% - 46px));margin:0 auto;padding:22px 0 20px}
+body#installation-workspace-view .container{padding-bottom:0}
+body#installation-workspace-view[data-preview-page][data-preview-page] :is(header,.ir-hero,.filters,.report-card,.modal-content,.empty){border:1px solid #c6d8b9!important;background:linear-gradient(145deg,#fffffcf2,#edf5e8f2)!important;color:#294b37!important;box-shadow:0 5px 0 #b9cca888,0 18px 40px #41633a18,inset 0 1px #fff!important;border-radius:22px!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] :is(.container,.reports){background:transparent!important;border:0!important;box-shadow:none!important;padding-left:0!important;padding-right:0!important}
+/* EDIT BY NADA — the page header scrolls with the installation workspace instead of sticking to the viewport. */
+body#installation-workspace-view header{position:relative!important;top:auto!important;display:flex;align-items:center;gap:18px;padding:17px 22px;flex-wrap:wrap;animation:ir-enter .65s both}
+body#installation-workspace-view .brand{display:flex;align-items:center;gap:14px;min-width:0;flex:1}
+body#installation-workspace-view .brand-icon{width:clamp(76px,6vw,92px)!important;height:clamp(76px,6vw,92px)!important;min-width:clamp(76px,6vw,92px)!important;flex:0 0 clamp(76px,6vw,92px)!important;display:grid!important;place-items:center!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;animation:none!important;transform:none!important}
+body#installation-workspace-view .brand-icon img{display:block!important;width:100%!important;height:100%!important;padding:0!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:transparent!important}
+body#installation-workspace-view h1{margin:0!important;color:#2f583d!important;font-size:clamp(21px,2.5vw,30px)!important;line-height:1.35!important}
+body#installation-workspace-view .brand span{display:block;color:#77915f!important;font-size:12px!important;letter-spacing:1.5px!important;font-weight:800}
+body#installation-workspace-view[data-preview-page][data-preview-page] :is(button,.back-btn,.new-btn,.btn-dark,.btn-pdf,.btn-del,.add-vehicle-btn,.submit-btn,.clear-signature){display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:43px;padding:10px 15px;border-radius:13px!important;font-weight:800!important;cursor:pointer;transition:transform .2s,box-shadow .2s,filter .2s!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] :is(.back-btn,.new-btn,.submit-btn,.add-vehicle-btn){color:#f8fff4!important;border:1px solid #527f5a!important;background:linear-gradient(135deg,#6d9b63,#387250)!important;box-shadow:0 4px 0 #2d5c41,0 10px 22px #3862442a!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] :is(.btn-dark,.btn-pdf,.clear-signature){color:#416342!important;border:1px solid #b9cfae!important;background:linear-gradient(#fffef8,#e4eedb)!important;box-shadow:0 3px 0 #bdcead!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] .btn-del{color:#a15f5f!important;border:1px solid #dfc1b8!important;background:linear-gradient(#fff9f4,#f2e1db)!important;box-shadow:0 3px 0 #d8b4aa!important}
+body#installation-workspace-view button:hover:not(:disabled){transform:translateY(-2px);filter:saturate(1.08)}
+body#installation-workspace-view button:active:not(:disabled){transform:translateY(1px)}
+body#installation-workspace-view .ir-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+body#installation-workspace-view .ir-icon svg{width:18px;height:18px;stroke-width:1.9}
+body#installation-workspace-view .ir-hero{position:relative;display:flex;justify-content:space-between;align-items:center;gap:30px;min-height:255px;margin:24px 0 25px;padding:34px 38px;overflow:hidden;border-left:4px solid #c4a34e!important;animation:ir-enter .72s .07s both}
+body#installation-workspace-view .ir-eyebrow{color:#7e8f54;font-size:11px;font-weight:900;letter-spacing:2.3px}
+body#installation-workspace-view .ir-hero-title{position:relative;z-index:2;display:flex;flex-direction:column;align-items:flex-start;max-width:680px}
+body#installation-workspace-view .ir-hero-title h2{margin:7px 0 8px;color:#2d573c!important;font-size:clamp(30px,4vw,51px)!important;line-height:1.25!important;letter-spacing:-1px!important}
+body#installation-workspace-view .ir-hero-title p{margin:0 0 18px;color:#667e5d!important;font-size:16px!important;line-height:1.8!important}
+/* EDIT BY NADA — give the counters breathing room below the new report button. */
+body#installation-workspace-view .ir-hero-stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;color:#6b805f;font-size:13px;font-weight:700}
+body#installation-workspace-view .ir-hero-stats span{padding:8px 12px;border-radius:999px;background:#f6f8e9;border:1px solid #d4dfb9;box-shadow:inset 0 1px #fff}
+body#installation-workspace-view .ir-hero-stats strong{color:#3c744f;font-size:17px;margin-right:4px}
+body#installation-workspace-view .ir-art{position:relative;width:285px;height:200px;flex:0 0 285px}
+body#installation-workspace-view .ir-art-ring{position:absolute;inset:20px 3px 16px 4px;border:1px dashed #8eae78;border-radius:50%;transform:rotate(-24deg);animation:ir-spin 23s linear infinite}
+body#installation-workspace-view .ir-art-ring:after{content:"";position:absolute;inset:17px -10px;border:1px solid #d1dcbb;border-radius:50%;transform:rotate(52deg)}
+body#installation-workspace-view .ir-art-card{position:absolute;display:grid;place-items:center;left:83px;top:34px;width:124px;height:124px;border:1px solid #b8cfaa;border-radius:31px;background:linear-gradient(145deg,#fffef6,#d8e8c7);box-shadow:8px 10px 0 #9bb988,14px 25px 30px #46643a22,inset 0 2px #fff;transform:rotate(-8deg);animation:ir-float 6s ease-in-out infinite}
+body#installation-workspace-view .ir-art-card svg{width:68px;height:68px;color:#57874e;stroke-width:1.35}
+body#installation-workspace-view :is(.ir-art-scan,.ir-art-truck){position:absolute;display:grid;place-items:center;width:57px;height:57px;border-radius:17px;background:linear-gradient(#fff9e8,#f0dfac);border:1px solid #dcc693;box-shadow:3px 5px 0 #c3ac70,6px 12px 18px #35582b13;color:#a78b42;animation:ir-float 7s -3s ease-in-out infinite}
+body#installation-workspace-view .ir-art-scan{right:4px;top:6px;transform:rotate(13deg)}
+body#installation-workspace-view .ir-art-truck{left:1px;bottom:2px;transform:rotate(9deg);background:linear-gradient(#fffffc,#e1edcf);border-color:#bfd3a5;color:#6e9055;box-shadow:3px 5px 0 #b5c79b,6px 12px 17px #35582b13}
+body#installation-workspace-view :is(.ir-art-scan,.ir-art-truck) svg{width:30px;height:30px}
+body#installation-workspace-view .filters{display:grid;grid-template-columns:minmax(185px,1.2fr) minmax(260px,2fr) repeat(2,minmax(135px,.8fr)) auto;gap:12px;padding:15px;margin:0 0 22px;animation:ir-enter .72s .13s both}
+body#installation-workspace-view .filters label{display:flex;flex-direction:column;gap:6px;color:#68805e;font-size:11px;font-weight:800;letter-spacing:.5px}
+body#installation-workspace-view :is(.filters input,.filters select,#report-modal input,#report-modal select,#report-modal textarea){width:100%;min-height:43px;padding:9px 12px;border:1px solid #bdd1b2!important;border-radius:12px!important;background:#fffef9!important;color:#2f543a!important;outline:0;box-shadow:inset 0 1px #fff!important}
+/* EDIT BY NADA — dimensional dropdown controls match the raised cards and buttons. */
+body#installation-workspace-view :is(.filters select,#report-modal select){
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  padding-inline:14px 44px!important;
+  border-color:#aac69c!important;
+  background-color:#f9fcef!important;
+  background-image:
+    linear-gradient(45deg,transparent 50%,#55794a 50%),
+    linear-gradient(135deg,#55794a 50%,transparent 50%),
+    linear-gradient(135deg,#fffef8,#e5efda)!important;
+  background-position:
+    calc(100% - 20px) calc(50% - 2px),
+    calc(100% - 14px) calc(50% - 2px),
+    0 0!important;
+  background-size:6px 6px,6px 6px,100% 100%!important;
+  background-repeat:no-repeat!important;
+  box-shadow:0 4px 0 #b6cba7,0 9px 18px #45683a14,inset 0 1px #fff!important;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+body#installation-workspace-view :is(.filters select,#report-modal select):hover{transform:translateY(-1px);border-color:#86a876!important;box-shadow:0 5px 0 #a9c397,0 12px 20px #45683a1a,inset 0 1px #fff!important}
+body#installation-workspace-view :is(.filters select,#report-modal select):focus{transform:translateY(1px);box-shadow:0 2px 0 #9fb990,0 0 0 4px #78a06d25!important}
+body#installation-workspace-view :is(.filters select,#report-modal select) option{color:#31533a;background:#f8fbed;font-weight:600}
+body#installation-workspace-view :is(input,select,textarea):focus{border-color:#78a06d!important;box-shadow:0 0 0 3px #78a06d25!important}
+body#installation-workspace-view .reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:17px}
+body#installation-workspace-view .report-card{padding:20px;animation:ir-enter .6s calc(var(--ir-order,0)*.05s) both!important;transition:transform .22s,box-shadow .22s!important}
+body#installation-workspace-view .report-card:hover{transform:translateY(-5px) rotateX(1deg);box-shadow:0 7px 0 #aec59c,0 22px 35px #456b3c26,inset 0 1px #fff!important}
+/* EDIT BY NADA — the internal demo report number is not part of the customer-facing card. */
+body#installation-workspace-view .report-number{display:none!important}
+body#installation-workspace-view .report-header{justify-content:flex-end}
+body#installation-workspace-view .report-card::before{background:linear-gradient(90deg,#759a62,#c7a755,#759a6200)!important}
+body#installation-workspace-view .report-card h3{margin:0;color:#305b40!important;font-size:20px!important}
+body#installation-workspace-view .report-card p{color:#6b815f!important;margin:4px 0 15px}
+body#installation-workspace-view .vehicle-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;margin:3px;border-radius:999px;background:#edf4e5;border:1px solid #c6d9b9;color:#486947;font-size:12px}
+body#installation-workspace-view .vehicle-chip .ir-icon svg{width:15px;height:15px}
+body#installation-workspace-view .report-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+body#installation-workspace-view .modal{background:#2e573b58!important;backdrop-filter:blur(8px)!important}
+body#installation-workspace-view .modal-content{width:min(940px,calc(100% - 28px));max-height:calc(100vh - 30px);overflow:auto;padding:25px!important;animation:ir-dialog .35s both}
+body#installation-workspace-view .modal-header{display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #d6e2cb;padding-bottom:13px;margin-bottom:17px}
+body#installation-workspace-view .modal-header h3{margin:0;color:#315b40!important;font-size:25px!important}
+body#installation-workspace-view .close-btn{color:#7a5b45!important;background:#f9eadf!important;border:1px solid #e2c4b1!important;border-radius:10px;padding:7px 11px!important}
+body#installation-workspace-view .vehicle-row{border:1px solid #c7d9bb!important;border-radius:17px!important;padding:17px!important;margin:12px 0!important;background:linear-gradient(145deg,#fbfdf8,#edf5e8)!important;box-shadow:0 4px 0 #c1d1b3,inset 0 1px #fff!important;animation:ir-enter .4s both}
+body#installation-workspace-view .vehicle-row h4{color:#477047!important;margin:0 0 12px!important}
+body#installation-workspace-view .vehicle-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+body#installation-workspace-view .signature-card{border:1px dashed #a9c197!important;border-radius:16px!important;background:#f4f8ee!important;padding:12px!important}
+body#installation-workspace-view #sig-pad{width:100%;height:135px;border:1px solid #c0d4b5!important;border-radius:11px;background:#fffefb;touch-action:none;cursor:crosshair}
+body#installation-workspace-view .signature-status{color:#6c815e!important;font-size:12px}
+body#installation-workspace-view #scan-modal-overlay{background:#2d553a55!important;backdrop-filter:blur(7px)}
+body#installation-workspace-view #scan-modal{border:1px solid #c5d9b8!important;border-radius:18px!important;background:#f9fcf5!important;box-shadow:0 15px 45px #315b3b35!important}
+body#installation-workspace-view .form-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:20px}
+body#installation-workspace-view :is(button,input,select,textarea):focus-visible{outline:3px solid #86a76a!important;outline-offset:3px!important}
+@media(max-width:980px){body#installation-workspace-view .filters{grid-template-columns:repeat(2,minmax(0,1fr))}body#installation-workspace-view .filters .btn-dark{grid-column:span 2}body#installation-workspace-view .ir-art{width:230px;transform:scale(.85);transform-origin:right center;margin-left:-30px}}
+@media(max-width:720px){body#installation-workspace-view .ir-page{width:calc(100% - 22px);padding-top:11px}body#installation-workspace-view .ir-hero{display:block;padding:25px 22px;min-height:0}body#installation-workspace-view .ir-art{display:none}body#installation-workspace-view .filters{grid-template-columns:1fr;padding:13px}body#installation-workspace-view .filters .btn-dark{grid-column:auto}body#installation-workspace-view .reports{grid-template-columns:1fr}body#installation-workspace-view .vehicle-fields{grid-template-columns:1fr}body#installation-workspace-view .modal-content{padding:17px!important}}
+@media(prefers-reduced-motion:reduce){body#installation-workspace-view *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* New installation report: contained scrolling, clear field groups and a fixed action bar. */
+body#installation-workspace-view #report-modal{--muted:#6d835d;--muted-2:#82956e;--cyan:#65894e;--cyan-deep:#3e6f48;--cyan-dim:#e5efd9;--line:#cddcbe;--line-strong:#bdd0a9;--panel-2:#f6faef;--bg-2:#f7faef;--teal-dim:#edf4e4;--danger:#a05e5e;--good:#527e45;padding:20px 16px!important;overflow:hidden!important}
+body#installation-workspace-view.ir-modal-open{overflow:hidden!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .modal-content{display:flex;flex-direction:column;width:min(980px,100%);height:min(900px,calc(100dvh - 40px));max-height:calc(100dvh - 40px);padding:0!important;overflow:hidden;border-radius:24px!important;background:#f8fbf1!important;box-shadow:0 8px 0 #a5bf93,0 30px 80px #27412e50,inset 0 1px #fff!important}
+body#installation-workspace-view #report-modal .modal-content::before{display:none}
+body#installation-workspace-view #report-modal .modal-header{position:relative;flex:0 0 auto;align-items:flex-start;gap:16px;margin:0;padding:23px 28px 20px;border-bottom:1px solid #d4e0c6;background:linear-gradient(125deg,#fefff9,#edf4df)}
+body#installation-workspace-view .ir-form-eyebrow{font-size:10px;line-height:1.7;letter-spacing:2px;font-weight:900;color:#8b9d6b;margin:0 0 6px}
+body#installation-workspace-view #report-modal .modal-header h3{font-size:27px!important;line-height:1.4;letter-spacing:-.5px}
+body#installation-workspace-view #ir-form-description{font-size:13px!important;line-height:1.8;color:#788d62!important;margin:7px 0 0;max-width:650px}
+body#installation-workspace-view #report-modal .close-btn{flex:0 0 40px;width:40px;height:40px;min-height:40px;padding:8px!important;background:#f5f8ec!important;border-color:#c4d6ae!important;color:#6a8751!important;box-shadow:0 3px 0 #c3d3af}
+body#installation-workspace-view .ir-modal-scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:25px 28px 28px;scrollbar-width:thin;scrollbar-color:#a0bb88 #eff5e5;scroll-behavior:smooth}
+body#installation-workspace-view .ir-modal-scroll::-webkit-scrollbar{width:7px}
+body#installation-workspace-view .ir-modal-scroll::-webkit-scrollbar-track{background:#eff5e5}
+body#installation-workspace-view .ir-modal-scroll::-webkit-scrollbar-thumb{background:#a0bb88;border-radius:9px}
+body#installation-workspace-view #report-form{display:grid;gap:22px}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .ir-form-section{position:relative;margin:0;padding:21px;background:linear-gradient(135deg,#fffffb,#f1f6e8)!important;border:1px solid #cbdcbb!important;border-radius:17px;box-shadow:0 3px 0 #c5d6b388,inset 0 1px #fff!important;min-width:0;overflow:visible!important;animation:ir-enter .4s both}
+body#installation-workspace-view .ir-section-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;min-width:0}
+body#installation-workspace-view .ir-section-number{display:grid;place-items:center;flex:0 0 35px;width:35px;height:35px;border:1px solid #c1d2a6;background:linear-gradient(#f7fae9,#e0eccc);box-shadow:0 3px 0 #b9cca1;border-radius:11px;color:#7c995b;font-size:12px;font-weight:850;line-height:1}
+body#installation-workspace-view .ir-section-heading h4{margin:0 0 4px;color:#406440!important;font-size:16px;font-weight:850;line-height:1.4}
+body#installation-workspace-view .ir-section-heading p{margin:0;font-size:12px;line-height:1.8;color:#82936c!important}
+body#installation-workspace-view #report-modal .field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+body#installation-workspace-view #report-modal .field{min-width:0;margin-bottom:0}
+body#installation-workspace-view #report-modal .field label{display:block;font-size:13px;color:#688153;line-height:1.6;margin-bottom:8px;font-weight:800}
+body#installation-workspace-view #report-modal .field small{color:#8b9c78;font-size:11px;line-height:1.7}
+body#installation-workspace-view #report-modal :is(input,select,textarea){font-size:14px;line-height:1.7;min-height:46px}
+body#installation-workspace-view #report-modal input::placeholder,body#installation-workspace-view #report-modal textarea::placeholder{color:#95a385!important}
+body#installation-workspace-view #report-modal textarea{resize:vertical;min-height:100px}
+body#installation-workspace-view #report-modal .vehicle-title{align-items:flex-start;gap:14px;margin-bottom:18px}
+body#installation-workspace-view #report-modal .vehicle-title .ir-section-heading{margin-bottom:0}
+body#installation-workspace-view #report-modal .vehicle-count{flex-shrink:0;margin:3px 0 0;padding:6px 10px;font-size:11px;background:#eaf1dd;color:#7c965a;border-color:#cbdab3}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .vehicle-row{display:grid;grid-template-columns:1fr;gap:19px;margin:0 0 18px!important;padding:19px!important;background:linear-gradient(#fffffc,#f2f7eb)!important;border-color:#c7d9b5!important;box-shadow:0 4px 0 #bdcfa9!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .ir-form-section:has(.ir-select3d[open]){z-index:45}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .vehicle-row:has(.ir-select3d[open]){position:relative;z-index:60;overflow:visible!important}
+body#installation-workspace-view .ir-vehicle-heading{display:flex;align-items:center;justify-content:space-between;gap:13px;border-bottom:1px solid #d7e3c9;padding-bottom:13px}
+body#installation-workspace-view #report-modal .vehicle-row-number{margin:0;font-size:14px;letter-spacing:0;color:#587b44;display:flex;align-items:center;gap:8px}
+body#installation-workspace-view #report-modal .vehicle-row-number::before{content:'';width:7px;height:7px;border-radius:50%;background:#a6be83;box-shadow:0 0 0 4px #eaf1df}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .remove-row{position:static;min-height:34px;font-size:11px;padding:6px 9px;background:linear-gradient(#fff9f3,#f4e6dd)!important;color:#ac756a!important;border:1px solid #e1c7b8;box-shadow:0 2px 0 #dfc5b7!important}
+body#installation-workspace-view #report-modal .remove-row[hidden]{display:none!important}
+body#installation-workspace-view .ir-unit-fields{display:grid;grid-template-columns:1fr;gap:15px;min-width:0}
+body#installation-workspace-view #report-modal .unit-type{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:0;padding:5px;border:1px solid #c8d8b6;border-radius:12px;background:#eaf1df;box-shadow:inset 0 1px 4px #35582b0c;overflow:visible}
+body#installation-workspace-view #report-modal .unit-type input{position:absolute;display:block;width:1px;height:1px;min-height:0;padding:0;opacity:0;overflow:hidden}
+body#installation-workspace-view #report-modal .unit-type label{margin:0;padding:10px;font-size:12px;line-height:1.5;min-width:0;color:#8b9b76;background:transparent;border:1px solid transparent;border-radius:8px;transition:background .2s,box-shadow .2s,color .2s}
+body#installation-workspace-view #report-modal .unit-type input:checked+label{color:#4e7541;background:linear-gradient(#fffff8,#f3f7e9);border-color:#c4d6ad;box-shadow:0 2px 0 #bbcfa2}
+body#installation-workspace-view #report-modal .unit-type input:focus-visible+label{outline:3px solid #87a76a;outline-offset:1px}
+body#installation-workspace-view #report-modal .manual-unit-box{margin:0;padding:15px;border:1px dashed #afc599;border-radius:12px;background:#edf4e3}
+body#installation-workspace-view #report-modal .manual-unit-box.active{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+body#installation-workspace-view #report-modal .manual-unit-box .field{margin:0}
+body#installation-workspace-view .ir-device-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:17px;background:linear-gradient(145deg,#f8faed,#eff4e2);border:1px solid #d5dfbf;border-radius:13px;min-width:0}
+body#installation-workspace-view .ir-device-title{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#9a8b53;font-size:12px;letter-spacing:.4px;font-weight:850}
+body#installation-workspace-view #report-modal .scan-field-row{grid-column:1/-1;display:flex;gap:10px;align-items:flex-end;min-width:0}
+body#installation-workspace-view #report-modal .scan-field-row .field{flex:1;min-width:0}
+body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .scan-btn{min-height:46px;height:46px;margin:0;background:linear-gradient(#fffbea,#f1e5b8)!important;color:#9b813d!important;border:1px solid #dac68e;box-shadow:0 3px 0 #d4c28c!important}
+body#installation-workspace-view .ir-vehicle-extras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;min-width:0}
+body#installation-workspace-view #report-modal input[type=file]{font-size:12px;line-height:1.6;padding:10px!important;background:#f7faee!important;border-style:dashed!important;border-color:#b8cda2!important}
+body#installation-workspace-view #report-modal input[type=file]::file-selector-button{font:700 11px Cairo,sans-serif;border:1px solid #c2d2a7;border-radius:7px;background:#e8f0d8;color:#6a864c;padding:7px 9px;margin:0 9px 0 0;cursor:pointer}
+body#installation-workspace-view #report-modal .photo-preview{gap:7px;margin-top:10px}
+body#installation-workspace-view #report-modal .photo-preview img{border:1px solid #c7d9b4;border-radius:9px;width:58px;height:58px}
+body#installation-workspace-view #report-modal .signature-card{margin:0;border:0!important;background:transparent!important;padding:0!important}
+body#installation-workspace-view #report-modal .signature-header{gap:12px;flex-wrap:wrap}
+body#installation-workspace-view #report-modal .signature-header strong{font-size:13px;color:#6c8457}
+body#installation-workspace-view #report-modal .signature-status{padding:5px 10px;background:#f3edd7;border:1px solid #e1d3a7;border-radius:999px;color:#a18d50!important;font-size:11px}
+body#installation-workspace-view #report-modal .signature-status.signed{color:#64814b!important;border-color:#c5d9af;background:#e8f1dc}
+body#installation-workspace-view #report-modal .signature-wrapper{border:1px dashed #b3c79a;background:#fffef9;border-radius:12px;box-shadow:inset 0 2px 5px #415e3610}
+body#installation-workspace-view #report-modal #sig-pad{width:100%!important;height:175px!important;border:0!important;border-radius:12px;background:transparent}
+body#installation-workspace-view #report-modal .signature-placeholder{color:#b0bda1;font-size:14px;white-space:normal;text-align:center;max-width:90%}
+body#installation-workspace-view #report-modal .sig-actions{gap:13px;flex-wrap:wrap;margin-top:12px}
+body#installation-workspace-view #report-modal .sig-hint{font-size:11px;line-height:1.8;color:#8d9d7a}
+body#installation-workspace-view #report-modal .clear-signature{min-height:35px;font-size:11px;padding:7px 10px}
+body#installation-workspace-view #report-modal .error-box{padding:13px 16px;margin-bottom:18px;background:#faece3;border-color:#e1bfb0;color:#a5655d;font-size:13px;line-height:1.8}
+body#installation-workspace-view .ir-modal-footer{display:flex;align-items:center;justify-content:space-between;flex:0 0 auto;gap:20px;padding:18px 28px;background:linear-gradient(#f9fcf3,#edf4e2);border-top:1px solid #d2dfc3}
+body#installation-workspace-view .ir-modal-footer p{max-width:330px;margin:0;font-size:11px;line-height:1.8;color:#8a9a74!important}
+body#installation-workspace-view .ir-modal-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+body#installation-workspace-view #report-modal .submit-btn{width:auto;margin:0;padding:11px 21px;min-height:45px;font-size:13px}
+body#installation-workspace-view #report-modal .ir-cancel{color:#78935e;background:#f8fbf0;border:1px solid #c4d6ae;box-shadow:0 3px 0 #c4d4b0;min-height:45px;font-size:13px}
+@media(max-width:650px){
+ body#installation-workspace-view #report-modal{padding:10px 8px!important}
+ body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .modal-content{height:calc(100dvh - 20px);max-height:calc(100dvh - 20px);border-radius:18px!important}
+ body#installation-workspace-view #report-modal .modal-header{padding:18px 16px 15px;gap:10px}
+ body#installation-workspace-view #report-modal .modal-header h3{font-size:22px!important}
+ body#installation-workspace-view .ir-form-eyebrow{font-size:8px;letter-spacing:1.6px}
+ body#installation-workspace-view #ir-form-description{font-size:11px!important}
+ body#installation-workspace-view .ir-modal-scroll{padding:18px 12px 24px}
+ body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .ir-form-section{padding:16px 13px}
+ body#installation-workspace-view #report-form{gap:18px}
+ body#installation-workspace-view #report-modal .field-row,body#installation-workspace-view .ir-vehicle-extras,body#installation-workspace-view .ir-device-fields,body#installation-workspace-view #report-modal .manual-unit-box.active{grid-template-columns:minmax(0,1fr)}
+ body#installation-workspace-view .ir-section-heading h4{font-size:15px}
+ body#installation-workspace-view .ir-section-heading p{font-size:11px}
+ body#installation-workspace-view .ir-section-number{flex-basis:30px;width:30px;height:30px;border-radius:9px;font-size:10px}
+ body#installation-workspace-view #report-modal .vehicle-title{flex-wrap:wrap;gap:10px}
+ body#installation-workspace-view #report-modal .vehicle-count{margin-left:0}
+ body#installation-workspace-view[data-preview-page][data-preview-page] #report-modal .vehicle-row{padding:13px!important;gap:16px}
+ body#installation-workspace-view .ir-device-fields{padding:13px;gap:14px}
+ body#installation-workspace-view #report-modal :is(input:not([type=radio]),select,textarea){font-size:16px}
+ body#installation-workspace-view #report-modal .scan-btn{min-width:65px;padding:10px}
+ body#installation-workspace-view #report-modal .scan-btn .ir-icon{display:none}
+ body#installation-workspace-view .ir-modal-footer{padding:13px 16px;gap:10px;display:block}
+ body#installation-workspace-view .ir-modal-footer p{font-size:10px;max-width:none;margin:0 0 10px}
+ body#installation-workspace-view .ir-modal-actions{display:grid;grid-template-columns:1fr 1.5fr;gap:10px}
+ body#installation-workspace-view #report-modal .ir-modal-actions button{width:100%;min-height:44px}
+}
+/* EDIT BY NADA — make the key installation selectors visibly match the raised form controls. */
+body#installation-workspace-view #report-modal :is(#f-company,.vehicle-unit-select){
+ appearance:none!important;-webkit-appearance:none!important;
+ padding-inline:14px 46px!important;
+ border:1px solid #a9c493!important;border-radius:13px!important;
+ background-color:#f8fbee!important;
+ background-image:linear-gradient(45deg,transparent 50%,#55794a 50%),linear-gradient(135deg,#55794a 50%,transparent 50%),linear-gradient(150deg,#fffffc,#e5efda)!important;
+ background-position:calc(100% - 20px) calc(50% - 2px),calc(100% - 14px) calc(50% - 2px),0 0!important;
+ background-size:6px 6px,6px 6px,100% 100%!important;background-repeat:no-repeat!important;
+ box-shadow:0 5px 0 #b3c9a3,0 11px 19px #45683a1c,inset 0 1px #fff!important;
+ font-weight:700;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+body#installation-workspace-view #report-modal :is(#f-company,.vehicle-unit-select):hover{transform:translateY(-2px);border-color:#86a876!important;box-shadow:0 7px 0 #a9c397,0 15px 23px #45683a24,inset 0 1px #fff!important}
+body#installation-workspace-view #report-modal :is(#f-company,.vehicle-unit-select):focus{transform:translateY(1px);box-shadow:0 2px 0 #9fb990,0 0 0 4px #78a06d25!important}
+body#installation-workspace-view #report-modal :is(#f-company,.vehicle-unit-select) option{color:#31533a;background:#f5f9ed;font-weight:650}
+body#installation-workspace-view #report-modal .ir-native-select{position:absolute!important;width:1px!important;height:1px!important;min-height:0!important;opacity:0!important;pointer-events:none!important;padding:0!important;margin:0!important;overflow:hidden!important}
+body#installation-workspace-view #report-modal .ir-select3d{position:relative;width:100%;min-width:0;perspective:900px;z-index:4}
+body#installation-workspace-view #report-modal .ir-select3d[open]{z-index:90}
+body#installation-workspace-view #report-modal .ir-select3d-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;list-style:none;min-height:49px;width:100%;padding:11px 14px!important;color:#345b3d;font-size:14px;font-weight:800;cursor:pointer;border:1px solid #a6c191;border-radius:13px;background:linear-gradient(145deg,#fffffc,#e6efdb);box-shadow:0 5px 0 #afc69d,0 12px 22px #365b321e,inset 0 1px #fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+body#installation-workspace-view #report-modal .ir-select3d-trigger::-webkit-details-marker{display:none}
+body#installation-workspace-view #report-modal .ir-select3d-trigger .ir-icon{margin-left:auto;color:#6e9155;transition:transform .22s ease}
+body#installation-workspace-view #report-modal .ir-select3d-trigger .ir-icon svg{width:18px;height:18px}
+body#installation-workspace-view #report-modal .ir-select3d[open] .ir-select3d-trigger .ir-icon{transform:rotate(180deg)}
+body#installation-workspace-view #report-modal .ir-select3d-trigger:hover{transform:translateY(-2px);border-color:#7fa466;box-shadow:0 7px 0 #9fbb8b,0 17px 27px #365b3228,inset 0 1px #fff}
+body#installation-workspace-view #report-modal .ir-select3d[open] .ir-select3d-trigger{transform:translateY(2px);box-shadow:0 2px 0 #92af7e,0 7px 15px #365b321c,inset 0 1px #fff}
+body#installation-workspace-view #report-modal .ir-select3d.is-disabled{opacity:.58;pointer-events:none}
+body#installation-workspace-view #report-modal .ir-select3d.needs-company .ir-select3d-trigger{color:#806b35;border-color:#d3bd7d;background:linear-gradient(145deg,#fffdf4,#f2e8c8);box-shadow:0 5px 0 #d5c18a,0 12px 22px #6f5a2718,inset 0 1px #fff}
+body#installation-workspace-view .ir-select3d-menu{position:fixed;display:grid;gap:7px;max-height:250px;overflow:auto;overscroll-behavior:contain;padding:10px;border:1px solid #a5bf90;border-radius:16px;background:linear-gradient(155deg,#fffffc,#e8f1dc);box-shadow:0 6px 0 #a8bf96,0 24px 38px #2d512f38,inset 0 1px #fff;transform-origin:top center;animation:ir-select-in .2s cubic-bezier(.2,.8,.2,1) both;scrollbar-width:thin;scrollbar-color:#8eaa76 #edf4e6}
+body#installation-workspace-view[data-preview-page][data-preview-page] .ir-select3d-option{display:block;text-align:left;width:100%;min-height:42px!important;padding:9px 12px!important;color:#466a46!important;font-size:13px!important;font-weight:750;border:1px solid #d0dfc2!important;border-radius:10px!important;background:linear-gradient(145deg,#fffffc,#f0f6e8)!important;box-shadow:0 3px 0 #cadabb!important;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+body#installation-workspace-view[data-preview-page][data-preview-page] .ir-select3d-option:hover{transform:translateY(-1px);border-color:#a9c293!important;box-shadow:0 4px 0 #b8cda5,0 8px 14px #365b3218!important}
+body#installation-workspace-view[data-preview-page][data-preview-page] .ir-select3d-option.is-selected{color:#fff!important;border-color:#477b4a!important;background:linear-gradient(135deg,#729d5b,#37734d)!important;box-shadow:0 3px 0 #2e603c,0 8px 15px #365b3224!important}
+body#installation-workspace-view .ir-select3d-option:disabled{opacity:.55;cursor:not-allowed}
+@keyframes ir-select-in{from{opacity:0;transform:translateY(-7px) rotateX(-9deg) scale(.98)}to{opacity:1;transform:none}}

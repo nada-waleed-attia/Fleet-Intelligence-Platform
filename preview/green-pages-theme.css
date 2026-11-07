@@ -1,0 +1,137 @@
+/* Preview-only green surfaces for every page body. The shared sidebar is outside this scope. */
+@font-face { font-family: "Cairo"; src: url("/assets/cairo-variable.ttf") format("truetype"); font-style: normal; font-weight: 200 1000; font-display: swap; }
+body[data-preview-page]:not(.preview-dashboard) {
+  --page-ink: #294536;
+  --page-muted: #657d67;
+  color: var(--page-ink) !important;
+  color-scheme: light;
+  background-color: #eef3e9 !important;
+  background-image:
+    radial-gradient(ellipse at 8% 0%, rgba(157, 193, 164, .20), transparent 42%),
+    radial-gradient(ellipse at 95% 10%, rgba(208, 181, 119, .12), transparent 35%),
+    linear-gradient(150deg, #f8faf4, #edf3e9 62%, #e2ecdf) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(
+  .header, .page, .panel, .container, .login-wrapper, .login-box, .box,
+  .card, .field-card, .report-info, .table-wrap, .table-wrapper,
+  .vehicles-box, .unit-block, .modal-content, .section-card, .form-section,
+  .content-card, .request-card, .report-card, .requests, .reports,
+  .perm-section, .top, .stat-chip.total
+) {
+  color: var(--page-ink) !important;
+  border-color: #cbdcc2 !important;
+  background: linear-gradient(145deg, #f9fbf5, #edf4e9) !important;
+  box-shadow: 0 12px 30px rgba(55, 86, 49, .09), inset 0 1px rgba(255,255,255,.86) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(h1, h2, h3, h4, .brand-text, .page-title, .unit-title, .perm-title) { color: #2d4d37 !important; }
+body[data-preview-page]:not(.preview-dashboard) :is(p, .hint, .sub, .subtitle, .eyebrow, .muted, .footer-note, .section-meta) { color: var(--page-muted) !important; }
+body[data-preview-page]:not(.preview-dashboard) :is(input, select, textarea, .units-dropdown-button, .form-control) {
+  color: var(--page-ink) !important;
+  border-color: #bdcfb3 !important;
+  background: #fffef9 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(input, select, textarea, .units-dropdown-button, .form-control)::placeholder { color: #839381 !important; }
+body[data-preview-page]:not(.preview-dashboard) :is(input, select, textarea, .units-dropdown-button, .form-control):focus {
+  border-color: #78a06d !important;
+  box-shadow: 0 0 0 3px rgba(113, 157, 100, .15) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) select option { color: var(--page-ink); background: #fbfcf8; }
+body[data-preview-page]:not(.preview-dashboard) :is(.units-menu, .dropdown-menu, .menu, .popover) {
+  color: #35543b !important;
+  border-color: #c6d7bc !important;
+  background: #f8faf4 !important;
+  box-shadow: 0 14px 30px rgba(48, 78, 43, .16) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(th, .table-head) {
+  color: #3f6545 !important;
+  border-color: #d3e0ca !important;
+  background: linear-gradient(135deg, #e8f0e2, #dce9d5) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(td, .table-cell) {
+  color: #405442 !important;
+  border-color: #dce6d6 !important;
+  background-color: #fbfcf8 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) tbody tr:nth-child(even) td { background-color: #f0f5ec !important; }
+body[data-preview-page]:not(.preview-dashboard) tbody tr:hover td { background-color: #e6f0df !important; }
+body[data-preview-page]:not(.preview-dashboard) :is(.units-menu, .table-wrapper, .table-wrap) { scrollbar-color: #91ad82 #edf3e8; }
+body[data-preview-page]:not(.preview-dashboard) :is(.btn-secondary, .btn-sm, .secondary-btn, .tab-btn, .action-btn, .close-btn, .stat-chip.total):not(.delete-btn, .danger-btn, .danger, .delete, .logout-btn) {
+  color: #456749 !important;
+  border-color: #c6d8bc !important;
+  background: #edf4e8 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(.btn-secondary, .btn-sm, .secondary-btn, .tab-btn, .action-btn, .close-btn):not(.delete-btn, .danger-btn, .danger, .delete, .logout-btn):hover {
+  background: #e1edd9 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) .tab-btn.active {
+  color: #f5faf2 !important;
+  border-color: #719773 !important;
+  background: linear-gradient(135deg, #56815c, #3e6d49) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(.back-btn, .new-btn, .run-btn, .send-btn, .submit-btn, .success-btn, .create-user-btn, .refresh-btn, .btn-primary, .excel-btn, .pdf-btn, .action-btn.btn-view, #sms-btn, #wialon-reports-btn, #manage-users-btn):not(:disabled) {
+  color: #f5faf2 !important;
+  border-color: #6f9670 !important;
+  background: linear-gradient(135deg, #56815c, #3e6d49) !important;
+}
+body[data-preview-page]:not(.preview-dashboard) :is(.back-btn, .new-btn, .run-btn, .send-btn, .submit-btn, .success-btn, .create-user-btn, .refresh-btn, .btn-primary, .excel-btn, .pdf-btn, .action-btn.btn-view, #sms-btn, #wialon-reports-btn, #manage-users-btn):not(:disabled):hover {
+  background: linear-gradient(135deg, #659368, #477b50) !important;
+  border-color: #527c55 !important;
+  transform: translateY(-1px);
+}
+body[data-preview-page]:not(.preview-dashboard) :is(.panel, .login-box, .box, .modal-content)::before { border-color: #b9d0ad !important; }
+body[data-preview-page]:not(.preview-dashboard) .modal { background: rgba(42, 73, 51, .34) !important; }
+body[data-preview-page]:not(.preview-dashboard) .preview-note {
+  color: #3e6042 !important;
+  border-color: #c2d6b6 !important;
+  background: #edf5e8 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) .preview-controls {
+  color: #38583d !important;
+  border: 1px solid #c2d6b6 !important;
+  background: #edf5e8 !important;
+}
+body[data-preview-page]:not(.preview-dashboard) .preview-controls button {
+  color: #f5faf2 !important;
+  border-color: #78a078 !important;
+  background: #4d7953 !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-preview-page]:not(.preview-dashboard) button { transition: none !important; }
+}
+
+/* EDIT BY NADA — keep the Observer mark legible and consistent on every preview page. */
+body[data-preview-page] :is(.brand-logo, .brand-mark, .logo-box, .brand > img) {
+  box-sizing: border-box !important;
+  width: clamp(76px, 6vw, 92px) !important;
+  height: clamp(76px, 6vw, 92px) !important;
+  min-width: clamp(76px, 6vw, 92px) !important;
+  flex: 0 0 clamp(76px, 6vw, 92px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+body[data-preview-page] :is(.brand-logo img, .brand-mark img, .logo-box img, .brand > img) {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* EDIT BY NADA — apply Cairo to every page inside the preview iframe. */
+body[data-preview-page], body[data-preview-page] * {
+  font-family: "Cairo", sans-serif !important;
+}
+
